@@ -91,6 +91,9 @@ ul:first-child {
   line-height: 14px;
   /* font-style: italic; */
   font-family: 'Univers CE 45';
+
+  margin-top: 6px;
+  margin-bottom: 4px;
 }
 
 .meta div {

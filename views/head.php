@@ -49,6 +49,5 @@ if($uu->id)
 		<link rel="stylesheet" href="<? echo $host; ?>static/css/fonts.css">
 		<link rel="stylesheet" href="<? echo $host; ?>static/css/global.css">
 		<link rel="apple-touch-icon" href="<? echo $host; ?>media/png/touchicon.png" />
-		<script src="static/js/analytics.js"></script>
 	</head>
 <body>

@@ -20,7 +20,7 @@ function getRandOffset($idx) {
     return 0;
   } else {
     // round to nearest 5
-    return roundUpToAny(rand(0, 50));
+    return roundUpToAny(rand(0, 40));
   }
 }
 
