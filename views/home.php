@@ -1,4 +1,5 @@
-<div class="header-image" style="margin-left: <? echo getRandOffset(1); ?>vw;">
+<!-- <div class="header-image" style="margin-left: <? echo getRandOffset(1); ?>vw;"> -->
+<div class="header-image">
   <img src="media/gif/fa-blue.gif" >
 </div>
 <div class="column-container">
