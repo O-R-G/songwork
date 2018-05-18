@@ -26,7 +26,7 @@ function getRandOffset($idx) {
 
 function getRandWidth($idx) {
   // round to nearest 5
-  return roundUpToAny(rand(0, 40));
+  return roundUpToAny(rand(5, 40));
 }
 
 
