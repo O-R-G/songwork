@@ -1,7 +1,5 @@
-<!-- <div class="header-image" style="margin-left: <? echo getRandOffset(1); ?>vw;"> -->
-<div class="header-image">
-  <a href="#top"><img src="media/gif/fa-blue.gif" ></a>
-</div>
+<a href="#top"><div id="lozenge"><?= $title ?></div></a>
+
 <a name='top'></a>
 <div class="container"><?
 // $oo->get(0);
@@ -53,7 +51,7 @@ for (; $idx < $length/2; $idx++) {
     $media ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
-    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo $child["body"]; } ?>
+    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="size"><? echo $meta[1]  ?></div></div>
   </div>
@@ -67,7 +65,7 @@ for (; $idx < $length; $idx++) {
     $media ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
-    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo $child["body"]; } ?>
+    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="size"><? echo $meta[1]  ?></div></div>
   </div>
