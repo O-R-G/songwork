@@ -24,21 +24,7 @@ else
 	$item = $oo->get(0);
 $name = ltrim(strip_tags($item["name1"]), ".");
 
-// document title
-// $item = $oo->get($uu->id);
-// $title = $item["name1"];
-// $nav = $oo->nav($uu->ids);
 $title = "Materia Abierta";
-
-if($uu->id)
-{
-	// if linked from outside, dont show menu
-	$is_leaf = empty($oo->children_ids_nav($uu->id));
-	$internal = (substr($_SERVER['HTTP_REFERER'], 0, strlen($host)) === $host);
-
-	if(!$is_leaf && $internal)
-		$show_menu = true;
-}
 
 ?>
 <!DOCTYPE html>
