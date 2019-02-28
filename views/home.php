@@ -14,7 +14,6 @@ shuffle($children_img);
 $children = [];
 $skip_next = false;
 for ($i = 0; $i < count($children_text); $i++) {
-  $children []= $children_text[$i];
   if (!$skip_next) {
     $children []= array_pop($children_img);
     if (rand(0,1) == 0)
@@ -22,6 +21,7 @@ for ($i = 0; $i < count($children_text); $i++) {
   } else {
     $skip_next = false;
   }
+  $children []= $children_text[$i];
 }
 
 $length = count($children);
