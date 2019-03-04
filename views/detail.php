@@ -45,7 +45,7 @@ function getMeta($child, $media) {
 
 ?>
 
-<a href="javascript:window.history.back();"><div id="lozenge"><?= $title ?></div></a>
+<a href="javascript:goBackOrHome()"><div id="lozenge"><?= $title ?></div></a>
 
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
@@ -65,3 +65,13 @@ for (; $idx < $length; $idx++) {
 }
 ?></div>
 </div>
+
+<script>
+function goBackOrHome() {
+  if (document.referrer == "")
+    window.location.href = '/';
+  else
+    window.history.back();
+}
+
+</script>
