@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="/static/css/global.css">
 	</head>
 
-
+<body style="overflow: hidden;">
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
 <form action="https://materiaabierta.us20.list-manage.com/subscribe/post?u=4ba46b0d536050a2aa447cd72&amp;id=1a9ea3f449" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -27,3 +27,5 @@
 </div>
 
 <!--End mc_embed_signup-->
+
+</body>
