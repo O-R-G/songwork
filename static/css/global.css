@@ -113,6 +113,12 @@ ul:first-child {
   padding-bottom: 1em;
 }
 
+input {
+  font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	line-height: 22px;
+}
+
 #lozenge {
   position: fixed;
   left: 100px;
