@@ -119,6 +119,10 @@ input {
 	line-height: 22px;
 }
 
+.mc-field-group label {
+	display: none;
+}
+
 #lozenge {
   position: fixed;
   left: 100px;
