@@ -13,6 +13,8 @@ shuffle($children_img);
 
 $children = [];
 $skip_next = false;
+
+// randomly insert images
 for ($i = 0; $i < count($children_text); $i++) {
   if (!$skip_next) {
     $children []= array_pop($children_img);
