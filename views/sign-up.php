@@ -12,7 +12,7 @@
 <form action="https://materiaabierta.us20.list-manage.com/subscribe/post?u=4ba46b0d536050a2aa447cd72&amp;id=1a9ea3f449" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
 
-<div class="mc-field-group">
+<div class="mc-field-group" style="margin-bottom: 4px;">
 	<label for="mce-EMAIL">Email Address </label>
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
