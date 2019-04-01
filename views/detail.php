@@ -56,7 +56,7 @@ for (; $idx < $length; $idx++) {
     $hasMedia = !isset($child['body']);
     $media = $hasMedia ? $child : null;
   ?>
-  <div class= "child column-container-container" style="">
+  <div class= "child column-container-container" style="max-width: 500px;">
     <? if ($hasMedia) { echo '<img src="' . m_url($media) . '">'; } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>

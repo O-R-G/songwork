@@ -69,7 +69,6 @@ ul:first-child {
   display: flex;
   flex-direction: row;
   padding-top: 50px;
-  position: absolute;
 }
 
 .column-container-container {
@@ -191,6 +190,10 @@ input {
     height: 0;
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 /* vertical iPad / horizontal iPhone */
 @media screen and (max-width: 768px) {
   .container {
@@ -214,8 +217,8 @@ input {
 	}
 }
 
-/* vertical iPhone */
-@media screen and (max-width: 500px) {
+/* vertical ipad and smaller */
+@media screen and (max-width: 768px) {
 	.column-container {
 		display: block;
 		padding-bottom: 0px;
