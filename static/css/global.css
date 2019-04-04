@@ -112,16 +112,6 @@ ul:first-child {
   padding-bottom: 1em;
 }
 
-input {
-  font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;
-	font-size: 18px;
-	line-height: 22px;
-}
-
-.mc-field-group label {
-	display: none;
-}
-
 #lozenge {
   position: fixed;
   left: 100px;
@@ -192,6 +182,41 @@ input {
 
 .no-wrap {
   white-space: nowrap;
+}
+
+/* mailchimp */
+#mc_embed_signup input {
+  font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	line-height: 22px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 0px;
+  border: none;
+
+  padding: 0px;
+  margin: 0px;
+
+  background-color: #fff;
+}
+
+#mc_embed_signup input.button {
+  color: #f00;
+  cursor: pointer;
+}
+
+#mc_embed_signup input.email {
+  padding: 5px;
+  border: 2px solid #000;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.mc-field-group label {
+	display: none;
 }
 
 /* vertical iPad / horizontal iPhone */
