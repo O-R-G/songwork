@@ -60,6 +60,13 @@ function getMeta($child, $media) {
   return $out;
 }
 
+function renderMedia($media) {
+  if (count($media) > 1) {
+    echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
+  } else {
+    echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
+  }
+}
 ?>
 
 <a href="#top"><div id="lozenge"><?= $title ?></div></a>
@@ -70,11 +77,11 @@ function getMeta($child, $media) {
 for (; $idx < $length/2; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
-    $media ? $hasMedia = true : $hasMedia = false;
+    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -84,11 +91,11 @@ for (; $idx < $length/2; $idx++) {
 for (; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
-    $media ? $hasMedia = true : $hasMedia = false;
+    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { echo '<img class="fullscreen" src="' . m_url($media[0]) . '">'; } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>

@@ -220,7 +220,7 @@ ul:first-child {
 }
 
 /* vertical iPad / horizontal iPhone */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
   }
@@ -240,11 +240,8 @@ ul:first-child {
 	.column-container-container:last-child > .column-container {
 		padding-bottom: 0px;
 	}
-}
 
-/* vertical ipad and smaller */
-@media screen and (max-width: 768px) {
-	.column-container {
+  .column-container {
 		display: block;
 		padding-bottom: 0px;
 		width: 100%;
@@ -256,13 +253,5 @@ ul:first-child {
 
 	.column-container > p:last-child {
 		margin-bottom: 0px;
-	}
-
-	.column-container:last-child {
-		/* padding-bottom: 20px; */
-	}
-
-	.column-container-container:last-child {
-		/* padding-bottom: 44vw; */
 	}
 }

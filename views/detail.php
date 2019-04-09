@@ -53,7 +53,7 @@ function getMeta($child, $media) {
   <div class = "column-container left"><?
 for (; $idx < $length; $idx++) {
     $child = $children[$idx];
-    $hasMedia = !isset($child['body']);
+    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $media = $hasMedia ? $child : null;
   ?>
   <div class= "child column-container-container" style="max-width: 500px;">
