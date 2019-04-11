@@ -184,6 +184,24 @@ ul:first-child {
   white-space: nowrap;
 }
 
+/* news */
+.child.column-container-container.news {
+  color: #00f;
+}
+
+.child.column-container-container.news .meta {
+  color: #000;
+}
+
+#news-content {
+  /* height: 100px; */
+}
+
+#news-content a {
+  color: #00f !important;
+}
+
+
 /* mailchimp */
 #mc_embed_signup input {
   font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;

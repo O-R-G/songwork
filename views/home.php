@@ -14,8 +14,10 @@ shuffle($children_img);
 $children = [];
 $skip_next = false;
 
-// randomly insert images
+// randomly insert images and process for _ (news) entry
 for ($i = 0; $i < count($children_text); $i++) {
+
+  // insert image every other or every two
   if (!$skip_next) {
     $children []= array_pop($children_img);
     if (rand(0,1) == 0)
@@ -23,7 +25,12 @@ for ($i = 0; $i < count($children_text); $i++) {
   } else {
     $skip_next = false;
   }
-  $children []= $children_text[$i];
+
+  // check for any special processing
+  if (substr($children_text[$i]['name1'], 0, 1) == "_")
+    $children []= processNews($children_text[$i]);
+  else
+    $children []= $children_text[$i];
 }
 
 $length = count($children);
@@ -67,6 +74,38 @@ function renderMedia($media) {
     echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
   }
 }
+
+function processNews($child) {
+  global $oo;
+
+  $news_children = $oo->children($child['id']);
+  $news_body = "<div id='news-content'></div>";
+
+  $news_body .="<script>";
+  $news_body .= "var newsItems = [";
+  foreach($news_children as $news_child) {
+    if (substr($news_child['name1'], 0, 1) == ".")
+      continue;
+      
+    // get full url
+    $ancestors = $oo->ancestors($news_child['id']);
+    $full_url = "";
+    foreach($ancestors as $ancestor)
+      $full_url .= "/" . $oo->get($ancestor)['url'];
+    $full_url .= "/" . $news_child['url'];
+
+    $news_body .= '{"content": "'. $news_child['deck'] . '", "url": "' . $full_url . '"},';
+  }
+
+  $news_body .= "];";
+  $news_body .="</script>";
+
+  return array(
+    "name1" => substr($child['name1'], 1),
+    "body" => $news_body,
+    "url" => "news",
+  );
+}
 ?>
 
 <a href="#top"><div id="lozenge"><?= $title ?></div></a>
@@ -79,7 +118,7 @@ for (; $idx < $length/2; $idx++) {
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
-  <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
+  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
@@ -93,7 +132,7 @@ for (; $idx < $length; $idx++) {
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
-  <div class= "child column-container-container" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
+  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
@@ -103,3 +142,50 @@ for (; $idx < $length; $idx++) {
 }
 ?></div>
 </div>
+
+<script>
+var newsContent = document.getElementById('news-content');
+var newsIdx = 0;
+
+renderNews(newsIdx++);
+
+setInterval(function() {
+  return (function(idx) {
+    renderNews(idx % newsItems.length);
+  })(newsIdx++);
+}, 20000);
+
+function renderNews(idx) {
+  while(newsContent.firstChild)
+    newsContent.removeChild(newsContent.firstChild);
+
+  var aTag = document.createElement('a');
+  aTag.setAttribute('href', newsItems[idx].url);
+  newsContent.appendChild(aTag);
+  var i = 0;
+  var txt = newsItems[idx].content;
+  var speed = 50;
+
+  function typeWriter() {
+    if (i < txt.length) {
+      aTag.innerHTML += txt.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  typeWriter();
+
+  var d = new Date();
+  document.querySelector('.child.news .meta .modified').innerHTML =
+    "Modified " + d.getFullYear() +
+    '-' + ("" + (d.getMonth() + 1)).padStart(2, 0) +
+    '-' + ("" + d.getDate()).padStart(2, 0) +
+    ' ' + ("" + d.getHours()).padStart(2, 0) +
+    ':' + ("" + d.getMinutes()).padStart(2, 0) +
+    ':' + ("" + d.getSeconds()).padStart(2, 0);
+
+  document.querySelector('.child.news .meta .filename').innerHTML = txt.length + ' Characters';
+}
+
+</script>
