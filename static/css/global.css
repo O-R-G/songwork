@@ -187,6 +187,7 @@ ul:first-child {
 /* news */
 .child.column-container-container.news {
   color: #00f;
+  height: 350px;
 }
 
 .child.column-container-container.news .meta {
