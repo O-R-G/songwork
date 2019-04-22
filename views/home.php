@@ -153,7 +153,7 @@ setInterval(function() {
   return (function(idx) {
     renderNews(idx % newsItems.length);
   })(newsIdx++);
-}, 20000);
+}, 10000);
 
 function renderNews(idx) {
   while(newsContent.firstChild)
@@ -165,7 +165,7 @@ function renderNews(idx) {
   newsContent.appendChild(aTag);
   var i = 0;
   var txt = newsItems[idx].content;
-  var speed = 50;
+  var speed = 40;
 
   function typeWriter() {
     if (i < txt.length) {
