@@ -156,21 +156,20 @@ setInterval(function() {
 }, 20000);
 
 function renderNews(idx) {
-  newsContent.innerHTML = '';
-  // while(newsContent.firstChild)
-  //   newsContent.removeChild(newsContent.firstChild);
+  while(newsContent.firstChild)
+    newsContent.removeChild(newsContent.firstChild);
 
-  // var aTag = document.createElement('a');
+  var aTag = document.createElement('a');
   // aTag.setAttribute('href', newsItems[idx].url);
-  // newsContent.appendChild(aTag);
+  aTag.setAttribute('href', '#');
+  newsContent.appendChild(aTag);
   var i = 0;
   var txt = newsItems[idx].content;
   var speed = 50;
 
   function typeWriter() {
     if (i < txt.length) {
-      // aTag.innerHTML += txt.charAt(i);
-      newsContent.innerHTML += txt.charAt(i);
+      aTag.innerHTML += txt.charAt(i);
       i++;
       setTimeout(typeWriter, speed);
     }
