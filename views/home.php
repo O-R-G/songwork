@@ -156,8 +156,9 @@ setInterval(function() {
 }, 20000);
 
 function renderNews(idx) {
-  while(newsContent.firstChild)
-    newsContent.removeChild(newsContent.firstChild);
+  newsContent.innerHTML = '';
+  // while(newsContent.firstChild)
+  //   newsContent.removeChild(newsContent.firstChild);
 
   // var aTag = document.createElement('a');
   // aTag.setAttribute('href', newsItems[idx].url);
