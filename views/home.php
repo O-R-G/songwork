@@ -86,7 +86,7 @@ function processNews($child) {
   foreach($news_children as $news_child) {
     if (substr($news_child['name1'], 0, 1) == ".")
       continue;
-      
+
     // get full url
     $ancestors = $oo->ancestors($news_child['id']);
     $full_url = "";
@@ -159,16 +159,17 @@ function renderNews(idx) {
   while(newsContent.firstChild)
     newsContent.removeChild(newsContent.firstChild);
 
-  var aTag = document.createElement('a');
-  aTag.setAttribute('href', newsItems[idx].url);
-  newsContent.appendChild(aTag);
+  // var aTag = document.createElement('a');
+  // aTag.setAttribute('href', newsItems[idx].url);
+  // newsContent.appendChild(aTag);
   var i = 0;
   var txt = newsItems[idx].content;
   var speed = 50;
 
   function typeWriter() {
     if (i < txt.length) {
-      aTag.innerHTML += txt.charAt(i);
+      // aTag.innerHTML += txt.charAt(i);
+      newsContent.innerHTML += txt.charAt(i);
       i++;
       setTimeout(typeWriter, speed);
     }
