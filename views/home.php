@@ -147,12 +147,17 @@ for (; $idx < $length; $idx++) {
 var newsContent = document.getElementById('news-content');
 var newsIdx = 0;
 
-renderNews(newsIdx++);
+renderNews(newsIdx);
 
 setInterval(function() {
+  var nextIdx = Math.floor(Math.random()*newsItems.length);
+  while (nextIdx == newsIdx) {
+    nextIdx = Math.floor(Math.random()*newsItems.length);
+  }
+  newsIdx = nextIdx;
   return (function(idx) {
     renderNews(idx % newsItems.length);
-  })(newsIdx++);
+  })(newsIdx);
 }, 10000);
 
 function renderNews(idx) {
