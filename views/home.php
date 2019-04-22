@@ -107,8 +107,7 @@ function processNews($child) {
   );
 }
 ?>
-
-<a href="#top"><div id="lozenge"><?= $title ?></div></a>
+<a href="#top" onclick="location.reload()"><div id="lozenge"><?= $title ?></div></a>
 <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div>
 <a name='top'></a>
 <div class="container">

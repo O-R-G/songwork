@@ -38,6 +38,10 @@ $title = "Materia Abierta";
 		<link rel="apple-touch-icon" href="<? echo $host; ?>media/png/touchicon.png" />
 		<meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
 
+		<meta property="og:title" content="Materia Abierta">
+		<meta property="og:image" content="https://materiaabierta.com/media/00076.jpg">
+		<meta property="og:type" content="website">
+
 		<? if ($uri[1] == "es"): ?>
 			<meta name="description" content="Materia Abierta es un programa independiente de verano sobre teoría, arte y tecnología establecido en la Ciudad de México.">
 		  <meta name="keywords" content="verano,program,teoría,arte,tecnología,escuela,computación,seminario,conferencia,méxico">
