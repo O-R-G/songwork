@@ -202,6 +202,12 @@ ul:first-child {
   color: #00f !important;
 }
 
+/* collaborators */
+.child.column-container-container.collaborators,
+.child.column-container-container.colaboradores {
+  padding-right: 0px !important;
+}
+
 
 /* mailchimp */
 #mc_embed_signup input {
