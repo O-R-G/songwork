@@ -90,6 +90,10 @@ ul:first-child {
 	padding: 20px;
 }
 
+.audio-container {
+  	padding-top: 4em;
+}
+
 .meta {
   display: flex;
   flex-direction: row;
@@ -119,6 +123,7 @@ ul:first-child {
   width: 175px;
   height: 40px;
   z-index: 1000;
+  font-family: Helvetica, Arial, sans-serif;
 
   background-color: #00f;
   color: #fff;
@@ -245,7 +250,7 @@ ul:first-child {
 }
 
 /* vertical iPad / horizontal iPhone */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 500px) {
   .container {
     flex-direction: column;
   }

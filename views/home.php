@@ -1,12 +1,9 @@
 <?
 
 // set up
-$imgs_id = 21;
+$imgs_id = 1;
 
-$texts_id = 19; //en
-if ($uri[1] == "es") {
-  $texts_id = 20; //es
-}
+$texts_id = 2;
 $children_text = $oo->children($texts_id);
 $children_img = $oo->children($imgs_id);
 shuffle($children_img);
@@ -14,6 +11,19 @@ shuffle($children_img);
 $children = [];
 $skip_next = false;
 
+/*
+// build children array images only
+for ($i = 0; $i < count($children_img); $i++) {
+    $children []= array_pop($children_img);
+}
+*/
+
+// get one img only, but repeat it
+for ($i = 0; $i < 10; $i++) {
+    $children []= $children_img[0];
+}
+
+/*
 // randomly insert images and process for _ (news) entry
 for ($i = 0; $i < count($children_text); $i++) {
 
@@ -32,6 +42,7 @@ for ($i = 0; $i < count($children_text); $i++) {
   else
     $children []= $children_text[$i];
 }
+*/
 
 $length = count($children);
 $idx = 0;
@@ -68,11 +79,15 @@ function getMeta($child, $media) {
 }
 
 function renderMedia($media) {
+    echo '<a href="/music/hushedness"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
+
+  /*
   if (count($media) > 1) {
     echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
   } else {
     echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
   }
+  */
 }
 
 function processNews($child) {
@@ -108,7 +123,7 @@ function processNews($child) {
 }
 ?>
 <a href="#top" onclick="location.reload()"><div id="lozenge"><?= $title ?></div></a>
-<div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div>
+<!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 <a name='top'></a>
 <div class="container">
   <div class = "column-container left"><?

@@ -1,6 +1,4 @@
 <?
-
-
 $children = [];
 
 $mediaItems = $oo->media($item['id']);
@@ -45,24 +43,33 @@ function getMeta($child, $media) {
 
 ?>
 
-<a href="javascript:goBackOrHome()" class="no-blank"><div id="lozenge"><?= $title ?></div></a>
-
+<!-- <a href="javascript:goBackOrHome()" class="no-blank"><div id="lozenge"><?= $title ?></div></a> -->
+<a href="/" class="no-blank"><div id="lozenge"><?= $title ?></div></a>
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
 <div class="container">
   <div class = "column-container left"><?
-for (; $idx < $length; $idx++) {
+// for (; $idx < $length; $idx++) {
     $child = $children[$idx];
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $media = $hasMedia ? $child : null;
   ?>
-  <div class= "child column-container-container" style="max-width: 500px;">
-    <? if ($hasMedia) { echo '<img src="' . m_url($media) . '">'; } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
-    <? $meta = getMeta($child, $media); ?>
-    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
+  <div class= "child column-container-container audio-container" style="max-width: 500px;"><?
+	if ($hasMedia) {
+		if ($media['type'] == 'mp3') {
+			?><audio controls>
+  				<source src="<?= m_url($media); ?>" type="audio/mpeg">
+	  			Your browser does not support the audio element.
+			</audio><?
+		} else {
+			?><img src="<?= m_url($media); ?>"><?
+		}
+	}
+	$meta = getMeta($child, $media);
+    ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
 <?
-}
+// }
 ?></div>
 </div>
 
