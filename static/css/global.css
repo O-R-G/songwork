@@ -80,7 +80,7 @@ button {
     text-decoration: none;
     font-size: 12px;
     background-color: #999; 
-    -webkit-transition-duration: 0.2s; /* Safari */
+    /* -webkit-transition-duration: 0.2s; */ /* Safari */
     transition-duration: 0.2s;
 }
 
@@ -88,17 +88,21 @@ button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+button:active {
+    background-color: #666;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transform: translateY(2px);
+    transform: translateX(-2px);
+}
 
 #controls {
     position: fixed;
+    top: 0px;
     right: 0px;
     display: inline-block;
     margin: 10px;
+    z-index: 1000;
 }
-
-
-
-
 
 .container {
   display: flex;
@@ -252,6 +256,10 @@ button:hover {
 
 #news-content a {
   color: #00f !important;
+}
+
+.video {    
+    transition-duration: 0.2s;
 }
 
 /* collaborators */

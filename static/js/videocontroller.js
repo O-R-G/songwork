@@ -8,33 +8,55 @@
 
 */
 
-// perhaps have these fade in one at a time
-// in a random order using setinterval()?
+// init 
 
 var videos = document.getElementsByClassName("video");
-var next;
+var index = [];
+var timer;
+var time_to_start = 500;
+var time_to_next  = 10000;
 
-function play_videos() { 
-    for (i = 0; i < videos.length; i++) {
-        videos[i].play();
-        // start one video at a time
-        // wrap arg in anonymous function
-        // of course this is not working
-        // next = setTimeout(function(){ play_video(i);}, 1000);
-    }
-} 
+// populate and shuffle videos[] index for play order
 
-function pause_videos() { 
-    for (i = 0; i < videos.length; i++) {
-        videos[i].pause();
-    }
+for (var i = 0; i < videos.length; i++) 
+   index.push(i);
+index = index.sort(function(a, b){return 0.5 - Math.random()});
+console.log(videos.length);
+console.log(index.length);
+console.log(index);
+
+// start
+
+function start_timer() {
+    timer = setTimeout(function(){ play_one_video(index[0]); }, time_to_start);
 }
 
-function play_video(i) { 
+// video control
+
+function play_one_video(i) {
+    videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
     videos[i].play();
+    if (i+1 < videos.length)
+        timer = setTimeout(function(){ play_one_video(index[i+1]); }, time_to_next);
 } 
 
-function pause_video(i) { 
+function pause_one_video(i) { 
+    videos[i].style.boxShadow = null;
     videos[i].pause();
 } 
 
+function play_all_videos() { 
+    for (i = 0; i < videos.length; i++) {
+        videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
+        videos[i].play();
+    }
+    timer = null;
+}
+
+function pause_all_videos() { 
+    for (i = 0; i < videos.length; i++) {
+        videos[i].style.boxShadow = null;
+        videos[i].pause();
+    }
+    timer = null;
+}

@@ -51,12 +51,14 @@ function render_media($media) {
 /* html */
        
 ?><div id='controls'>
-    <button onclick="play_videos()" type="button">&#9654;</button>
-    <button onclick="pause_videos()" type="button">| |</button>
-    <button onclick="play_video(0)" type="button">PLAY ONE</button>
-    <button onclick="play_video(1)" type="button">PLAY ONE</button>
-    <button onclick="pause_video(0)" type="button">PAUSE ONE</button>
+    <button onclick="play_all_videos()" type="button">&#9654;</button>
+    <button onclick="pause_all_videos()" type="button">| |</button>
+    <button onclick="start_timer()" type="button">START</button>
 </div>
+
+<p id="demo"></p>
+<p id="demo2" style="color:red;"></p>
+
 
 <a href="#top" onclick="location.reload();">
     <div id="lozenge">
@@ -97,4 +99,4 @@ for (; $idx < $length; $idx++) {
 ?></div>
 </div>
 
-<script src='/static/js/videocontroller.js'></script>>
+<script src='/static/js/videocontroller.js'></script>
