@@ -85,4 +85,3 @@ elseif($uri[2] == 'location'){
 ?>
 
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
-<script type = "text/javascript" src='/static/js/autoplay.js'></script>
