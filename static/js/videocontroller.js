@@ -39,15 +39,15 @@ function play_one_video(i) {
     videos[i].play();
     if (i+1 < videos.length)
         timer = setTimeout(function(){ play_one_video(index[i+1]); }, time_to_next);
-    vid_status_playall = false;
-    vid_status_pauseall = false;
+    // vid_status_playall = false;
+    // vid_status_pauseall = false;
 } 
 
 function pause_one_video(i) { 
     videos[i].style.boxShadow = null;
     videos[i].pause();
-    vid_status_playall = false;
-    vid_status_pauseall = false;
+    // vid_status_playall = false;
+    // vid_status_pauseall = false;
 } 
 
 function play_all_videos() { 
@@ -56,17 +56,19 @@ function play_all_videos() {
         videos[i].play();
     }
     timer = null;
-    vid_status_playall = true;
-    vid_status_pauseall = false;
+    // vid_status_playall = true;
+    // vid_status_pauseall = false;
 }
 
 function pause_all_videos() { 
-    for (i = 0; i < videos.length; i++) {
-        videos[i].style.boxShadow = null;
-        videos[i].pause();
-    }
-    timer = null;
-    vid_status_playall = false;
-    vid_status_pauseall = true;
+    // setTimeout(0) so that it executes after 
+    // window click in autoplay.js;
+    setTimeout(function(){
+        for (i = 0; i < videos.length; i++) {
+            videos[i].style.boxShadow = null;
+            videos[i].pause();
+        }
+        timer = null;
+    },0);
 }
 
