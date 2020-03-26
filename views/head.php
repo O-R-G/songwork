@@ -23,7 +23,8 @@ if($uu->id)
 else
 	$item = $oo->get(0);
 $name = ltrim(strip_tags($item["name1"]), ".");
-
+$lib_path = $_SERVER["DOCUMENT_ROOT"].'/lib/lib.php';
+require_once($lib_path);
 $title = "Song Work";
 
 ?>

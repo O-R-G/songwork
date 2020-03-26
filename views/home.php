@@ -50,23 +50,30 @@ function render_media($media) {
 
 /* html */
        
-?><div id='controls'>
+?>
+
+<!-- <div id='controls'>
     <button onclick="play_all_videos()" type="button">&#9654;</button>
     <button onclick="pause_all_videos()" type="button">| |</button>
     <button onclick="start_timer()" type="button">START</button>
-</div>
+</div> -->
 
 <p id="demo"></p>
 <p id="demo2" style="color:red;"></p>
 
 
-<a href="#top" onclick="location.reload();">
-    <div id="lozenge">
+<div id = "logo_ctner">
+    <button id = "logo_play" onclick="play_all_videos()" type = "button">&#9654;</button>
+    <a id="lozenge" href="#top" onclick="location.reload();">
         <?= $title ?>
-    </div>
-</a>
+    </a>
+    <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
+</div>
+<a id = 'top' name='top'></a>
 
-<a name='top'></a>
+<? require_once('views/nav.php'); ?>
+
+
 <div class="container">
   <div class = "column-container left"><?
 for (; $idx < $length/2; $idx++) {
@@ -99,4 +106,5 @@ for (; $idx < $length; $idx++) {
 ?></div>
 </div>
 
-<script src='/static/js/videocontroller.js'></script>
+<script type = "text/javascript" src='/static/js/videocontroller.js'></script>
+<script type = "text/javascript" src='/static/js/autoplay.js'></script>

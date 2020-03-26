@@ -15,7 +15,8 @@ var index = [];
 var timer;
 var time_to_start = 500;
 var time_to_next  = 10000;
-
+var vid_status_playall = false;
+var vid_status_pauseall = false;
 // populate and shuffle videos[] index for play order
 
 for (var i = 0; i < videos.length; i++) 
@@ -38,11 +39,15 @@ function play_one_video(i) {
     videos[i].play();
     if (i+1 < videos.length)
         timer = setTimeout(function(){ play_one_video(index[i+1]); }, time_to_next);
+    vid_status_playall = false;
+    vid_status_pauseall = false;
 } 
 
 function pause_one_video(i) { 
     videos[i].style.boxShadow = null;
     videos[i].pause();
+    vid_status_playall = false;
+    vid_status_pauseall = false;
 } 
 
 function play_all_videos() { 
@@ -51,6 +56,8 @@ function play_all_videos() {
         videos[i].play();
     }
     timer = null;
+    vid_status_playall = true;
+    vid_status_pauseall = false;
 }
 
 function pause_all_videos() { 
@@ -59,4 +66,7 @@ function pause_all_videos() {
         videos[i].pause();
     }
     timer = null;
+    vid_status_playall = false;
+    vid_status_pauseall = true;
 }
+

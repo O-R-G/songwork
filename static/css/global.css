@@ -95,6 +95,7 @@ button:active {
     transform: translateX(-2px);
 }
 
+
 #controls {
     position: fixed;
     top: 0px;
@@ -107,7 +108,8 @@ button:active {
 .container {
   display: flex;
   flex-direction: row;
-  padding-top: 50px;
+  /*padding-top: 50px;*/
+  padding-top: 180px;
 }
 
 .column-container-container {
@@ -170,18 +172,19 @@ button:active {
 }
 
 #lozenge {
-    position: fixed;
+    /*position: fixed;
     left: 50%;
     top: 40px; 
     transform: translate(-50%, 0);
     width: 262px;
-    height: 60px;
+    height: 60px;*/
+    display: block;
     font-family: Helvetica, Arial, sans-serif;    
     background-color: #00f;
     color: #fff;
     text-align: center;
     line-height: 60px;
-    z-index: 1000;
+    /*z-index: 1000;*/
 }
 
 .lang-toggle {
@@ -341,3 +344,153 @@ button:active {
 		margin-bottom: 0px;
 	}
 }
+
+/* 3/26 */
+
+/* switch the <a> and <div> cause if the parent is <a>, 
+clicking on play/pasue will trigger it as well. */
+#logo_ctner{
+    position: fixed;
+    left: 50%;
+    top: 40px; 
+    transform: translate(-50%, 0);
+    width: 262px;
+    height: 60px;
+    background-color: #00f;
+    color: #fff;
+    z-index: 1000;
+    text-align: center;
+}
+#logo_ctner > *{
+  display: inline-block;
+  vertical-align: middle;
+  position:relative;
+}
+#logo_ctner button{
+  background-color: #00f;
+  width: 55px;
+  font-size:16px;
+  height: 100%;
+}
+
+#logo_ctner button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
+    z-index: 1001;
+}
+
+#logo_ctner button:active {
+    background-color: #00b;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
+    transform: translateY(2px);
+    transform: translateX(-2px);
+}
+button:focus{
+  outline:0;
+}
+#nav{
+  position: fixed;
+  top:0;
+  left:0;
+  background-color: #CCC;
+  padding: 20px 0;
+  margin: 0 20px;
+  border-bottom: 1px solid #000;
+  width: calc(100vw - 40px );
+  max-width: calc(100% - 40px );
+  z-index:999; /* lower than logo */
+  font-size: 12px;
+  line-height: 1.5em;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+#nav > div{
+  display: inline-block;
+  width: calc((100% - 262px)/4);
+  vertical-align: top;
+}
+.nav_btn{
+  cursor:pointer;
+}
+.nav_btn:link, .nav_btn:visited{
+  color: #000;
+}
+.nav_btn.active{
+  color: #FFF;
+}
+.nav_btn:hover{
+  color: #FFF;
+}
+button:hover{
+  cursor:pointer;
+}
+/* ================================
+      catalogue > vertical ist
+ ================================== */
+.catalogue_container{
+  flex-direction: column;
+}
+.catalogue_container > .child{
+  display: flex;
+  padding: 20px;
+}
+.catalogue_container > .child .media_container{
+  width: 180px;
+}
+.catalogue_container .meta{
+  flex-direction: column;
+  margin-left: 20px;
+  width: 300px;
+}
+.catalogue_container .meta > div{
+  margin-bottom: 10px;
+}
+.catalogue_container .meta .active{
+  color: #FFF;
+}
+
+
+/* ================================
+      catalogue > long list
+ ================================== */
+.cata_location_container .meta{
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  margin-left: 20px;
+  max-width: none;
+  width: 100%;
+}
+.cata_location_container > .child .media_container{
+  width: 120px;
+}
+
+
+
+/* ================================
+      catalogue > gird list
+ ================================== */
+.cata_catalogue_number_container{
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cata_catalogue_number_container > .child{
+  display: flex;
+  padding: 20px;
+  width: 33%;
+
+}
+.cata_catalogue_number_container > .child .media_container{
+  width: 120px;
+}
+.cata_catalogue_number_container .meta{
+  display: block;
+
+  margin-left: 20px;
+  width: 300px;
+}
+.cata_catalogue_number_container .meta > div{
+  margin-bottom: 10px;
+}
+.cata_catalogue_number_container .meta .active{
+  color: #FFF;
+}
+

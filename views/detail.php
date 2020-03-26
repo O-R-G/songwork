@@ -44,7 +44,8 @@ function getMeta($child, $media) {
 ?>
 
 <!-- <a href="javascript:goBackOrHome()" class="no-blank"><div id="lozenge"><?= $title ?></div></a> -->
-<a href="/" class="no-blank"><div id="lozenge"><?= $title ?></div></a>
+<!-- <a href="/" class="no-blank"><div id="lozenge"><?= $title ?></div></a> -->
+<? require_once('views/nav.php') ?>
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
 <div class="container">
