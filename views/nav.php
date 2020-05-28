@@ -45,6 +45,6 @@
     <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
 </div>
 
-<div id='controls'>
-    <button onclick="start_timer()" type="button">START</button>
+<div id='menu_btn'>
+    <button onclick = 'togglemenu'><img src = 'media/svg/hamburger-6-k'></button>
 </div>

@@ -108,3 +108,4 @@ for (; $idx < $length; $idx++) {
 
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
 <script type = "text/javascript" src='/static/js/autoplay.js'></script>
+<script type = "text/javascript" src='/static/js/menu.js'></script>

@@ -96,14 +96,27 @@ button:active {
 }
 
 
-#controls {
+#menu_btn {
     position: fixed;
     top: 0px;
     right: 0px;
     display: inline-block;
     margin: 10px;
     z-index: 1000;
+    width: 50px;
 }
+#menu_btn button,
+#menu_btn svg{
+  width: 100%;
+  padding: 0;
+}
+.displaying_menu #menu_btn svg{
+  stroke: #fff;
+}
+.displaying_menu #nav{
+  display: block;
+}
+
 
 .container {
   display: flex;
@@ -402,6 +415,7 @@ button:focus{
   line-height: 1.5em;
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
   box-sizing: border-box;
+  display: none;
 }
 #nav > div{
   display: inline-block;
