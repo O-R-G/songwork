@@ -1,13 +1,5 @@
 <? 
-
-  // according to index.php
-
-  if ($uri[1] == "es" || !$uri[1])
-    $isHome = true;
-  else if ($uri[1] =="resources")
-    $isHome = true;
-  else if ($uri[1] =="catalogue")
-    $isCatalogue = true;
+  
 ?>
 <? if ( $isCatalogue || $isHome ){ ?>
 
@@ -32,19 +24,36 @@
     <a class = "nav_btn <? echo ($uri[2] == 'apparatus') ? 'active' : '' ?>" <? echo ($uri[2] == 'apparatus') ? '' : 'href = "/catalogue/apparatus"' ?> >Apparatus (A–Z)</a>
     <br>
   </div>
-  <div id = "view">
-    <a href = '/' class = 'nav_btn <? echo $isHome ? "active" : '' ?>'>HOMEPAGE</a> | <a  href = '<? echo $isHome ? "" : "/catalogue" ?>' class = 'nav_btn <? echo $isCatalogue ? "active" : '' ?>'>CATALOGUE VIEW</a>
-  </div>
 </div>
 <? } ?>
 <div id = "logo_ctner">
-    <button id = "logo_play" onclick="play_all_videos()" type = "button">&#9654;</button>
+    <button id = "logo_play" onclick="<? echo $isHome ? 'start_timer()' : 'play_one_video_detail()' ?>" type = "button">
+      <svg id="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <polygon class = 'play_svg' points="12 0 12 100 94.5 50 12 0"/>
+      </svg>
+    </button>
     <a id="lozenge" href="<? echo $isHome ? '#top' : '/' ?>" onclick="location.reload();">
         <?= $title ?>
     </a>
-    <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
+    <button id = "logo_pause" onclick="<? echo $isHome ? 'pause_all_videos()' : 'pause_one_video_detail()' ?>" type = "button">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect class = 'pause_svg' x="13" y="1" width="25" height="98"/>
+        <rect class = 'pause_svg' x="62" y="1" width="25" height="98"/>
+      </svg>
+    </button>
 </div>
 
 <div id='menu_btn'>
-    <button onclick = 'togglemenu'><img src = 'media/svg/hamburger-6-k'></button>
+    <button onclick = 'togglemenu()'>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+        <style type="text/css">
+          .st0{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+        </style>
+        <line class="st0" x1="43.8" y1="54.2" x2="106.2" y2="54.2"/>
+        <line class="st0" x1="43.8" y1="75.3" x2="106.2" y2="75.3"/>
+        <line class="st0" x1="43.8" y1="96.5" x2="106.2" y2="96.5"/>
+      </svg>
+    </button>
 </div>
+<script type = "text/javascript" src='/static/js/menu.js'></script>

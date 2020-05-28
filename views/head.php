@@ -27,6 +27,14 @@ $lib_path = $_SERVER["DOCUMENT_ROOT"].'/lib/lib.php';
 require_once($lib_path);
 $title = "Song Work";
 
+
+if ($uri[1] == "es" || !$uri[1])
+    $isHome = true;
+else if ($uri[1] =="resources")
+    $isHome = true;
+else if ($uri[1] =="catalogue")
+    $isCatalogue = true;
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,8 +50,7 @@ $title = "Song Work";
 		<meta property="og:title" content="Song Work">
 		<meta property="og:image" content="https://songwork.org/media/00113.png">
 		<meta property="og:type" content="website">
-
-			<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
-			<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
+		<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
+		<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
 	</head>
-<body>
+<body class = '<? echo $isCatalogue ? "" : "enable-control" ?>'>

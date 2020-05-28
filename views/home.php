@@ -36,9 +36,9 @@ function getMeta($child, $media) {
   return $out;
 }
 
-function render_media($media) {
+function render_media($media, $child_url) {
     $url = m_url($media[0]);
-    ?><a href='/music/hushedness'>
+    ?><a href='/images/<? echo $child_url; ?>'>
         <video id='video' class='video fullscreen' width='100%' loop>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
@@ -80,10 +80,11 @@ for (; $idx < $length/2; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+    $child_url = $child['url'];
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { render_media($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -94,10 +95,11 @@ for (; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+    $child_url = $child['url'];
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { render_media($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -107,5 +109,4 @@ for (; $idx < $length; $idx++) {
 </div>
 
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
-<script type = "text/javascript" src='/static/js/autoplay.js'></script>
-<script type = "text/javascript" src='/static/js/menu.js'></script>
+

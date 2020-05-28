@@ -1,14 +1,14 @@
 <?
-$children = [];
+// $children = [];
 
 $mediaItems = $oo->media($item['id']);
 
 if (count($mediaItems) > 0)
   $children []= $mediaItems[0];
 
-$children []= $item;
-$length = count($children);
-$idx = 0;
+$child = $item;
+// $length = count($children);
+// $idx = 0;
 
 // round to nearest 5
 function roundUpToAny($n,$x=5) {
@@ -49,15 +49,25 @@ function getMeta($child, $media) {
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
 <div class="container">
-  <div class = "column-container left"><?
+  <div id = 'detail-column' class = "column-container left"><?
 // for (; $idx < $length; $idx++) {
-    $child = $children[$idx];
+    // $child = $children[$idx];
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
-    $media = $hasMedia ? $child : null;
+    $media = $hasMedia ? $mediaItems[0] : null;
   ?>
-  <div class= "child column-container-container audio-container" style="max-width: 500px;"><?
+  <div id = 'detail-child' class= "child column-container-container audio-container" style="max-width: 500px;"><?
+  $meta = getMeta($child, $media);
+    ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
+  
+<?
 	if ($hasMedia) {
-		if ($media['type'] == 'mp3') {
+    if($media['type'] == 'mp4'){
+      ?><video controls>
+          <source src="<?= m_url($media); ?>" type="video/mp4">
+          Your browser does not support the video element.
+      </video><?
+    }
+		else if ($media['type'] == 'mp3') {
 			?><audio controls>
   				<source src="<?= m_url($media); ?>" type="audio/mpeg">
 	  			Your browser does not support the audio element.
@@ -66,12 +76,8 @@ function getMeta($child, $media) {
 			?><img src="<?= m_url($media); ?>"><?
 		}
 	}
-	$meta = getMeta($child, $media);
-    ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
-  </div>
-<?
 // }
-?></div>
+?></div></div>
 </div>
 
 <script>
@@ -83,3 +89,4 @@ function goBackOrHome() {
 }
 
 </script>
+<script type = "text/javascript" src='/static/js/videocontroller.js'></script>

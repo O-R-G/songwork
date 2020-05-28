@@ -72,3 +72,21 @@ function pause_all_videos() {
     },0);
 }
 
+// for detail page
+
+function play_one_video_detail() {
+    console.log('play_one_video_detail');
+    var video = document.querySelector('.container video');
+    if(video != 'null')
+        video.play();
+    else
+        console.log('no video on this page');
+} 
+
+function pause_one_video_detail() { 
+    var video = document.querySelector('.container video');
+    if(video != 'null')
+        video.pause();
+    else
+        console.log('no video on this page');
+} 

@@ -110,8 +110,11 @@ button:active {
   width: 100%;
   padding: 0;
 }
-.displaying_menu #menu_btn svg{
-  stroke: #fff;
+.displaying_menu #menu_btn button{
+  background-color: transparent;
+}
+.displaying_menu #menu_btn .st0 {
+  stroke: #fff !important;
 }
 .displaying_menu #nav{
   display: block;
@@ -145,7 +148,7 @@ button:active {
 }
 
 .audio-container {
-  	padding-top: 4em;
+  	/*padding-top: 4em;*/
 }
 
 .meta {
@@ -320,7 +323,25 @@ button:active {
 .mc-field-group label {
 	display: none;
 }
+#detail-column{
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+#detail-child{
+  width: 100% !important;
+  max-width: none !important;
 
+}
+#detail-child video{
+  width: 100%;
+}
+#detail-child .meta{
+  width: 500px;
+  /*margin:0 auto;*/
+  /*margin-bottom: 20px;*/
+  padding: 20px;
+}
 /* vertical iPad / horizontal iPhone */
 @media screen and (max-width: 500px) {
   .container {
@@ -385,13 +406,39 @@ clicking on play/pasue will trigger it as well. */
   font-size:16px;
   height: 100%;
 }
+#logo_play svg,
+#logo_pause svg
+{
+  width: 100%;
+}
+.play_svg{
+  fill: #fff;
+}
+.pause_svg {
+  fill: #fff;
+}
+#logo_ctner button:hover{
+  box-shadow: none;
+  cursor: default;
+}
+#logo_ctner button:hover .play_svg,
+#logo_ctner button:hover .pause_svg
+{
+  fill: rgba(255, 255, 255, 0.5);
 
-#logo_ctner button:hover {
+}
+.enable-control #logo_ctner button:hover .play_svg,
+.enable-control #logo_ctner button:hover .pause_svg
+{
+  fill: #FFF;
+
+}
+.enable-control #logo_ctner button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
     z-index: 1001;
+    cursor: pointer;
 }
-
-#logo_ctner button:active {
+.enable-control #logo_ctner button:active {
     background-color: #00b;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
     transform: translateY(2px);
@@ -404,18 +451,17 @@ button:focus{
   position: fixed;
   top:0;
   left:0;
-  background-color: #CCC;
-  padding: 20px 0;
-  margin: 0 20px;
-  border-bottom: 1px solid #000;
-  width: calc(100vw - 40px );
-  max-width: calc(100% - 40px );
+  padding: 20px;
+  width: 100vw;
+  max-width: 100%;
   z-index:999; /* lower than logo */
   font-size: 12px;
   line-height: 1.5em;
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   display: none;
+  background-color: rgba(100, 100, 100, 0.75);
+  color: #fff;
 }
 #nav > div{
   display: inline-block;
@@ -426,13 +472,13 @@ button:focus{
   cursor:pointer;
 }
 .nav_btn:link, .nav_btn:visited{
-  color: #000;
+  color: #FFF;
 }
 .nav_btn.active{
-  color: #FFF;
+  color: #00F;
 }
 .nav_btn:hover{
-  color: #FFF;
+  color: #00F;
 }
 button:hover{
   cursor:pointer;
