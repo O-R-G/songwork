@@ -18,8 +18,10 @@ else if ($uri[1] =="resources")
   require_once("views/home.php");
 else if($uri[1] == "catalogue")
   require_once("views/catalogue.php");
+else if($uri[1] == "submit")
+  require_once("views/submit.php");
 else
   require_once("views/detail.php");
-
+require_once("views/nav.php");
 require_once("views/foot.php");
 ?>

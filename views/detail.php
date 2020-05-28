@@ -48,27 +48,25 @@ function getMeta($child, $media) {
 <? require_once('views/nav.php') ?>
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
-<div class="container">
-  <div id = 'detail-column' class = "column-container left"><?
+<div class="detail-container">
+  <?
 // for (; $idx < $length; $idx++) {
     // $child = $children[$idx];
-    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
-    $media = $hasMedia ? $mediaItems[0] : null;
-  ?>
-  <div id = 'detail-child' class= "child column-container-container audio-container" style="max-width: 500px;"><?
+  $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+  $media = $hasMedia ? $mediaItems[0] : null;
   $meta = getMeta($child, $media);
     ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   
 <?
 	if ($hasMedia) {
     if($media['type'] == 'mp4'){
-      ?><video controls>
+      ?><video>
           <source src="<?= m_url($media); ?>" type="video/mp4">
           Your browser does not support the video element.
       </video><?
     }
 		else if ($media['type'] == 'mp3') {
-			?><audio controls>
+			?><audio>
   				<source src="<?= m_url($media); ?>" type="audio/mpeg">
 	  			Your browser does not support the audio element.
 			</audio><?
@@ -77,7 +75,7 @@ function getMeta($child, $media) {
 		}
 	}
 // }
-?></div></div>
+?>
 </div>
 
 <script>

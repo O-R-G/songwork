@@ -27,13 +27,30 @@ $lib_path = $_SERVER["DOCUMENT_ROOT"].'/lib/lib.php';
 require_once($lib_path);
 $title = "Song Work";
 
-
-if ($uri[1] == "es" || !$uri[1])
+$isHome = false;
+$isCatalogue = false;
+$isDetail = false;
+$isSubmit = false;
+if (!$uri[1])
+{
     $isHome = true;
-else if ($uri[1] =="resources")
-    $isHome = true;
+    $thisPage = 'home';
+}
 else if ($uri[1] =="catalogue")
+{
     $isCatalogue = true;
+    $thisPage = 'catalogue';
+}
+else if ($uri[1] =="submit")
+{
+    $isSubmit = true;
+    $thisPage = 'submit';
+}
+else
+{
+    $isDetail = true;
+    $thisPage = 'detail';
+}
     
 ?>
 <!DOCTYPE html>
@@ -52,5 +69,13 @@ else if ($uri[1] =="catalogue")
 		<meta property="og:type" content="website">
 		<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
 		<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
+		<script type = 'text/javascript'>
+			var isHome = <? echo ($isHome ? 'true' : 'false') ; ?>;
+			var isCatalogue = <? echo ($isCatalogue ? 'true' : 'false') ; ?>;
+			var isSubmit = <? echo ($isSubmit ? 'true' : 'false') ; ?>;
+			var isDetail = <? echo ($isDetail ? 'true' : 'false') ; ?>;
+			var thisPage = '<? echo $thisPage; ?>';
+		</script>
 	</head>
-<body class = '<? echo $isHome ? "home" : "" ?> <? echo $isCatalogue ? "" : "enable-control" ?>'>
+<body class = '<? echo $thisPage; ?> <? echo $isCatalogue ? "" : "enable-control" ?>'>
+

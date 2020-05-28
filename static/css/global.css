@@ -60,13 +60,17 @@ header.homepage {
 	z-index: 10;
 }
 
-ul {
+ul{
 	list-style-type: none;
 	padding-left: 20px;
 	margin: 0px;
 }
+ol {
+  /*padding-left: 20px;*/
+  margin: 0px;
+}
 
-ul:first-child {
+ul:first-child{
 	padding-left: 0px;
 }
 
@@ -125,7 +129,6 @@ button:active {
 .container {
   display: flex;
   flex-direction: row;
-  /*padding-top: 50px;*/
   padding-top: 180px;
 }
 .home .container{
@@ -327,24 +330,25 @@ button:active {
 .mc-field-group label {
 	display: none;
 }
-#detail-column{
-  width: 100%;
-  max-width: none;
-  padding: 0;
+body.detail{
+  background: #000;
 }
-#detail-child{
-  width: 100% !important;
-  max-width: none !important;
-
+.detail-container{
+  background: #000;
 }
-#detail-child video{
+.detail-container video{
   width: 100%;
 }
-#detail-child .meta{
-  width: 500px;
-  /*margin:0 auto;*/
-  /*margin-bottom: 20px;*/
+.detail-container .meta{
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
   padding: 20px;
+  width: 100vw;
+  max-width: 100%;
+  line-height: 1.5em;
+  margin: 0;
 }
 /* vertical iPad / horizontal iPhone */
 @media screen and (max-width: 500px) {
@@ -469,8 +473,10 @@ button:focus{
 }
 #nav > div{
   display: inline-block;
-  width: calc((100% - 262px)/4);
   vertical-align: top;
+}
+#nav > div:first-child{
+  margin-right: 40px;
 }
 .nav_btn{
   cursor:pointer;
@@ -479,10 +485,10 @@ button:focus{
   color: #FFF;
 }
 .nav_btn.active{
-  color: #00F;
+  color: #000;
 }
 .nav_btn:hover{
-  color: #00F;
+  color: #000;
 }
 button:hover{
   cursor:pointer;
@@ -557,4 +563,63 @@ button:hover{
 .cata_catalogue_number_container .meta .active{
   color: #FFF;
 }
+
+/* ================================
+                submit
+ ================================== */
+.submit .container{
+  
+  color: #00F;
+  font-size: 16px;
+  line-height: 1.35em;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+}
+#submit_form{
+  display: flex;
+  padding: 40px;
+}
+.submit-col{
+  width: calc( (100% - 40px) / 2);
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+.submit-col.right{
+  margin-left: 40px;
+}
+.text-center{
+  text-align: center;
+}
+.list-item{
+  display: flex;
+}
+.item-order{
+  margin-right: 40px;
+}
+.submit-container input:not([type = 'checkbox']), 
+.submit-container textarea{
+  width: 100%;
+  padding: 5px;
+  height: 40px;
+}
+.submit-container div + input{
+  margin-top: 12px;
+}
+.submit-container ol{
+  padding-left: 17px;
+}
+.submit-container input[type = 'submit']{
+  font-size: 16px;
+  color: #00F;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+  text-decoration: underline;
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+
 

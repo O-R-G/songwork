@@ -62,17 +62,14 @@ function render_media($media, $child_url) {
 <p id="demo2" style="color:red;"></p>
 
 
-<div id = "logo_ctner">
-    <button id = "logo_play" onclick="play_all_videos()" type = "button">&#9654;</button>
+<!-- <div id = "logo_ctner">
+    <button id = "logo_play" onclick="control_play()" type = "button">&#9654;</button>
     <a id="lozenge" href="#top" onclick="location.reload();">
         <?= $title ?>
     </a>
-    <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
+    <button id = "logo_pause" onclick="control_pause()" type = "button">| |</button>
 </div>
-<a id = 'top' name='top'></a>
-
-<? require_once('views/nav.php'); ?>
-
+<a id = 'top' name='top'></a> -->
 
 <div class="container">
   <div class = "column-container left"><?
