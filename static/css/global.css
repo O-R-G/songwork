@@ -104,6 +104,7 @@ button:active {
     margin: 10px;
     z-index: 1000;
     width: 50px;
+    cursor: pointer;
 }
 #menu_btn button,
 #menu_btn svg{
@@ -126,6 +127,9 @@ button:active {
   flex-direction: row;
   /*padding-top: 50px;*/
   padding-top: 180px;
+}
+.home .container{
+  padding-top: 50px;
 }
 
 .column-container-container {

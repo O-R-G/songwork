@@ -8,7 +8,7 @@ function print_catelogue_child($oo, $cata, $children = array()){
       $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-    <? if ($hasMedia) { render_media($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { render_media($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <div class="meta">

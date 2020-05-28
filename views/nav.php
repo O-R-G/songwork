@@ -35,7 +35,7 @@
     <a id="lozenge" href="<? echo $isHome ? '#top' : '/' ?>" onclick="location.reload();">
         <?= $title ?>
     </a>
-    <button id = "logo_pause" onclick="<? echo $isHome ? 'pause_all_videos()' : 'pause_one_video_detail()' ?>" type = "button">
+    <button id = "logo_pause" onclick="<? echo $isHome ? 'pause_timer()' : 'pause_one_video_detail()' ?>" type = "button">
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <rect class = 'pause_svg' x="13" y="1" width="25" height="98"/>
         <rect class = 'pause_svg' x="62" y="1" width="25" height="98"/>
@@ -43,17 +43,7 @@
     </button>
 </div>
 
-<div id='menu_btn'>
-    <button onclick = 'togglemenu()'>
-      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
-        <style type="text/css">
-          .st0{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
-        </style>
-        <line class="st0" x1="43.8" y1="54.2" x2="106.2" y2="54.2"/>
-        <line class="st0" x1="43.8" y1="75.3" x2="106.2" y2="75.3"/>
-        <line class="st0" x1="43.8" y1="96.5" x2="106.2" y2="96.5"/>
-      </svg>
-    </button>
+<div id='menu_btn' onclick = 'togglemenu()'>
+  <img src = '/media/svg/hamburger-6-k.svg'>
 </div>
 <script type = "text/javascript" src='/static/js/menu.js'></script>

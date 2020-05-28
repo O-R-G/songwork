@@ -72,6 +72,11 @@ function pause_all_videos() {
     },0);
 }
 
+function pause_timer(){
+    clearTimeout(timer);
+}
+
+
 // for detail page
 
 function play_one_video_detail() {
