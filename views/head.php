@@ -53,4 +53,4 @@ else if ($uri[1] =="catalogue")
 		<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
 		<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
 	</head>
-<body class = '<? echo $isCatalogue ? "" : "enable-control" ?>'>
+<body class = '<? echo $isHome ? "home" : "" ?> <? echo $isCatalogue ? "" : "enable-control" ?>'>
