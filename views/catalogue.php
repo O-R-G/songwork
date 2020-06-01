@@ -61,31 +61,35 @@ function render_media($media, $child_url) {
 ?>
 <div id = 'current_catalogue'><? echo $this_catalogue; ?></div>
 
-<div id = "logo_ctner">
-    <button id = "logo_play" onclick="play_all_videos()" type = "button">&#9654;</button>
-    <a id="lozenge" href="#top" onclick="location.reload();">
-        <?= $title ?>
-    </a>
-    <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
-</div>
-
 
 <? 
 if($uri[2] == 'title-a-z'){
   $children = children_by_title($oo, $imgs_id);
-  print_catalogue_child($oo, 'title', $children);
+  print_catalogue_child($oo, 'title-a-z', $children);
 }
 elseif($uri[2] == 'date-recorded-new-old'){
   $children = children_by_date($oo, $imgs_id);
-  print_catalogue_child($oo, 'date', $children);
+  print_catalogue_child($oo, 'date-recorded-new-old', $children);
 }
 elseif($uri[2] == 'catalogue-number-old-new'){
   $children = children_by_catalogue_number($oo, $imgs_id);
-  print_catalogue_child($oo, 'catalogue_number', $children);
+  print_catalogue_child_detail($oo, 'catalogue-number-old-new', $children);
 }
 elseif($uri[2] == 'location-a-z'){
   $children = children_by_location($oo, $imgs_id);
-  print_catalogue_child_detail($oo, 'location', $children);
+  print_catalogue_child_detail($oo, 'location-a-z', $children);
+}
+elseif($uri[2] == 'apparatus-a-z'){
+  $children = children_by_apparatus($oo, $imgs_id);
+  print_catalogue_child_detail($oo, 'apparatus-a-z', $children);
+}
+elseif($uri[2] == 'name-of-sound-recordist-a-z'){
+  $children = children_by_recordist($oo, $imgs_id);
+  print_catalogue_child($oo, 'name-of-sound-recordist-a-z', $children);
+}
+elseif($uri[2] == 'duration-short-long'){
+  $children = children_by_duration($oo, $imgs_id);
+  print_catalogue_child($oo, 'duration-short-long', $children);
 }
 ?>
 

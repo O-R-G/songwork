@@ -24,7 +24,7 @@ function print_catalogue_child($oo, $cata, $children = array()){
 
 function print_catalogue_child_detail($oo, $cata, $children = array()){
 	$length = count($children);
-	?><div class="container catalogue_container cata_<? echo $cata; ?>_container"> 
+	?><div id = '<? echo $cata; ?>_container' class="container catalogue_container catalogue_detail_container"> 
 		<div id = "item_list" class = " child ">
       <div class = 'media_container'></div>
 			<div class = "catalogue_meta">
@@ -85,6 +85,14 @@ function print_catalogue_child_detail($oo, $cata, $children = array()){
   ?></div><?
 }
 
+function get_recordings($oo, $img_id){
+  $recordings_raw = $oo->children($img_id);
+  $recordings = array();
+  foreach($recordings_raw as $recording_raw){
+
+  }
+
+}
 
 function children_by_order($oo, $o, $order){
 	$fields = array("objects.*");
@@ -133,5 +141,35 @@ function children_by_duration($oo, $o){
 	return children_by_order($oo, $o, $order);
 }
 
+function children_by_recordist($oo, $o){
+  $recordings_raw = $oo->children($o);
+  $recordings = array();
+  foreach($recordings_raw as $recording_raw){
+    $this_detail = explode(':::', $recording_raw['notes']);
+    $this_recordist = $this_detail[3];
+    $this_name = $this_detail[0];
+    $this_date = $this_detail[2];
+    $this_key = $this_recordist.$this_name.$this_date;
+    $recordings[$this_key] = $recording_raw;
+  }
+  ksort($recordings);
+
+  return array_values($recordings);
+}
+function children_by_apparatus($oo, $o){
+  $recordings_raw = $oo->children($o);
+  $recordings = array();
+  foreach($recordings_raw as $recording_raw){
+    $this_detail = explode(':::', $recording_raw['notes']);
+    $this_apparatus = $this_detail[4];
+    $this_name = $this_detail[0];
+    $this_date = $this_detail[2];
+    $this_key = $this_apparatus.$this_name.$this_date;
+    $recordings[$this_key] = $recording_raw;
+  }
+  ksort($recordings);
+
+  return array_values($recordings);
+} 
 
 ?> 
