@@ -1,5 +1,5 @@
 var body = document.body;
-var displaying_menu = isCatalogue ? true : false;
+var displaying_menu = false;
 var sMenu_btn_svg = document.getElementById('menu_btn').children[0];
 
 if(isDetail)

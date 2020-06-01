@@ -14,7 +14,7 @@ var videos = document.getElementsByClassName("video");
 var index = [];
 var timer;
 var time_to_start = 500;
-var time_to_next  = 2000;
+var time_to_next  = 10000;
 var vid_status_playall = false;
 var vid_status_pauseall = false;
 var start = false;
@@ -33,25 +33,25 @@ index = index.sort(function(a, b){return 0.5 - Math.random()});
 
 
 function control_play(){
-    if(isHome)
+    if(!isDetail)
     {
         if(!timer)
             start_timer();
         else
             resume_timer();
     }
-    else if(isDetail)
+    else
     {
         play_one_video_detail();
     }
 }
 
 function control_pause(){
-    if(isHome)
+    if(!isDetail)
     {
         pause_timer();
     }
-    else if(isDetail)
+    else
     {
         pause_one_video_detail();
     }
@@ -169,3 +169,24 @@ function pause_one_video_detail() {
     else
         console.log('no video on this page');
 } 
+
+
+// progress bar
+if(isDetail){
+    var progress = document.getElementById('progress');
+    var supportsProgress = (document.createElement('progress').max !== undefined);
+    var video = document.querySelector('.detail-container video');
+    if (!supportsProgress) 
+        progress.setAttribute('data-state', 'fake');
+
+    video.addEventListener('timeupdate', function() {
+        console.log(progress.getAttribute('max'));
+        if (progress.getAttribute('max') == null){
+            progress.setAttribute('max', video.duration);
+        }
+        progress.setAttribute("value",video.currentTime);
+        // sPr_bar.css("width",Math.floor((video.currentTime / video.duration) * 100) + '%');
+    });
+}
+
+

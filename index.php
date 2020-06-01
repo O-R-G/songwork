@@ -11,7 +11,7 @@ $view = "views/";
 
 // show the things
 require_once("views/head.php");
-
+require_once("views/nav.php");
 if ($uri[1] == "es" || !$uri[1])
   require_once("views/home.php");
 else if ($uri[1] =="resources")
@@ -22,6 +22,6 @@ else if($uri[1] == "submit")
   require_once("views/submit.php");
 else
   require_once("views/detail.php");
-require_once("views/nav.php");
+
 require_once("views/foot.php");
 ?>

@@ -77,5 +77,5 @@ else
 			var thisPage = '<? echo $thisPage; ?>';
 		</script>
 	</head>
-<body class = '<? echo $thisPage; ?> <? echo $isCatalogue ? "" : "enable-control" ?>'>
+<body class = '<? echo $thisPage; ?>'>
 

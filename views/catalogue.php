@@ -2,8 +2,16 @@
 $imgs_id = 1;
 $children = $oo->children($imgs_id);
 shuffle($children);
+
+// defined in nav.php
 $length = count($children);
 $idx = 0;
+
+$this_catalogue = '';
+foreach ($catalogue_children as $catalogue_child) {
+  if($catalogue_child['url'] == $uri[2])
+    $this_catalogue = $catalogue_child['name1'];
+}
 
 function roundUpToAny($n,$x=5) {
     // round to nearest 5
@@ -51,9 +59,7 @@ function render_media($media, $child_url) {
 /* html */
        
 ?>
-<p id="demo"></p>
-<p id="demo2" style="color:red;"></p>
-
+<div id = 'current_catalogue'><? echo $this_catalogue; ?></div>
 
 <div id = "logo_ctner">
     <button id = "logo_play" onclick="play_all_videos()" type = "button">&#9654;</button>
@@ -63,24 +69,23 @@ function render_media($media, $child_url) {
     <button id = "logo_pause" onclick="pause_all_videos()" type = "button">| |</button>
 </div>
 
-<? require_once('views/nav.php'); ?>
 
 <? 
-if($uri[2] == 'title'){
+if($uri[2] == 'title-a-z'){
   $children = children_by_title($oo, $imgs_id);
-  print_catelogue_child($oo, 'title', $children);
+  print_catalogue_child($oo, 'title', $children);
 }
-elseif($uri[2] == 'date'){
+elseif($uri[2] == 'date-recorded-new-old'){
   $children = children_by_date($oo, $imgs_id);
-  print_catelogue_child($oo, 'date', $children);
+  print_catalogue_child($oo, 'date', $children);
 }
-elseif($uri[2] == 'catalogue-number'){
+elseif($uri[2] == 'catalogue-number-old-new'){
   $children = children_by_catalogue_number($oo, $imgs_id);
-  print_catelogue_child($oo, 'catalogue_number', $children);
+  print_catalogue_child($oo, 'catalogue_number', $children);
 }
-elseif($uri[2] == 'location'){
+elseif($uri[2] == 'location-a-z'){
   $children = children_by_location($oo, $imgs_id);
-  print_catelogue_child_detail($oo, 'location', $children);
+  print_catalogue_child_detail($oo, 'location', $children);
 }
 ?>
 

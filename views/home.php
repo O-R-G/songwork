@@ -58,9 +58,6 @@ function render_media($media, $child_url) {
     <button onclick="start_timer()" type="button">START</button>
 </div> -->
 
-<p id="demo"></p>
-<p id="demo2" style="color:red;"></p>
-
 
 <!-- <div id = "logo_ctner">
     <button id = "logo_play" onclick="control_play()" type = "button">&#9654;</button>

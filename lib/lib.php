@@ -1,5 +1,5 @@
 <?
-function print_catelogue_child($oo, $cata, $children = array()){
+function print_catalogue_child($oo, $cata, $children = array()){
 	$length = count($children);
 	?><div class="container catalogue_container cata_<? echo $cata; ?>_container"> <?
   for ($idx = 0; $idx < $length; $idx++) {
@@ -11,7 +11,7 @@ function print_catelogue_child($oo, $cata, $children = array()){
     <? if ($hasMedia) { render_media($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <div class="meta">
+    <div class="catalogue_meta">
     	<div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]  ?></div>
     	<div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $meta[1]  ?></div>
     	<div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]  ?></div>
@@ -22,12 +22,12 @@ function print_catelogue_child($oo, $cata, $children = array()){
   ?></div><?
 }
 
-function print_catelogue_child_detail($oo, $cata, $children = array()){
+function print_catalogue_child_detail($oo, $cata, $children = array()){
 	$length = count($children);
 	?><div class="container catalogue_container cata_<? echo $cata; ?>_container"> 
 		<div id = "item_list" class = " child ">
-			<div class = "media_container"></div>
-			<div class = "meta">
+      <div class = 'media_container'></div>
+			<div class = "catalogue_meta">
 				<div class="cata_num">Cat. no.</div>
 		    	<div class="title">Title</div>
 		    	<div class="location">Location</div>
@@ -64,10 +64,10 @@ function print_catelogue_child_detail($oo, $cata, $children = array()){
       $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-    <? if ($hasMedia) { render_media($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { render_media($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <div class="meta">
+    <div class="catalogue_meta">
     	<div class="cata_num"><? echo $cata_num; ?></div>
     	<div class="title"><? echo $title;  ?></div>
     	<div class="location"><? echo $location;  ?></div>

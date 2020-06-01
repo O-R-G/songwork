@@ -30,9 +30,9 @@ function getRandWidth($idx) {
 function getMeta($child, $media) {
   $out = [];
 
-  $out []= 'Modified ' . $child["modified"];
+  $out []= $child["modified"];
   if ($media) {
-    $out []= basename(m_root($media));
+    $out []= $child['name1'];
     $out []= round(filesize(m_root($media))/1000, 2) . ' KB';
   } else {
     $out []= strlen($child["body"]) . ' characters';
