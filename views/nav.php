@@ -4,7 +4,10 @@
   $menu_chidren = array();
   foreach($menu_chidren_raw as $mcr){
     if(substr($mcr['name1'], 0, 1) !== '.'){
-      $this_url = ($mcr['url'] == 'homepage') ? '/' : $mcr['url'];
+      if($mcr['url'] == 'homepage')
+        $this_url = '/';
+      elseif($mcr['url'] == 'submit')
+        $this_url = '/submit';
       $this_child = array(
         'name1' => $mcr['name1'],
         'url' => $this_url
