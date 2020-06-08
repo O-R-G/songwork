@@ -145,7 +145,7 @@ function children_by_recordist($oo, $o){
   $recordings_raw = $oo->children($o);
   $recordings = array();
   foreach($recordings_raw as $recording_raw){
-    $this_detail = explode('-=-', $recording_raw['body']);
+    $this_detail = explode('-=-', $recording_raw['notes']);
     $this_recordist = $this_detail[3];
     $this_name = $this_detail[0];
     $this_date = $this_detail[2];
@@ -160,7 +160,7 @@ function children_by_apparatus($oo, $o){
   $recordings_raw = $oo->children($o);
   $recordings = array();
   foreach($recordings_raw as $recording_raw){
-    $this_detail = explode('-=-', $recording_raw['body']);
+    $this_detail = explode('-=-', $recording_raw['notes']);
     $this_apparatus = $this_detail[4];
     $this_name = $this_detail[0];
     $this_date = $this_detail[2];
@@ -168,7 +168,7 @@ function children_by_apparatus($oo, $o){
     $recordings[$this_key] = $recording_raw;
   }
   ksort($recordings);
-
+  
   return array_values($recordings);
 } 
 

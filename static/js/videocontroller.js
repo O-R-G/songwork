@@ -22,14 +22,32 @@ var remaining = time_to_next;
 var vids_to_be_resumed = [];
 var next_index = 0;
 // populate and shuffle videos[] index for play order
+var video_ready = 0;
 
-for (var i = 0; i < videos.length; i++){
+Array.prototype.forEach.call(videos, function(el, i){
     index.push(i);
+
     if(isHome)
-        videos[i].currentTime = 6;
-    else if(isCatalogue)
-        videos[i].muted = true;
-} 
+        el.currentTime = 6;
+    else if(isCatalogue){
+        el.muted = true;
+        console.log(el.readyState);
+        if(el.readyState == 4){
+            video_ready++;
+            if(video_ready == videos.length)
+                play_all_videos();
+        }
+        else{
+            el.addEventListener('loadeddata', function() {
+                video_ready++;
+                if(video_ready == videos.length)
+                    play_all_videos();
+            }, false);
+        }
+        
+    }
+});
+
 // index[0] = 0; index[rest] = randomized
 index.shift();
 index = index.sort(function(a, b){return 0.5 - Math.random()});
@@ -200,6 +218,6 @@ if(isDetail)
 }
 else if(isCatalogue)
 {
-    play_all_videos();
+    
 }
 

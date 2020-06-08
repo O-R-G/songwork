@@ -517,8 +517,10 @@ button:hover{
   display: flex;
   padding: 20px;
 }
+
 .catalogue_container > .child .media_container{
   width: 180px;
+  height: 180px;
 }
 .catalogue_meta{
   flex-direction: column;
@@ -543,11 +545,19 @@ button:hover{
   max-width: none;
   width: 100%;
 }
+.catalogue_container.catalogue_detail_container .child:first-child{
+  padding-bottom: 0;
+}
+.catalogue_container.catalogue_detail_container .child:first-child .media_container{
+  height: initial;
+
+}
 .catalogue_detail_container .catalogue_meta > div{
   padding-right: 5px;
 }
 .catalogue_detail_container > .child .media_container{
   width: 120px;
+  height: 120px;
 }
 
 
