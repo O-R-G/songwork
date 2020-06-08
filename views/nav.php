@@ -49,8 +49,7 @@
   </div>
 </div>
 
-<div id = "logo_ctner">
-    <button id = "logo_play" onclick="control_play()" type = "button">
+<div id = "logo_ctner"><button id = "logo_play" onclick="control_play()" type = "button">
       <svg id="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <polygon class = 'play_svg' points="12 0 12 100 94.5 50 12 0"/>
       </svg>
@@ -65,7 +64,7 @@
         <rect class = 'pause_svg' x="62" y="1" width="25" height="98"/>
       </svg>
     </button>
-    <img id = 'logo_cc' src = '/media/svg/cc.svg'>
+    <a id = 'logo_cc' href = 'http://creativecommons.org/' taget = '_blank'><img src = '/media/svg/cc.svg'></a>
     <? if($isDetail){ ?>
     <div id="progress_ctner">
       <progress id="progress" value="0" min="0">

@@ -22,6 +22,13 @@ function getRandWidth($idx) {
   return roundUpToAny(rand(10, 35));
 }
 
+function getFixedOffset($idx) {
+  return 20;
+}
+function getFixedWidth($idx) {
+  return 20;
+}
+
 function getMeta($child, $media) {
   $out = [];
   $out []= $child["modified"];
@@ -76,7 +83,7 @@ for (; $idx < $length/2; $idx++) {
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
   ?>
-  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
+  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getFixedOffset($idx); ?>%; padding-right:<? echo getFixedWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
@@ -91,7 +98,7 @@ for (; $idx < $length; $idx++) {
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
   ?>
-  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
+  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getFixedOffset($idx); ?>%; padding-right:<? echo getFixedWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>

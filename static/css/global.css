@@ -79,7 +79,7 @@ input[type = 'submit']
 {
     display: inline-block;
     border: none;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     padding: 10px 20px;
     color: white;
     text-align: center;
@@ -355,43 +355,6 @@ body.detail{
   line-height: 1.5em;
   margin: 0;
 }
-/* vertical iPad / horizontal iPhone */
-@media screen and (max-width: 500px) {
-  .container {
-    flex-direction: column;
-  }
-	.column-container-container {
-		display: block;
-    padding-right: 0px !important;
-    /* margin: 0px !important; */
-	}
-	.container:last-child {
-		padding-bottom: 44vw;
-	}
-	.column-container {
-    padding-bottom: 0px;
-    padding-top: 0px;
-    max-width: 100%;
-	}
-	.column-container-container:last-child > .column-container {
-		padding-bottom: 0px;
-	}
-
-  .column-container {
-		display: block;
-		padding-bottom: 0px;
-		width: 100%;
-	}
-
-	.hidden.column-container {
-		display: none;
-	}
-
-	.column-container > p:last-child {
-		margin-bottom: 0px;
-	}
-}
-
 /* 3/26 */
 
 /* switch the <a> and <div> cause if the parent is <a>, 
@@ -418,6 +381,9 @@ clicking on play/pasue will trigger it as well. */
   position: absolute;
   top: -5px;
   right: -24px;
+}
+#logo_cc img{
+  width: 100%;
 }
 #logo_ctner button{
   background-color: #00f;
@@ -627,7 +593,9 @@ button:hover{
 }
 #submit_form{
   display: flex;
-  padding: 40px;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
 }
 .submit-col{
   width: calc( (100% - 40px) / 2);
@@ -678,7 +646,6 @@ button:hover{
 .detail #logo_play svg{
   /*animation: play-svg-scaling .35s 10 alternate*/
 }
-
 @keyframes play-bouncing{
   0%
   {
@@ -726,5 +693,50 @@ button:hover{
   100%
   {
     background-color:#88F;
+  }
+}
+
+
+
+
+
+/* vertical iPad / horizontal iPhone */
+@media screen and (max-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+	.column-container-container {
+		display: block;
+    padding-right: 0px !important;
+    /* margin: 0px !important; */
+	}
+	.container:last-child {
+		padding-bottom: 44vw;
+	}
+	.column-container {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    max-width: 100%;
+	}
+	.column-container-container:last-child > .column-container {
+		padding-bottom: 0px;
+	}
+
+  .column-container {
+		display: block;
+		padding-bottom: 0px;
+		width: 100%;
+	}
+
+	.hidden.column-container {
+		display: none;
+	}
+
+	.column-container > p:last-child {
+		margin-bottom: 0px;
+	}
+  #submit_form{
+    display: block;
+    width: auto;
   }
 }

@@ -14,7 +14,7 @@ var videos = document.getElementsByClassName("video");
 var index = [];
 var timer;
 var time_to_start = 500;
-var time_to_next  = 10000;
+var time_to_next  = 5000;
 var vid_status_playall = false;
 var vid_status_pauseall = false;
 var start = false;
@@ -23,13 +23,16 @@ var vids_to_be_resumed = [];
 var next_index = 0;
 // populate and shuffle videos[] index for play order
 
-for (var i = 0; i < videos.length; i++) 
-   index.push(i);
-index = index.sort(function(a, b){return 0.5 - Math.random()});
+for (var i = 0; i < videos.length; i++){
+    index.push(i);
+    if(isHome)
+        videos[i].currentTime = 6;
+} 
 
-// console.log(videos.length);
-// console.log(index.length);
-// console.log(index);
+// index[0] = 0; index[rest] = randomized
+index.shift();
+index = index.sort(function(a, b){return 0.5 - Math.random()});
+index.unshift(0);
 
 
 function control_play(){
@@ -60,18 +63,18 @@ function control_pause(){
 // start
 
 function start_timer() {
-    console.log('start_timer');
     timer = setTimeout(function(){ play_one_video(0); }, time_to_start);
 }
 
 // video control
 
 function play_one_video(i) {
-    if(!start)
-        start = Date.now();
+    start = Date.now();
     next_index = i+1;
+    videos[index[i]].currentTime = 0;
     videos[index[i]].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
     videos[index[i]].play();
+    remaining = time_to_next;
     if (i+1 < videos.length){
         timer = window.setTimeout(function(){ 
             play_one_video(i+1);    
@@ -131,13 +134,11 @@ function pause_timer() {
         }
         window.clearTimeout(timer);
         remaining -= Date.now() - start;
-        
     },0);
 }
 function resume_timer() { 
     // setTimeout(0) so that it executes after 
     // window click in autoplay.js;
-    console.log('resume_timer');
     start = Date.now();
     setTimeout(function(){
         if(vids_to_be_resumed.length){
@@ -146,7 +147,7 @@ function resume_timer() {
                 videos[vids_to_be_resumed[j]].play();
             }
             window.clearTimeout(timer);
-            setTimeout(function(){ play_one_video(next_index); }, remaining);
+            timer = setTimeout(function(){ play_one_video(next_index); }, remaining);
         }
     },0);
 }
@@ -172,7 +173,8 @@ function pause_one_video_detail() {
 
 
 // progress bar
-if(isDetail){
+if(isDetail)
+{
     var progress = document.getElementById('progress');
     var supportsProgress = (document.createElement('progress').max !== undefined);
     var video = document.querySelector('.detail-container video');
@@ -188,5 +190,4 @@ if(isDetail){
         // sPr_bar.css("width",Math.floor((video.currentTime / video.duration) * 100) + '%');
     });
 }
-
 
