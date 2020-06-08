@@ -14,7 +14,7 @@ var videos = document.getElementsByClassName("video");
 var index = [];
 var timer;
 var time_to_start = 500;
-var time_to_next  = 5000;
+var time_to_next  = 10000;
 var vid_status_playall = false;
 var vid_status_pauseall = false;
 var start = false;
