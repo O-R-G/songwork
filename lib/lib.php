@@ -43,7 +43,7 @@ function print_catalogue_child_detail($oo, $cata, $children = array()){
   for ($idx = 0; $idx < $length; $idx++) {
       $child = $children[$idx];
       $cata_num = $child['deck'];
-      $note = explode(':::',$child['notes']);
+      $note = explode('-=-',$child['notes']);
       $title = $note[0];
       if(count($note) > 1){
       	$location = $note[1];
@@ -145,7 +145,7 @@ function children_by_recordist($oo, $o){
   $recordings_raw = $oo->children($o);
   $recordings = array();
   foreach($recordings_raw as $recording_raw){
-    $this_detail = explode(':::', $recording_raw['notes']);
+    $this_detail = explode('-=-', $recording_raw['body']);
     $this_recordist = $this_detail[3];
     $this_name = $this_detail[0];
     $this_date = $this_detail[2];
@@ -160,7 +160,7 @@ function children_by_apparatus($oo, $o){
   $recordings_raw = $oo->children($o);
   $recordings = array();
   foreach($recordings_raw as $recording_raw){
-    $this_detail = explode(':::', $recording_raw['notes']);
+    $this_detail = explode('-=-', $recording_raw['body']);
     $this_apparatus = $this_detail[4];
     $this_name = $this_detail[0];
     $this_date = $this_detail[2];

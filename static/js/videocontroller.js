@@ -27,34 +27,42 @@ for (var i = 0; i < videos.length; i++){
     index.push(i);
     if(isHome)
         videos[i].currentTime = 6;
+    else if(isCatalogue)
+        videos[i].muted = true;
 } 
-
 // index[0] = 0; index[rest] = randomized
 index.shift();
 index = index.sort(function(a, b){return 0.5 - Math.random()});
 index.unshift(0);
 
-
 function control_play(){
-    if(!isDetail)
+    if(isHome)
     {
         if(!timer)
             start_timer();
         else
             resume_timer();
     }
-    else
+    else if(isCatalogue)
+    {
+        play_all_videos();
+    }
+    else if(isDetail)
     {
         play_one_video_detail();
     }
 }
 
 function control_pause(){
-    if(!isDetail)
+    if(isHome)
     {
         pause_timer();
     }
-    else
+    else if(isCatalogue)
+    {
+        pause_all_videos();
+    }
+    else if(isDetail)
     {
         pause_one_video_detail();
     }
@@ -92,34 +100,34 @@ function pause_one_video(i) {
     // vid_status_pauseall = false;
 } 
 
-// function play_all_videos() { 
-//     for (i = 0; i < videos.length; i++) {
-//         videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
-//         videos[i].play();
-//     }
-//     timer = null;
-//     // vid_status_playall = true;
-//     // vid_status_pauseall = false;
-// }
+function play_all_videos() { 
+    for (i = 0; i < videos.length; i++) {
+        videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
+        videos[i].play();
+    }
+    timer = null;
+    // vid_status_playall = true;
+    // vid_status_pauseall = false;
+}
 // function display_vid_status(){
 //     for (i = 0; i < videos.length; i++) {
 //         console.log(videos[i].paused);
 //         console.log(videos[i].played);
 //     }
 // }
-// function pause_all_videos() { 
-//     // setTimeout(0) so that it executes after 
-//     // window click in autoplay.js;
-//     setTimeout(function(){
-//         for (i = 0; i < videos.length; i++) {
-//             videos[i].style.boxShadow = null;
-//             videos[i].pause();
+function pause_all_videos() { 
+    // setTimeout(0) so that it executes after 
+    // window click in autoplay.js;
+    setTimeout(function(){
+        for (i = 0; i < videos.length; i++) {
+            videos[i].style.boxShadow = null;
+            videos[i].pause();
 
-//         }
-//         timer = null;
-//         // window.clearTimeout(timer);
-//     },0);
-// }
+        }
+        timer = null;
+        // window.clearTimeout(timer);
+    },0);
+}
 
 function pause_timer() { 
     // setTimeout(0) so that it executes after 
@@ -189,5 +197,9 @@ if(isDetail)
         progress.setAttribute("value",video.currentTime);
         // sPr_bar.css("width",Math.floor((video.currentTime / video.duration) * 100) + '%');
     });
+}
+else if(isCatalogue)
+{
+    play_all_videos();
 }
 
