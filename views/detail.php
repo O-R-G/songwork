@@ -63,7 +63,9 @@ function getMeta($child, $media) {
       ?><video>
           <source src="<?= m_url($media); ?>" type="video/mp4">
           Your browser does not support the video element.
-      </video><?
+      </video>
+      
+      <?
     }
 		else if ($media['type'] == 'mp3') {
 			?><audio>
@@ -73,8 +75,9 @@ function getMeta($child, $media) {
 		} else {
 			?><img src="<?= m_url($media); ?>"><?
 		}
+    ?><div id = 'detail_download'><a class = 'download' href = '<?= m_url($media); ?>' download>Download</a></div><?
 	}
-// }
+
 ?>
 </div>
 

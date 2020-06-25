@@ -484,14 +484,7 @@ button:focus{
 #catalogue-container > div:first-child{
   width: 125px;
 }
-#current_catalogue{
-  position: fixed;
-  top:12px;
-  left: 137px; /* 125px + 12px padding of nav */
-  font-size: 12px;
-  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
-  line-height: 1em;
-}
+
 .nav_btn{
   cursor:pointer;
 }
@@ -507,88 +500,151 @@ button:focus{
 button:hover{
   cursor:pointer;
 }
+
+#catalogue_control{
+  padding: 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+  line-height: 1.5em;
+  z-index: 1000;
+}
+#catalogue_control > div{
+  display: inline-block;
+  vertical-align: top;
+}
+#catalogue_control > div:first-child{
+  width: 125px;
+}
+.radio_container{
+  position: relative;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-left: 18px;
+  margin-bottom: 3px;
+  cursor:pointer;
+}
+.radio_container > input{
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.radio_container > .checkmark {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 11px;
+  width: 11px;
+  background-color: #fff;
+
+}
+.radio_container > input:checked ~ .checkmark {
+  background-color: #00f;
+}
+.radio_container:hover .checkmark{
+  background-color: #eee;
+}
 /* ================================
       catalogue > vertical ist
  ================================== */
-.catalogue_container{
+#catalogue_container{
   flex-direction: column;
 }
-.catalogue_container > .child{
+#catalogue_container > .child,
+#item_list{
   display: flex;
   padding: 20px;
 }
 
-.catalogue_container > .child .media_container{
-  width: 180px;
-  height: 180px;
+#catalogue_container .media_container{
+  width: 120px;
+  height: 120px;
 }
-.catalogue_meta{
-  flex-direction: column;
-  margin-left: 20px;
-  width: 300px;
+
+#item_list{
+  padding-bottom: 0;
+}
+#catalogue_container #item_list .media_container{
+  height: initial;
 }
 .catalogue_meta > div{
   margin-bottom: 10px;
+  padding-right: 5px;
 }
 .catalogue_meta .active{
   color: #FFF;
 }
 
-
-/* ================================
-      catalogue > long list
- ================================== */
-.catalogue_detail_container .catalogue_meta{
+.spreadsheet_meta{
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
   margin-left: 20px;
   max-width: none;
   width: 100%;
 }
-.catalogue_container.catalogue_detail_container .child:first-child{
-  padding-bottom: 0;
-}
-.catalogue_container.catalogue_detail_container .child:first-child .media_container{
-  height: initial;
-
-}
-.catalogue_detail_container .catalogue_meta > div{
-  padding-right: 5px;
-}
-.catalogue_detail_container > .child .media_container{
-  width: 120px;
-  height: 120px;
-}
-
-
-
-/* ================================
-      catalogue > gird list
- ================================== */
-.cata_catalogue_number_container{
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.cata_catalogue_number_container > .child{
-  display: flex;
-  padding: 20px;
-  width: 33%;
-
-}
-.cata_catalogue_number_container > .child .media_container{
-  width: 120px;
-}
-.cata_catalogue_number_container .catalogue_meta{
+.list_meta{
   display: block;
-
-  margin-left: 20px;
   width: 300px;
+  margin-left: 40px;
 }
-.cata_catalogue_number_container .catalogue_meta > div{
-  margin-bottom: 10px;
+
+
+#catalogue_container[view='spreadsheet'] .list_meta{
+  display: none;
 }
-.cata_catalogue_number_container .catalogue_meta .active{
-  color: #FFF;
+#catalogue_container[view='list'] .spreadsheet_meta,
+#catalogue_container[view='list'] #item_list{
+  display: none;
+}
+#catalogue_container[view='list'] .media_container{
+  width: 180px;
+  height: 180px;
+}
+#catalogue_container[view='list'] .catalogue_meta{
+  /*display: block;*/
+  /*margin-left: 20px;*/
+  /*width: 300px;*/
+}
+#current_catalogue{
+  position: relative;
+}
+.order_reverse{
+  display: none;
+}
+.viewing_reverse span{
+  display: none;
+}
+.viewing_reverse .order_reverse{
+  display: initial;
+}
+
+#order_toggle{
+  display: inline;
+  width: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  letter-spacing: -10px;
+  top: -1px;
+  position: absolute;
+  padding: 0 1px;
+  cursor:pointer;
+}
+
+.download,
+.download:visited,
+.download:link{
+  display: inline-block;
+  text-align: center;
+  padding: 8px 12px;
+  background-color: #00F;
+  color: #fff;
 }
 
 /* ================================
@@ -656,6 +712,20 @@ button:hover{
 .detail #logo_play svg{
   /*animation: play-svg-scaling .35s 10 alternate*/
 }
+#detail_download{
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 12px;
+  line-height: 14px;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+
+}
+#detail_download > .download{
+  padding-top: 10px;
+}
+
 @keyframes play-bouncing{
   0%
   {
