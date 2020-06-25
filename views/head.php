@@ -46,7 +46,7 @@ else if ($uri[1] =="submit")
     $isSubmit = true;
     $thisPage = 'submit';
 }
-else
+else if ($uri[1] !=="about" &&  $uri[1] !=="credit" )
 {
     $isDetail = true;
     $thisPage = 'detail';

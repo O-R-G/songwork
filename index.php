@@ -20,6 +20,8 @@ else if($uri[1] == "catalogue")
   require_once("views/catalogue.php");
 else if($uri[1] == "submit")
   require_once("views/submit.php");
+else if($uri[1] == "about")
+  require_once("views/about.php");
 else
   require_once("views/detail.php");
 

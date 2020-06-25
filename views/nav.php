@@ -6,8 +6,8 @@
     if(substr($mcr['name1'], 0, 1) !== '.'){
       if($mcr['url'] == 'homepage')
         $this_url = '/';
-      elseif($mcr['url'] == 'submit')
-        $this_url = '/submit';
+      else
+        $this_url = '/'.$mcr['url'];
       $this_child = array(
         'name1' => $mcr['name1'],
         'url' => $this_url
@@ -48,7 +48,13 @@
     <img src = '/media/svg/hamburger-6-k.svg'>
   </div>
 </div>
-
+<? if($isDetail){ ?>
+  <div id="progress_ctner">
+    <progress id="progress" value="0" min="0">
+       <span id="progress_bar"></span>
+    </progress>
+  </div>
+<? } ?>
 <div id = "logo_ctner"><button id = "logo_play" onclick="control_play()" type = "button">
       <svg id="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <polygon class = 'play_svg' points="12 0 12 100 94.5 50 12 0"/>
@@ -65,12 +71,6 @@
       </svg>
     </button>
     <a id = 'logo_cc' href = 'http://creativecommons.org/' taget = '_blank'><img src = '/media/svg/cc.svg'></a>
-    <? if($isDetail){ ?>
-    <div id="progress_ctner">
-      <progress id="progress" value="0" min="0">
-         <span id="progress_bar"></span>
-      </progress>
-   </div>
-   <? } ?>
 </div>
+
 <script type = "text/javascript" src='/static/js/menu.js'></script>
