@@ -55,7 +55,7 @@
     </progress>
   </div>
 <? } ?>
-<div id = "logo_ctner"><button id = "logo_play" class = '<? echo $isHome ? "hovered" : ""; ?>' onclick="control_play()" type = "button">
+<div id = "logo_ctner"><button id = "logo_play" class = '<? echo ($isHome || $isDetail) ? "hovered" : ""; ?>' onclick="control_play()" type = "button">
       <svg id="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <polygon class = 'play_svg' points="12 0 12 100 94.5 50 12 0"/>
       </svg>
@@ -76,7 +76,7 @@
 <script type = "text/javascript" src='/static/js/menu.js'></script>
 <script>
   var sLogo_play = document.getElementById('logo_play');
-  logo_play.addEventListener('mouseover', function(){
+  logo_play.addEventListener('click', function(){
     if(logo_play.classList.contains('hovered'))
       logo_play.classList.remove('hovered');
   });

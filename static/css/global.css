@@ -279,7 +279,7 @@ button:active {
 }
 
 .home .child{
-  width: 400px;
+  width: 600px;
   display: inline-block;
   text-align: left;
 }
@@ -752,7 +752,7 @@ button:hover{
   background-color: #00f;
 }
 .detail #logo_play{
-  animation: play-hover .35s 6 alternate;
+  /*animation: play-hover .35s 6 alternate;*/
   /* 6 = 3*2 */
 }
 .detail #logo_play svg{

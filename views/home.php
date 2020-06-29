@@ -23,10 +23,10 @@ function getRandWidth($idx) {
 }
 
 function getFixedOffset($idx) {
-  return 50;
+  return 100;
 }
 function getFixedWidth($idx) {
-  return 50;
+  return 100;
 }
 
 function getMeta($child, $media) {
