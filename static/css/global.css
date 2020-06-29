@@ -138,6 +138,12 @@ button:active {
 .submit .container{
   padding-top: 100px;
 }
+.home .container{
+  padding-left: 20px;
+  padding-right: 20px;
+  display: block;
+  text-align: center;
+}
 
 .column-container-container {
 	width: 100%;
@@ -272,6 +278,11 @@ button:active {
   white-space: nowrap;
 }
 
+.home .child{
+  width: 500px;
+  display: inline-block;
+  text-align: left;
+}
 /* news */
 .child.column-container-container.news {
   color: #00f;
@@ -574,7 +585,7 @@ button:hover{
  ================================== */
 #catalogue_container{
   flex-direction: column;
-  margin-top: 180px;
+  margin-top: 180 px;
 }
 #catalogue_container > .child,
 #item_list{
