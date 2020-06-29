@@ -406,7 +406,7 @@ clicking on play/pasue will trigger it as well. */
   height: 100%;
 }
 #logo_play.hovered{
-  animation: play-hover .35s infinite alternate;
+  animation: play-hover .475s infinite alternate;
 }
 #logo_play svg,
 #logo_pause svg
