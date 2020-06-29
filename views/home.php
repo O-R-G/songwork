@@ -14,19 +14,19 @@ function getRandOffset($idx) {
   if ($idx == 0) {
     return 0;
   } else {
-    return roundUpToAny(rand(10, 35));
+    return roundUpToAny(rand(10, 140));
   }
 }
 
 function getRandWidth($idx) {
-  return roundUpToAny(rand(10, 35));
+  return roundUpToAny(rand(10, 140));
 }
 
 function getFixedOffset($idx) {
-  return 20;
+  return 50;
 }
 function getFixedWidth($idx) {
-  return 20;
+  return 50;
 }
 
 function getMeta($child, $media) {
@@ -76,16 +76,16 @@ function render_media($media, $child_url) {
 <a id = 'top' name='top'></a> -->
 
 <div class="container">
-  <div class = "column-container left"><?
-for (; $idx < $length/2; $idx++) {
+<?
+for (; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
-    $padding_left = getRandOffset($idx);
-    $padding
+    $padding_left = getFixedOffset($idx);
+    $padding_right = getFixedWidth($padding_left);
   ?>
-  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getFixedOffset($idx); ?>%; padding-right:<? echo getFixedWidth($idx); ?>%;">
+  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo $padding_left; ?>px; padding-right:<? echo $padding_right; ?>px;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
@@ -93,22 +93,7 @@ for (; $idx < $length/2; $idx++) {
   </div>
 <?
 }
-?></div><div class="column-container right"><?
-for (; $idx < $length; $idx++) {
-    $child = $children[$idx];
-    $media = $oo->media($child["id"]);
-    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
-    $child_url = $child['url'];
-  ?>
-  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getFixedOffset($idx); ?>%; padding-right:<? echo getFixedWidth($idx); ?>%;">
-    <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
-    <? $meta = getMeta($child, $media); ?>
-    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
-  </div>
-<?
-}
-?></div>
+?>
 </div>
 
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
