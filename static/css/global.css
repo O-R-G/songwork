@@ -394,6 +394,9 @@ clicking on play/pasue will trigger it as well. */
   font-size:16px;
   height: 100%;
 }
+#logo_play.hovered{
+  animation: play-hover .35s infinite alternate;
+}
 #logo_play svg,
 #logo_pause svg
 {
@@ -524,11 +527,14 @@ button:hover{
   line-height: 1.5em;
   z-index: 1000;
 }
-#catalogue_control > div{
+#filter{
+  margin-top: 15.5px;
+}
+#filter > div{
   display: inline-block;
   vertical-align: top;
 }
-#catalogue_control > div:first-child{
+#filter > div:first-child{
   width: 125px;
 }
 .radio_container{
@@ -568,6 +574,7 @@ button:hover{
  ================================== */
 #catalogue_container{
   flex-direction: column;
+  margin-top: 180px;
 }
 #catalogue_container > .child,
 #item_list{

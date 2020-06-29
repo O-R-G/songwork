@@ -72,7 +72,17 @@ function render_media($media, $child_url) {
     <label class = 'radio_container'>List
       <input type = 'radio' name = 'catalogue_control' value = 'list'><span class="checkmark"></span>
     </label>
-  </div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>&#8643;&#8638;</div></div>
+  </div>
+  <div id = 'filter'>
+    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>&#8643;&#8638;</div><br>
+    <? foreach($catalogue_children as $catalogue_child) { 
+          $isActive = false;
+          if($uri[2] !== $catalogue_child['url']){
+        ?>
+          <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $catalogue_child['name1'] ?></a><br>
+        <? }} ?>
+      </div>
+  </div>
 </div>
 
 

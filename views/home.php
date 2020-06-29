@@ -82,6 +82,8 @@ for (; $idx < $length/2; $idx++) {
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
+    $padding_left = getRandOffset($idx);
+    $padding
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getFixedOffset($idx); ?>%; padding-right:<? echo getFixedWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
