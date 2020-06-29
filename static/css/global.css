@@ -585,7 +585,7 @@ button:hover{
  ================================== */
 #catalogue_container{
   flex-direction: column;
-  margin-top: 180 px;
+  margin-top: 120px;
 }
 #catalogue_container > .child,
 #item_list{
