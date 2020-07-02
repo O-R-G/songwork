@@ -60,15 +60,15 @@ function getMeta($child, $media) {
 <?
 	if ($hasMedia) {
     if($media['type'] == 'mp4'){
-      ?><video>
-          <source src="<?= m_url($media); ?>" type="video/mp4">
+      ?><video playsinline>
+          <source src="<?= m_url($media); ?>" type="video/mp4" >
           Your browser does not support the video element.
       </video>
       
       <?
     }
 		else if ($media['type'] == 'mp3') {
-			?><audio>
+			?><audio playsinline>
   				<source src="<?= m_url($media); ?>" type="audio/mpeg">
 	  			Your browser does not support the audio element.
 			</audio><?
