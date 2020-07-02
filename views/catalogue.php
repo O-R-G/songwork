@@ -157,4 +157,31 @@ elseif($uri[2] == 'duration-short-long'){
       sCatalogue_container.appendChild(child[child.length - i - 1]);
     });
   }
+
+  if(isMobile){
+    var sSpreadsheet_meta = document.getElementsByClassName('spreadsheet_meta');
+    var meta_tag = [];
+    Array.prototype.forEach.call(sSpreadsheet_meta, function(el, i){
+      if(i == 0){
+        var meta_tag_element = el.querySelectorAll('div');
+        for(j = 0; j < meta_tag_element.length; j++){
+          meta_tag.push(meta_tag_element[j].innerText);
+        }
+      }else{
+        var this_meta_element = el.querySelectorAll('div');
+
+        for(j = 0; j < this_meta_element.length - 1; j++){
+          var temp = this_meta_element[j].innerText;
+          var this_meta_tag = document.createElement('span');
+          var this_meta = document.createElement('span');
+          this_meta_tag.innerText = meta_tag[j];
+          this_meta_tag.className = 'meta_tag';
+          this_meta.innerText = temp;
+          this_meta_element[j].innerHTML = '';
+          this_meta_element[j].appendChild(this_meta_tag);
+          this_meta_element[j].appendChild(this_meta);
+        }
+      }
+    });
+  }
 </script> 

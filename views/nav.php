@@ -25,8 +25,9 @@
   <div id = 'menu'>
     <? foreach($menu_chidren as $menu_child){ 
       $isActive = false;
-      if($uri[1] == $menu_child['url'])
+      if('/'.$uri[1] == $menu_child['url']){
         $isActive = true;
+      }
       elseif(!$uri[1] && $menu_child['url'] == '/')
         $isActive = true;
     ?>
@@ -63,7 +64,6 @@
     <a id="lozenge" href="<? echo $isHome ? '#top' : '/' ?>" onclick="location.reload();">
         <?= $title ?>
     </a>
-
     <button id = "logo_pause" onclick="control_pause()" type = "button">
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <rect class = 'pause_svg' x="13" y="1" width="25" height="98"/>

@@ -51,7 +51,7 @@ b {
   font-weight: normal;
 }
 
-	header {
+header {
 	position: relative;
 	padding: 20px;
 }
@@ -88,10 +88,11 @@ input[type = 'submit']
     background-color: #999; 
     /* -webkit-transition-duration: 0.2s; */ /* Safari */
     transition-duration: 0.2s;
+    cursor: pointer;
 }
 
-button:hover,
-input[type = 'submit']:hover
+.hover button:hover,
+.hover input[type = 'submit']:hover
 {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -135,14 +136,12 @@ button:active {
   flex-direction: row;
   padding-top: 100px;
 }
-.submit .container{
-  padding-top: 100px;
-}
 .home .container{
   padding-left: 20px;
   padding-right: 20px;
-  display: block;
-  text-align: center;
+  /*text-align: center;*/
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .column-container-container {
@@ -382,7 +381,6 @@ clicking on play/pasue will trigger it as well. */
     z-index: 1000;
     text-align: center;
     /*box-shadow: 0 6px 8px 0 rgba(0,0,0,0.5), 0 6px 15px 0 rgba(0,0,0,0.4);*/
-    
 }
   
 #logo_ctner > *{
@@ -419,11 +417,11 @@ clicking on play/pasue will trigger it as well. */
 .pause_svg {
   fill: #fff;
 }
-#logo_ctner button:hover{
+.hover #logo_ctner button:hover{
   box-shadow: none;
   cursor: default;
 }
-#logo_ctner button:hover {
+.hover #logo_ctner button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
     z-index: 1001;
     cursor: pointer;
@@ -520,11 +518,8 @@ button:focus{
 .nav_btn.active{
   color: #000;
 }
-.nav_btn:hover{
+.hover .nav_btn:hover{
   color: #000;
-}
-button:hover{
-  cursor:pointer;
 }
 
 
@@ -577,7 +572,7 @@ button:hover{
 .radio_container > input:checked ~ .checkmark {
   background-color: #00f;
 }
-.radio_container:hover .checkmark{
+.hover .radio_container:hover .checkmark{
   background-color: #eee;
 }
 /* ================================
@@ -667,7 +662,7 @@ button:hover{
   padding: 0 1px;
   cursor:pointer;
 }
-#order_toggle:hover{
+.hover #order_toggle:hover{
   color: #00f;
 }
 
@@ -683,7 +678,7 @@ button:hover{
   /*background-color: #ffF;*/
   /*color: #00f;*/
 }
-.download:hover{
+.hover .download:hover{
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.35), 0 6px 8px 0 rgba(0,0,0,0.25);
   transition: all .2s;
 }
@@ -697,7 +692,7 @@ button:hover{
                 submit
  ================================== */
 .submit .container{
-  
+  padding-top: 100px;
   color: #00F;
   font-size: 16px;
   line-height: 1.35em;
@@ -828,6 +823,56 @@ button:hover{
 
 /* vertical iPad / horizontal iPhone */
 @media screen and (max-width: 500px) {
+  body, #page {
+    font-size: 20px;
+    /*line-height: 33px;*/
+  }
+  #nav{
+    line-height: 24px;
+    font-size: 14px;
+  }
+  button,
+  input[type = 'submit']
+  {
+    padding: 8px 18px;
+  }
+  #catalogues{
+    padding-left: 20px;
+  }
+  .home .child{
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #logo_ctner{
+    top: 12px; 
+    width: 210px;
+    height: 50px;
+  }
+  #logo_ctner button{
+    width: 50px;
+    padding-top: 12px;
+  }
+  #lozenge {
+    line-height: inherit;
+  }
+  #menu_btn {
+    margin: 0px;
+    width: 40px;
+  }
+  .meta div {
+    padding-right: 20px;
+  }
+  .meta .size {
+    padding-right: 0;
+  }
+  .about .container{
+    font-size: 16px;
+    line-height: 1.35em;
+  }
+  .item-order{
+    margin-right: 25px;
+  }
   .container {
     flex-direction: column;
   }
@@ -843,15 +888,14 @@ button:hover{
     padding-bottom: 0px;
     padding-top: 0px;
     max-width: 100%;
+    display: block;
+    width: 100%;
 	}
+  .column-container.right{
+    margin-top: 18px;
+  }
 	.column-container-container:last-child > .column-container {
 		padding-bottom: 0px;
-	}
-
-  .column-container {
-		display: block;
-		padding-bottom: 0px;
-		width: 100%;
 	}
 
 	.hidden.column-container {
@@ -864,5 +908,77 @@ button:hover{
   #submit_form{
     display: block;
     width: auto;
+  }
+  #catalogue_control{
+    margin-top: 75px;
+    width: 100%;
+  }
+  .radio_container{
+    display: inline-block;
+  }
+  .radio_container:last-child{
+    margin-left: 10px;
+  }
+  #filter{
+    display: none;
+    /*margin-top: 0px;*/
+  }
+  /*#filter > div{
+    display: block;
+  }*/
+  .list_meta{
+    margin-left: 0;
+    width: initial;
+  }
+  #catalogue_container[view='list'] .media_container{
+    height: initial;
+  }
+  #catalogue_container{
+    padding-top: 0px;
+  }
+  #catalogue_container > .child{
+    display: block;
+  }
+  #item_list{
+    display: none;
+  }
+  #catalogue_container > .child .video{
+    width: 50%;
+  }
+  .spreadsheet_meta{
+    display: block;
+    margin: 0;
+    margin-top: 6px;
+  }
+  .spreadsheet_meta > div > span{
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+    padding-left: 20px;
+  }
+  .spreadsheet_meta > div > .meta_tag{
+    width: 30%;
+    padding: 0;
+  }
+  #progress_ctner{
+    width: 210px;
+    top: 65px;
+  }
+  .detail-container{
+    overflow-x: hidden;
+  }
+  .detail-container video{
+    width: initial;
+    height: 100%;
+    float: right;
+  }
+  .detail-container .meta{
+    top: 75px;
+    width: 100vw;
+    max-width: 100%;
+  }
+  #logo_cc{
+    width: 16px;
+    right: -20px;
   }
 }

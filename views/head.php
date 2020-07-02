@@ -46,7 +46,10 @@ else if ($uri[1] =="submit")
     $isSubmit = true;
     $thisPage = 'submit';
 }
-else if ($uri[1] !=="about" &&  $uri[1] !=="credit" )
+else if($uri[1] =="about"){
+	$thisPage = 'about';
+}
+else if ($uri[1] !=="credit" )
 {
     $isDetail = true;
     $thisPage = 'detail';
@@ -78,4 +81,12 @@ else if ($uri[1] !=="about" &&  $uri[1] !=="credit" )
 		</script>
 	</head>
 <body class = '<? echo $thisPage; ?>'>
+<script type = "text/javascript">
+	var isMobile = true;
+	var body = document.body;
+	if(window.innerWidth > 500){
+		var isMobile = false;
+		body.classList.add('hover');
+	}
+</script>
 
