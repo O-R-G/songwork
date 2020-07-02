@@ -982,4 +982,17 @@ button:focus{
     width: 16px;
     right: -20px;
   }
+  @keyframes play-hover{
+    0%
+    {
+      box-shadow: none;
+      z-index: 1001;
+    }
+
+    100%
+    {
+      box-shadow: 0 10px 15px 0 rgba(0,0,0,0.6), 0 10px 20px 0 rgba(0,0,0,0.3);
+      z-index: 1001;
+    }
+  }
 }
