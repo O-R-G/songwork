@@ -908,6 +908,7 @@ button:focus{
   #submit_form{
     display: block;
     width: auto;
+    margin: 0;
   }
   #catalogue_control{
     margin-top: 75px;

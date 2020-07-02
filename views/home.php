@@ -46,7 +46,7 @@ function getMeta($child, $media) {
 function render_media($media, $child_url) {
     $url = m_url($media[0]);
     ?><a href='/images/<? echo $child_url; ?>'>
-        <video id='video' class='video fullscreen' width='100%' loop>
+        <video id='video' class='video fullscreen' width='100%' loop playsinline>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
         </video>
