@@ -83,15 +83,21 @@ if(isset($images_id)){
 		// wires
 		$ww->create_wire($images_id, $toid);
 		// media
-		process_media_updaload($toid);
+		process_media_upload($toid);
+		// execute bash code
+		$old_path = getcwd();
+		chdir('~/sketchbook/songworks/_make/');
+		$output = shell_exec('./__make.sh');
+		chdir($old_path);
 	}
+	
 
 }
 ?>
 <script>
 	<? if($toid){ ?>
-		// location.href = '/upload/success';
+		location.href = '/upload/success';
 	<? }else{ ?>
-		// location.href = '/upload/error';
+		location.href = '/upload/error';
 	<? } ?>
 </script>
