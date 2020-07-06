@@ -176,7 +176,7 @@ function process_media_upload($toid)
       $m_type = strtolower(end(explode(".", $m_name)));
 
       // add to db's image list
-      $m_arr["type"] = "'mp4'";
+      $m_arr["type"] = "'".$m_type."'";
       $m_arr["object"] = "'".$toid."'";
       if(isset($rr->medias))
         $m_arr["caption"] = "'".$rr->captions[$key+count($rr->medias)]."'";
