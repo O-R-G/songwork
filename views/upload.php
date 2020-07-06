@@ -10,7 +10,6 @@ elseif($serial_num>9)
 	$serial_num = 'SW00'.$serial_num;
 else
 	$serial_num = 'SW000'.$serial_num;
-var_dump($_FILES["uploads"]);
 if(isset($images_id)){
 	$vars = array("name1", "deck", "body", "notes",  "url", "begin");
 
@@ -91,8 +90,8 @@ if(isset($images_id)){
 ?>
 <script>
 	<? if($toid){ ?>
-		location.href = '/upload/success';
+		// location.href = '/upload/success';
 	<? }else{ ?>
-		location.href = '/upload/error';
+		// location.href = '/upload/error';
 	<? } ?>
 </script>

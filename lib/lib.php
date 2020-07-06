@@ -178,13 +178,16 @@ function process_media_updaload($toid)
       // add to db's image list
       $m_arr["type"] = "'".$m_type."'";
       $m_arr["object"] = "'".$toid."'";
-      $m_arr["caption"] = "'".$rr->captions[$key+count($rr->medias)]."'";
+      if(isset($rr->medias))
+        $m_arr["caption"] = "'".$rr->captions[$key+count($rr->medias)]."'";
+      else
+        $m_arr["caption"] = "null";
       $insert_id = $mm->insert($m_arr);
       $m_rows++;
 
       $m_file = m_pad($insert_id).".".$m_type;
       // $m_dest = $resize ? $resize_root : $media_root;
-      $m_dest = '~/sketchbook/songworks/_make/';
+      $m_dest = '/home/reinfurt/sketchbook/songworks/_make/';
       $m_dest.= $m_file;
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
