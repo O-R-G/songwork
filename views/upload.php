@@ -91,8 +91,8 @@ if(isset($images_id)){
 ?>
 <script>
 	<? if($toid){ ?>
-		location.href = 'success';
+		location.href = '/upload/success';
 	<? }else{ ?>
-		location.href = 'error';
+		location.href = '/upload/error';
 	<? } ?>
 </script>
