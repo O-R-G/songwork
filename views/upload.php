@@ -86,9 +86,10 @@ if(isset($images_id)){
 		process_media_upload($toid);
 		// execute bash code
 		$old_path = getcwd();
-		chdir('~/sketchbook/songworks/_make/');
+		chdir('../../../home/reinfurt/sketchbook/songworks/_make/');
 		$output = shell_exec('./__make.sh');
 		chdir($old_path);
+		echo "<pre>".$output."</pre>";
 	}
 	
 
@@ -96,8 +97,8 @@ if(isset($images_id)){
 ?>
 <script>
 	<? if($toid){ ?>
-		location.href = '/upload/success';
+		//location.href = '/upload/success';
 	<? }else{ ?>
-		location.href = '/upload/error';
+		//location.href = '/upload/error';
 	<? } ?>
 </script>
