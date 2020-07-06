@@ -198,6 +198,7 @@ function process_media_upload($toid)
         $m_rows--;
         $mm->deactivate($insert_id);
       }
+      $mm->update($insert_id, array('type'=>"'mp4'"));
     }
   }
   return $m_old < $m_rows;
