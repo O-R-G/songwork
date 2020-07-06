@@ -1,1 +1,8 @@
-- mv *.mp4 to git large file storage
+x mv *.mp4 to git large file storage
+/home
+    play once, then next
+processing
+    generate placeholder jpeg
+    catch null pointer
+/catalogue
+   fix play button to work same as home
