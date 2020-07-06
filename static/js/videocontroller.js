@@ -53,6 +53,7 @@ index.shift();
 index = index.sort(function(a, b){return 0.5 - Math.random()});
 index.unshift(0);
 
+
 function control_play(){
     if(isHome)
     {
@@ -97,9 +98,9 @@ function start_timer() {
 function play_one_video(i) {
     start = Date.now();
     next_index = i+1;
-    videos[index[i]].currentTime = 0;
-    videos[index[i]].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
-    videos[index[i]].play();
+    videos[i].currentTime = 0;
+    videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
+    videos[i].play();
     remaining = time_to_next;
     if (i+1 < videos.length){
         timer = window.setTimeout(function(){ 

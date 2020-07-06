@@ -1,9 +1,8 @@
 <? 
-  $menu_id = end($oo->urls_to_ids(array('menu')));
-  $menu_chidren_raw = $oo->children($menu_id);
-  $menu_chidren = array();
+  $menu_chidren_raw = $oo->children(0);
+  $menu_children = array();
   foreach($menu_chidren_raw as $mcr){
-    if(substr($mcr['name1'], 0, 1) !== '.'){
+    if(substr($mcr['name1'], 0, 1) !== '.' && substr($mcr['name1'], 0, 1) !== '_'){
       if($mcr['url'] == 'homepage')
         $this_url = '/';
       else
@@ -16,7 +15,7 @@
     }
   }
 
-  $catalogue_id = end($oo->urls_to_ids(array('menu', 'catalogue')));
+  $catalogue_id = end($oo->urls_to_ids(array('catalogue')));
   $catalogue_children = $oo->children($catalogue_id);
 
 

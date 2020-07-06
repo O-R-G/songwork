@@ -142,8 +142,20 @@ button:active {
   /*text-align: center;*/
   flex-wrap: wrap;
   justify-content: center;
-}
 
+}
+.submit-container,
+.about-container,
+.success-container,
+.error-container
+{
+  padding-top: 140px;
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.35em;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+}
 .column-container-container {
 	width: 100%;
   padding-bottom: 2em;
@@ -691,18 +703,12 @@ button:focus{
 /* ================================
                 submit
  ================================== */
-.submit .container{
-  padding-top: 100px;
+.submit-container{
   color: #00F;
-  font-size: 16px;
-  line-height: 1.35em;
-  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 }
 #submit_form{
   display: flex;
-  width: 1000px;
-  margin: 0 auto;
-  padding: 40px 0;
+  padding-bottom: 40px;
 }
 .submit-col{
   width: calc( (100% - 40px) / 2);
@@ -721,7 +727,7 @@ button:focus{
 .item-order{
   margin-right: 40px;
 }
-.submit-container input:not([type = 'checkbox']), 
+.submit-container input[type = 'text'], 
 .submit-container textarea{
   width: 100%;
   padding: 5px;
@@ -746,6 +752,39 @@ button:focus{
   cursor: pointer;
   background-color: #00f;
 }
+#upload-container{
+  border: 1px solid #00F;
+  height: 200px;
+  position: relative;
+}
+#upload-audio
+{
+  /*width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;*/
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 45px), -50%);
+  font-size: 16px;
+  font-weight: bold;
+}
+#upload-audio:focus{
+  outline: none;
+}
+#upload-audio + label
+{
+  display: none;
+  
+
+}
+
 .detail #logo_play{
   /*animation: play-hover .35s 6 alternate;*/
   /* 6 = 3*2 */

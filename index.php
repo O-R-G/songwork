@@ -12,16 +12,20 @@ $view = "views/";
 // show the things
 require_once("views/head.php");
 require_once("views/nav.php");
-if ($uri[1] == "es" || !$uri[1])
+if (!$uri[1])
   require_once("views/home.php");
 else if ($uri[1] =="resources")
   require_once("views/home.php");
 else if($uri[1] == "catalogue")
   require_once("views/catalogue.php");
-else if($uri[1] == "submit")
-  require_once("views/submit.php");
-else if($uri[1] == "about")
-  require_once("views/about.php");
+else if($uri[1] == "submit" || $uri[1] == "about")
+  require_once("views/column.php");
+else if($uri[1] == "upload"){
+  if(!$uri[2])
+    require_once("views/upload.php");
+  else
+    require_once("views/upload-response.php");
+}
 else
   require_once("views/detail.php");
 
