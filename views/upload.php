@@ -89,6 +89,7 @@ if(isset($images_id)){
 		chdir('../../../home/reinfurt/sketchbook/songworks/_make/');
 		$output = shell_exec('./__make.sh');
 		chdir($old_path);
+		echo "<pre>".$output."</pre>";
 	}
 	
 
