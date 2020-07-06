@@ -10,5 +10,4 @@
 	</div>
 	<div class = 'column-container right'>
 	</div>
-<? } ?>
 </div>

@@ -49,7 +49,7 @@ else if ($uri[1] =="submit")
 else if($uri[1] =="about"){
 	$thisPage = 'about';
 }
-else if ($uri[1] !=="credit" )
+else if ($uri[1] !=="credit" && $uri[1]!=='upload' )
 {
     $isDetail = true;
     $thisPage = 'detail';
