@@ -1,8 +1,35 @@
 x mv *.mp4 to git large file storage
-/home
-    play once, then next
-processing
-    generate placeholder jpeg
-    catch null pointer
-/catalogue
-   fix play button to work same as home
++ mobile home play fix to match desktop
++ /catalogue play button behavior to match /home
+/ processing
+
+    - generate placeholder jpeg
+    / catch null pointer
+
+- open-records-generator naming
+
+    .catalogue  --> .catalogue
+    .images     --> .recordings
+    .music      --> .audio
+
+- server organization (directories)
+
+    /home/reinfurt/sketchbook/songworks -->
+    /var/etc/app/songworks
+
+    /home/reinfurt/sketchbook/songworks/_make -->
+    /var/etc/app/songworks/_make
+
+    (both above should be owned by www-data)
+    (& rm songworks/ from ~/sketchbook/)
+
+    /var/www/html/media/original-audio  -->
+    /var/www/html/media/audio
+
+- update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
+  but doesn't seem to run through the whole thing, since it takes way 
+  less time to see "done." than it does in terminal.
+
+- __make.sh still accepting audio files other than .wav
+
+- /search
