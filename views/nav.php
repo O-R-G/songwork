@@ -18,6 +18,9 @@
   $catalogue_id = end($oo->urls_to_ids(array('catalogue')));
   $catalogue_children = $oo->children($catalogue_id);
 
+  $searchQuery = '';
+  if (isset($_GET['query']))
+      $searchQuery = $_GET['query'];
 
 ?>
 <div id = "nav">
@@ -32,7 +35,7 @@
     ?>
       <div><a class = "nav_btn <? echo $isActive  ? 'active' : '' ?>" href = '<? echo $menu_child["url"] ?>'><? echo $menu_child["name1"] ?></a></div>
     <? } ?>
-    <div id = "catalogue-container">
+    <div id = "filter_container">
       <div>ORGANIZE BY</div><div id = 'catalogues'>
         <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
@@ -71,7 +74,16 @@
     </button>
     <a id = 'logo_cc' href = 'http://creativecommons.org/' taget = '_blank'><img src = '/media/svg/cc.svg'></a>
 </div>
-
+<!-- ================= search ==================== -->
+<? if(!$isDetail){ ?>
+<div id = 'searchbar_container'>
+  <form id = 'search_form' method="get" action="/search" name="search-picker" id="picker">
+    <input id = 'search_input' type="text" autocomplete="off" name="query" id="docket-search-input" value="<?= $searchQuery ?>">
+    <input type="submit" value="Submit"/>
+  </form>
+  <img id='search_btn' src = '/media/svg/magnifying-glass-6-k.svg' onclick='togglesearch()'>
+</div>
+<? } ?>
 <script type = "text/javascript" src='/static/js/menu.js'></script>
 <script>
   var sLogo_play = document.getElementById('logo_play');
@@ -79,4 +91,29 @@
     if(logo_play.classList.contains('hovered'))
       logo_play.classList.remove('hovered');
   });
+
+  var hasQuery = <? if ($searchQuery == '') { echo 'false'; } else { echo 'true'; } ?>;
+  var searchInput = document.getElementById('search_input');
+  
+  if(searchInput != null){
+    if (!hasQuery) {
+        focusSearchInput();
+    }
+    function focusSearchInput() {
+      var touched = false;
+      // searchInput.focus();
+      document.ontouchstart = function() {
+        if (!touched)
+          searchInput.focus();
+        touched = true;
+      }
+      document.onclick = function() {
+        if (!touched)
+          searchInput.focus();
+        touched = true;
+      }
+    }
+  }
+  
+
 </script>

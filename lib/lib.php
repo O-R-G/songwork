@@ -1,6 +1,30 @@
 <?
+function render_media_cat($media, $child_url) {
+    $url = m_url($media[0]);
+    ?><a class = 'media_container' href='/images/<? echo $child_url; ?>'>
+        <video id='video' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
+            <source src='<?= $url; ?>' type='video/mp4'>
+            Sorry, your browser does not support video. 
+        </video>
+    </a><?
+}
+function getMeta_cat($child, $media) {
+  $out = [];
+  $out []= $child["modified"];
+  if ($media) {
+    // $out []= basename(m_root($media[0]));
+    $out []= $child['name1'];
+    $out []= round(filesize(m_root($media[0]))/1000, 2) . ' KB';
+  } else {
+    $out []= strlen($child["body"]) . ' characters';
+  }
+
+  return $out;
+}
 function print_catalogue_children($oo, $cata, $children = array()){
   $length = count($children);
+  if(!$cata)
+    $cata = '';
   ?><div id = "item_list" class = "">
       <div class = 'media_container'></div>
       <div class = "catalogue_meta spreadsheet_meta">
@@ -18,6 +42,7 @@ function print_catalogue_children($oo, $cata, $children = array()){
       </div>
     </div><?
   for ($idx = 0; $idx < $length; $idx++) {
+     
       $child = $children[$idx];
       $cata_num = $child['deck'];
       $note = explode('-=-',$child['notes']);
@@ -41,8 +66,8 @@ function print_catalogue_children($oo, $cata, $children = array()){
       $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-    <? if ($hasMedia) { render_media($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
-    <? $meta = getMeta($child, $media); ?>
+    <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? $meta = getMeta_cat($child, $media); ?>
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <div class="catalogue_meta spreadsheet_meta">
       <div class="cata_num"><? echo $cata_num; ?></div>
@@ -66,8 +91,6 @@ function print_catalogue_children($oo, $cata, $children = array()){
   </div>
   <?
   }
-  ?></div>
-  <?
 }
 
 function get_recordings($oo, $img_id){
@@ -202,6 +225,111 @@ function process_media_upload($toid)
     }
   }
   return $m_old < $m_rows;
+}
+
+function build_children_search($oo, $ww, $query) {
+  $children_combined = array();
+  $recordings_id = end($oo->urls_to_ids(array('recordings')));
+  $query = preg_replace('/[^a-z0-9]+/i', ' ', $query);
+  $query = addslashes($query);
+  $query = strtolower($query);
+  $query = str_replace(' ', '%', $query);
+
+  // search
+  $fields = array("objects.*");
+  $tables = array("objects", "wires");
+  $where  = array("objects.active = '1'",
+                  "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "wires.toid = objects.id",
+                  "wires.fromid = '".$recordings_id."'",
+                  "wires.active = '1'");
+  $order  = array("objects.name1", "objects.begin", "objects.end");
+  // $order  = array("objects.end");
+  $children = $oo->get_all($fields, $tables, $where, $order);
+
+  // preprocess to remove any thing we dont want to show
+
+  // sort by ranking and then end date
+  // usort($children_combined, function($a, $b) {
+  //   if ($a['root']['ranking'] != $b['root']['ranking']) {
+  //     return $a['root']['ranking'] <=> $a['root']['ranking'];
+  //   } else {
+  //     return $b['end'] <=> $a['end'];
+  //   }
+  // });
+
+  return $children;
+}
+
+function print_search_children($oo, $children = array()){
+  $length = count($children);
+  ?><div id = "item_list" class = "">
+      <div class = 'media_container'></div>
+      <div class = "catalogue_meta spreadsheet_meta">
+        <div class="cata_num">Cat. no.</div>
+        <div class="title">Title</div>
+        <div class="location">Location</div>
+        <div class="date">Date recorded</div>
+        <div class="recordist">Sound recordist</div>
+        <div class="duration">Duration</div>
+        <div class="apparatus">Apparatus</div>
+        <div class="format">Format</div>
+        <div class="size">Size</div>
+        <div class="modified">Date uploaded</div>
+        <div></div>
+      </div>
+    </div><?
+  for ($idx = 0; $idx < $length; $idx++) {
+     
+      $child = $children[$idx];
+      $cata_num = $child['deck'];
+      $note = explode('-=-',$child['notes']);
+      $title = $note[0];
+      if(count($note) > 1){
+        $location = $note[1];
+        $date = $note[2];
+        $recordist = $note[3];
+        $apparatus = $note[4];
+      }else{
+        $lcoation = " &mdash; ";
+        $date = " &mdash; ";
+        $recordist = " &mdash; ";
+        $apparatus = " &mdash; ";
+      }
+      $media = $oo->media($child["id"]);
+      if($media)
+        $format = $media[0]['type'];
+      else
+        $format = " - ";
+      $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+  ?>
+  <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
+    <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? $meta = getMeta_cat($child, $media); ?>
+    <a class="anchor" name="<?= $child['url']; ?>"></a>
+    <div class="catalogue_meta spreadsheet_meta">
+      <div class="cata_num"><? echo $cata_num; ?></div>
+      <div class="title"><? echo $title;  ?></div>
+      <div class="location"><? echo $location;  ?></div>
+      <div class="date"><? echo $date;  ?></div>
+      <div class="recordist"><? echo $recordist;  ?></div>
+      <div class="duration"><? echo '11mins';  ?></div>
+      <div class="apparatus"><? echo $apparatus;  ?></div>
+      <div class="format"><? echo $format;  ?></div>
+      <div class="size"><? echo $meta[2]  ?></div>
+      <div class="modified"><? echo $meta[0]  ?></div>
+      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+    </div>
+    <div class="catalogue_meta list_meta">
+      <div class="modified"><? echo $meta[0]  ?></div>
+      <div class="filename"><? echo $meta[1]  ?></div>
+      <div class="size"><? echo $meta[2]  ?></div>
+      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+    </div>
+  </div>
+  <?
+  }
 }
 
 ?> 

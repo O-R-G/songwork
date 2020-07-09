@@ -183,7 +183,7 @@ function resume_timer() {
 // for detail page
 
 function play_one_video_detail() {
-    var video = document.querySelector('.detail-container video');
+    var video = document.querySelector('#detail_container video');
     if(video != 'null')
         video.play();
     else
@@ -191,7 +191,7 @@ function play_one_video_detail() {
 } 
 
 function pause_one_video_detail() { 
-    var video = document.querySelector('.detail-container video');
+    var video = document.querySelector('#detail_container video');
     if(video != 'null')
         video.pause();
     else
@@ -204,7 +204,7 @@ if(isDetail)
 {
     var progress = document.getElementById('progress');
     var supportsProgress = (document.createElement('progress').max !== undefined);
-    var video = document.querySelector('.detail-container video');
+    var video = document.querySelector('#detail_container video');
     if (!supportsProgress) 
         progress.setAttribute('data-state', 'fake');
 

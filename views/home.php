@@ -75,7 +75,7 @@ function render_media($media, $child_url) {
 </div>
 <a id = 'top' name='top'></a> -->
 
-<div class="container">
+<div id = 'home_container' class="container">
 <?
 for (; $idx < $length; $idx++) {
     $child = $children[$idx];
@@ -87,7 +87,7 @@ for (; $idx < $length; $idx++) {
     $padding_left = 75;
     $padding_right = 75;
   ?>
-  <div class= "child column-container-container <?= $child['url']; ?>">
+  <div class= "child column_container_container <?= $child['url']; ?>">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>

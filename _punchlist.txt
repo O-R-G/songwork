@@ -23,7 +23,7 @@ x mv *.mp4 to git large file storage
 
 / processing
 
-    - generate placeholder jpeg
+    + generate placeholder jpeg
     / catch null pointer
 
 - update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
@@ -32,7 +32,5 @@ x mv *.mp4 to git large file storage
 
 - __make.sh still accepting audio files other than .wav
 
-- /search
++ /search
 
-reinfurt@songwork.org:/var/www/app/songworks/_make
-scp reinfurt@songwork.org:/var/www/html/media/test.mp4 ~/Downloads

@@ -48,7 +48,7 @@ function getMeta($child, $media) {
 <? require_once('views/nav.php') ?>
 <!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
 
-<div class="detail-container">
+<div id = 'detail_container' class="container">
   <?
 // for (; $idx < $length; $idx++) {
     // $child = $children[$idx];
