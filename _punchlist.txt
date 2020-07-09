@@ -1,11 +1,6 @@
 x mv *.mp4 to git large file storage
 + mobile home play fix to match desktop
 + /catalogue play button behavior to match /home
-/ processing
-
-    - generate placeholder jpeg
-    / catch null pointer
-
 - open-records-generator naming
 
     .catalogue  --> .catalogue
@@ -25,6 +20,11 @@ x mv *.mp4 to git large file storage
 
     /var/www/html/media/original-audio  -->
     /var/www/html/media/audio
+
+/ processing
+
+    - generate placeholder jpeg
+    / catch null pointer
 
 - update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
   but doesn't seem to run through the whole thing, since it takes way 
