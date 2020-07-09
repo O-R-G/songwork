@@ -20,7 +20,7 @@ $no_results_error = 'The search query did not return any results.<br />Please <a
     <div>SEARCH BY</div><div id = 'search_keyword'><? echo $query; ?></div>
   </div>
 </div>
-<div id = 'search_container' class = 'container search-container' view='spreadsheet'>
+<div id = 'search_container' class = 'container' view='spreadsheet'>
 	<?
 	if ($query) {
     	$children = build_children_search($oo, false, $query);

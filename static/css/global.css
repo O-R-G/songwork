@@ -608,13 +608,13 @@ button:focus{
 }
 #catalogue_container > .child,
 #item_list,
-.search_container > .child{
+#search_container > .child{
   display: flex;
   padding: 20px;
 }
 
 #catalogue_container .media_container,
-.search_container .media_container{
+#search_container .media_container{
   width: 120px;
   height: 120px;
 }
@@ -623,7 +623,7 @@ button:focus{
   padding-bottom: 0;
 }
 #catalogue_container #item_list .media_container,
-.search_container #item_list .media_container{
+#search_container #item_list .media_container{
   height: initial;
 }
 .catalogue_meta > div{
@@ -649,12 +649,12 @@ button:focus{
 
 
 #catalogue_container[view='spreadsheet'] .list_meta,
-.search_container[view='spreadsheet'] .list_meta{
+#search_container[view='spreadsheet'] .list_meta{
   display: none;
 }
 #catalogue_container[view='list'] .spreadsheet_meta,
 #catalogue_container[view='list'] #item_list,
-.search_container[view='list'] .spreadsheet_meta{
+#search_container[view='list'] .spreadsheet_meta{
   display: none;
 }
 #catalogue_container[view='list'] .media_container{
@@ -695,7 +695,9 @@ button:focus{
 .hover #order_toggle:hover{
   color: #00f;
 }
-
+.download{
+  margin-left: 10px;
+}
 .download,
 .download:visited,
 .download:link{
@@ -879,7 +881,7 @@ button:focus{
   background-color: #fff;
   color: #00f;
 }
-.search_container{
+#search_container{
   flex-direction: column;
   width: initial;
   margin: 0;
