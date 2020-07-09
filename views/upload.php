@@ -89,6 +89,7 @@ if(isset($images_id)){
 		chdir('../app/songworks/_make/');
 		$output = shell_exec('./__make.sh');
 		chdir($old_path);
+		var_dump($output);
 		echo "<pre>".$output."</pre>";
 	}
 	
