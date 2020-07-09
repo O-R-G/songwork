@@ -1,3 +1,6 @@
 .DS_Store
 .htpasswd
 .htaccess
+media/audio/
+media/placeholder/
+open-records-generator/

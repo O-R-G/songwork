@@ -7,7 +7,7 @@ x mv *.mp4 to git large file storage
     .images     --> .recordings
     .music      --> .audio
 
-- server organization (directories)
++ server organization (directories)
 
     /home/reinfurt/sketchbook/songworks -->
     /var/etc/app/songworks
@@ -33,3 +33,6 @@ x mv *.mp4 to git large file storage
 - __make.sh still accepting audio files other than .wav
 
 - /search
+
+reinfurt@songwork.org:/var/www/app/songworks/_make
+scp reinfurt@songwork.org:/var/www/html/media/test.mp4 ~/Downloads
