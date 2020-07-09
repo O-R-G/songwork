@@ -3,4 +3,9 @@
 .htaccess
 media/audio/
 media/placeholder/
+media/*.mp3
+media/*.wav
+media/*.mp4
+media/*.jpg
+media/*.png
 open-records-generator/
