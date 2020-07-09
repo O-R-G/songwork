@@ -45,7 +45,7 @@ function getMeta($child, $media) {
 
 function render_media($media, $child_url) {
     $url = m_url($media[0]);
-    ?><a href='/images/<? echo $child_url; ?>'>
+    ?><a href='/recordings/<? echo $child_url; ?>'>
         <video id='video' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
@@ -82,10 +82,12 @@ for (; $idx < $length; $idx++) {
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
-    $padding_left = getFixedOffset($idx);
-    $padding_right = getFixedWidth($padding_left);
+    // $padding_left = getFixedOffset($idx);
+    // $padding_right = getFixedWidth($padding_left);
+    $padding_left = 75;
+    $padding_right = 75;
   ?>
-  <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo $padding_left; ?>px; padding-right:<? echo $padding_right; ?>px;">
+  <div class= "child column-container-container <?= $child['url']; ?>">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>

@@ -1,7 +1,7 @@
 x mv *.mp4 to git large file storage
 + mobile home play fix to match desktop
 + /catalogue play button behavior to match /home
-- open-records-generator naming
++ open-records-generator naming
 
     .catalogue  --> .catalogue
     .images     --> .recordings
