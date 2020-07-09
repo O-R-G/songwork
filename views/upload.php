@@ -1,7 +1,7 @@
 <?
 $toid = false;
-$images_id = end($oo->urls_to_ids(array('images')));
-$serial_num = count($oo->children_ids($images_id)) + 1;
+$recordings_id = end($oo->urls_to_ids(array('recordings')));
+$serial_num = count($oo->children_ids($recordings_id)) + 1;
 if($serial_num>999)
 	$serial_num = 'SW'.$serial_num;
 elseif($serial_num>99)
@@ -10,7 +10,7 @@ elseif($serial_num>9)
 	$serial_num = 'SW00'.$serial_num;
 else
 	$serial_num = 'SW000'.$serial_num;
-if(isset($images_id)){
+if(isset($recordings_id)){
 	$vars = array("name1", "deck", "body", "notes",  "url", "begin");
 
 	function insert_object(&$new, $siblings)
@@ -76,12 +76,12 @@ if(isset($images_id)){
 	
 	$f['begin'] = addslashes(date('Y-m-d H:i:s', time()));
 
-	$siblings = $oo->children_ids($images_id);
+	$siblings = $oo->children_ids($recordings_id);
 	$toid = insert_object($f, $siblings);
 	if($toid)
 	{
 		// wires
-		$ww->create_wire($images_id, $toid);
+		$ww->create_wire($recordings_id, $toid);
 		// media
 		process_media_upload($toid);
 		// execute bash code
