@@ -86,7 +86,7 @@ if(isset($images_id)){
 		process_media_upload($toid);
 		// execute bash code
 		$old_path = getcwd();
-		chdir('../app/songworks/_make/');
+		chdir('/var/www/app/songworks/_make/');
 		$output = shell_exec('./__make.sh');
 		chdir($old_path);
 		var_dump($output);
