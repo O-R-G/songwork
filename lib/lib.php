@@ -1,8 +1,9 @@
 <?
 function render_media_cat($media, $child_url) {
     $url = m_url($media[0]);
-    ?><a class = 'media_container' href='/images/<? echo $child_url; ?>'>
-        <video id='video' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
+    $placeholder_url = '/media/placeholder/'.m_pad($media[0]).'.jpg';
+    ?><a class = 'media_container' href='/recordings/<? echo $child_url; ?>'>
+        <video id='video' class='video fullscreen' width='100%' poster = '<? echo $placeholder_url; ?>' loop playsinline>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
         </video>
