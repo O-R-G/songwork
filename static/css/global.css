@@ -777,7 +777,7 @@ button:focus{
   height: 200px;
   position: relative;
 }
-#upload-audio
+#upload_audio
 {
   /*width: 0.1px;
   height: 0.1px;
@@ -795,10 +795,10 @@ button:focus{
   font-size: 16px;
   font-weight: bold;
 }
-#upload-audio:focus{
+#upload_audio:focus{
   outline: none;
 }
-#upload-audio + label
+#upload_audio + label
 {
   display: none;
 }
