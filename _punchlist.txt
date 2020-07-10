@@ -1,13 +1,13 @@
 x mv *.mp4 to git large file storage
 + mobile home play fix to match desktop
 + /catalogue play button behavior to match /home
-- open-records-generator naming
++ open-records-generator naming
 
     .catalogue  --> .catalogue
     .images     --> .recordings
     .music      --> .audio
 
-- server organization (directories)
++ server organization (directories)
 
     /home/reinfurt/sketchbook/songworks -->
     /var/etc/app/songworks
@@ -23,13 +23,13 @@ x mv *.mp4 to git large file storage
 
 / processing
 
-    - generate placeholder jpeg
+    + generate placeholder jpeg
     / catch null pointer
 
-- update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
+/ update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
   but doesn't seem to run through the whole thing, since it takes way 
   less time to see "done." than it does in terminal.
 
-- __make.sh still accepting audio files other than .wav
+/ __make.sh still accepting audio files other than .wav
 
-- /search
++ /search
