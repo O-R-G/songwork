@@ -86,7 +86,7 @@ if(isset($recordings_id)){
 		process_media_upload($toid);
 		// execute bash code
 		$old_path = getcwd();
-		chdir('/var/www/app/songworks/_make/');
+		chdir('/var/www/app/songwork-app/_make/');
 		// $output = shell_exec('./__make.sh');
 		$output = shell_exec('sudo ./__make.sh 2>&1');
 		//$output = shell_exec('./__test.sh 2>&1');
