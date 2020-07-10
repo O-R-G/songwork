@@ -26,11 +26,10 @@ x mv *.mp4 to git large file storage
     + generate placeholder jpeg
     / catch null pointer
 
-- update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
+/ update.php call __make.sh, executed (saw "Processing ******** xxx.wav"), 
   but doesn't seem to run through the whole thing, since it takes way 
   less time to see "done." than it does in terminal.
 
-- __make.sh still accepting audio files other than .wav
+/ __make.sh still accepting audio files other than .wav
 
 + /search
-
