@@ -878,8 +878,8 @@ button:focus{
 }
 #search_input:focus{
   outline: none;
-  background-color: #fff;
-  color: #00f;
+  /* background-color: #fff; */
+  color: #fff;
 }
 #search_container{
   flex-direction: column;
