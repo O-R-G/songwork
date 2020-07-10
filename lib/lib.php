@@ -211,7 +211,7 @@ function process_media_upload($toid)
 
       $m_file = m_pad($insert_id).".".$m_type;
       // $m_dest = $resize ? $resize_root : $media_root;
-      $m_dest = '/var/www/app/songworks/_make/';
+      $m_dest = '/var/www/app/songwork-app/_make/';
       // $m_dest = '../app/songworks/_make/';
       $m_dest.= $m_file;
 
