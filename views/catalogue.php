@@ -35,29 +35,7 @@ function getRandWidth($idx) {
   return roundUpToAny(rand(10, 35));
 }
 
-function getMeta($child, $media) {
-  $out = [];
-  $out []= $child["modified"];
-  if ($media) {
-    // $out []= basename(m_root($media[0]));
-    $out []= $child['name1'];
-    $out []= round(filesize(m_root($media[0]))/1000, 2) . ' KB';
-  } else {
-    $out []= strlen($child["body"]) . ' characters';
-  }
 
-  return $out;
-}
-
-function render_media($media, $child_url) {
-    $url = m_url($media[0]);
-    ?><a class = 'media_container' href='/images/<? echo $child_url; ?>'>
-        <video id='video' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
-            <source src='<?= $url; ?>' type='video/mp4'>
-            Sorry, your browser does not support video. 
-        </video>
-    </a><?
-}
  
 
 
