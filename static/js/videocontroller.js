@@ -232,6 +232,7 @@ else if(isHome)
                 total_duration = Math.max(total_duration, (el.duration + (i * time_to_next/1000)) );
             }
         });
+        sPseudo_progress_bar.style.display = 'block';
         sPseudo_progress_bar.style.animationDuration = total_duration+'s';
         sPseudo_progress_bar.style.animationDelay = time_to_start/1000+'s';
     };
