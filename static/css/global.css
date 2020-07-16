@@ -924,7 +924,7 @@ button:focus{
   text-align: center;
   background-color: #00f;
   color: #fff;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.75), 0 17px 50px 0 rgba(0,0,0,0.6);
+  /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.75), 0 17px 50px 0 rgba(0,0,0,0.6);*/
 }
 #tooltip_arrow{
   width: 0; 
