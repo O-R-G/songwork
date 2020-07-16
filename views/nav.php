@@ -57,11 +57,20 @@
        <span id="progress_bar"></span>
     </progress>
   </div>
+<? }elseif($isHome){ ?>
+  <div id="progress_ctner">
+    <div id = 'pseudo_progress_bar'></div>
+  </div>
+  
 <? } ?>
 <div id = "logo_ctner"><button id = "logo_play" class = '<? echo ($isHome || $isDetail) ? "hovered" : ""; ?>' onclick="control_play()" type = "button">
       <svg id="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <polygon class = 'play_svg' points="12 0 12 100 94.5 50 12 0"/>
       </svg>
+      <div id = 'tooltip_ctner'>
+        <div id = 'tooltip_arrow'></div>
+        <div id = 'tooltip'>Click to start</div>
+      </div>
     </button>
     <a id="lozenge" href="<? echo $isHome ? '#top' : '/' ?>" onclick="location.reload();">
         <?= $title ?>

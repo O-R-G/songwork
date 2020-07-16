@@ -55,6 +55,7 @@ index.unshift(0);
 
 
 function control_play(){
+    body.classList.add('playing_record');
     if(isHome)
     {
         if(!timer)
@@ -73,6 +74,7 @@ function control_play(){
 }
 
 function control_pause(){
+    body.classList.remove('playing_record');
     if(isHome)
     {
         pause_timer();
@@ -91,6 +93,7 @@ function control_pause(){
 
 function start_timer() {
     timer = setTimeout(function(){ play_one_video(0); }, time_to_start);
+    
 }
 
 // video control
@@ -125,6 +128,7 @@ function play_all_videos() {
         videos[i].play();
     }
     timer = null;
+
     // vid_status_playall = true;
     // vid_status_pauseall = false;
 }
@@ -217,8 +221,20 @@ if(isDetail)
         // sPr_bar.css("width",Math.floor((video.currentTime / video.duration) * 100) + '%');
     });
 }
-else if(isCatalogue)
+else if(isHome)
 {
-    
+    var total_duration = 0;
+    var sPseudo_progress_bar = document.getElementById('pseudo_progress_bar');
+    window.onload = function(){
+        var video = document.getElementsByClassName('video');
+        Array.prototype.forEach.call(video, function(el, i){
+            if(el.readyState > 0){
+                total_duration = Math.max(total_duration, (el.duration + (i * time_to_next/1000)) );
+            }
+        });
+        sPseudo_progress_bar.style.animationDuration = total_duration+'s';
+        sPseudo_progress_bar.style.animationDelay = time_to_start/1000+'s';
+    };
+
 }
 

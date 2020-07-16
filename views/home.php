@@ -43,53 +43,32 @@ function getMeta($child, $media) {
   return $out;
 }
 
-function render_media($media, $child_url) {
+function render_media($media, $child_url, $idx) {
     $url = m_url($media[0]);
     ?><a href='/recordings/<? echo $child_url; ?>'>
-        <video id='video' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
+        <video id='video<? echo $idx; ?>' class='video fullscreen' width='100%' poster = '/media/placeholder/ph-0.jpg' loop playsinline>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
         </video>
     </a><?
 }
- 
 
 
 /* html */
        
 ?>
 
-<!-- <div id='controls'>
-    <button onclick="play_all_videos()" type="button">&#9654;</button>
-    <button onclick="pause_all_videos()" type="button">| |</button>
-    <button onclick="start_timer()" type="button">START</button>
-</div> -->
-
-
-<!-- <div id = "logo_ctner">
-    <button id = "logo_play" onclick="control_play()" type = "button">&#9654;</button>
-    <a id="lozenge" href="#top" onclick="location.reload();">
-        <?= $title ?>
-    </a>
-    <button id = "logo_pause" onclick="control_pause()" type = "button">| |</button>
-</div>
-<a id = 'top' name='top'></a> -->
-
 <div id = 'home_container' class="container">
 <?
-for (; $idx < $length; $idx++) {
+for ($idx = 0 ; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
-    // $padding_left = getFixedOffset($idx);
-    // $padding_right = getFixedWidth($padding_left);
-    $padding_left = 75;
-    $padding_right = 75;
   ?>
   <div class= "child column_container_container <?= $child['url']; ?>">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { render_media($media, $child_url); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { render_media($media, $child_url, $idx); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -99,5 +78,23 @@ for (; $idx < $length; $idx++) {
 </div>
 
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
-
+<script>
+  var hasPlayed = false;
+  var sLogo_play = document.getElementById('logo_play');
+  var sTooltip_ctner = document.getElementById('tooltip_ctner');
+  sLogo_play.addEventListener('mouseenter', function(){
+    if(!hasPlayed)
+      sTooltip_ctner.style.display = 'block';
+  });
+  sLogo_play.addEventListener('mouseleave', function(){
+    if(!hasPlayed)
+      sTooltip_ctner.style.display = 'none';
+  });
+  sLogo_play.addEventListener('click', function(){
+    if(!hasPlayed){
+      hasPlayed = true;
+      sTooltip_ctner.style.display = 'none';
+    }
+  });
+</script>
 

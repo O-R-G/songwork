@@ -52,7 +52,7 @@ function getRandWidth($idx) {
     </label>
   </div>
   <div id = 'filter'>
-    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>&#8643;&#8638;</div><br>
+    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>↑</div><br>
     <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
           if($uri[2] !== $catalogue_child['url']){
@@ -110,21 +110,33 @@ elseif($uri[2] == 'duration-short-long'){
   var sOrder = document.getElementById('order');
   var sOrder_reverse = document.getElementById('order_reverse');
   var sCurrent_catalogue = document.getElementById('current_catalogue');
+  var isClicked = false;
   sOrder_toggle.addEventListener('mouseenter', function(){
-    sCurrent_catalogue.classList.add('viewing_reverse');
+    sCurrent_catalogue.classList.toggle('viewing_reverse');
     sOrder_reverse.style.color = '#00f';
     sOrder.style.color = '#00f';
   });
   sOrder_toggle.addEventListener('mouseleave', function(){
-    sCurrent_catalogue.classList.remove('viewing_reverse');
+    if(!isClicked){
+      sCurrent_catalogue.classList.toggle('viewing_reverse');
+      sOrder_toggle.innerText = '↑';
+    }
+    else
+    {
+      isClicked = false;
+    }
     sOrder_reverse.style.color = '#000';
     sOrder.style.color = '#000';
+    
   });
 
   sOrder_toggle.addEventListener('click', function(){
-    sCurrent_catalogue.classList.remove('viewing_reverse');
-    sOrder.classList.toggle('order_reverse');
-    sOrder_reverse.classList.toggle('order_reverse');
+    // sCurrent_catalogue.classList.toggle('viewing_reverse');
+    isClicked = true;
+    sOrder_reverse.style.color = '#000';
+    sOrder.style.color = '#000';
+    // sOrder.classList.toggle('order_reverse');
+    // sOrder_reverse.classList.toggle('order_reverse');
 
     reverse_child();
   });

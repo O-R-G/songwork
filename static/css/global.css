@@ -502,7 +502,21 @@ button:focus{
   background-color:#f00;
   background-color:#00f;
 }
+#pseudo_progress_bar{
+  /*display: inline-block;*/
+  width: 0;
+  height: 6px;
+  background-color: #00F;
 
+  animation: pseudo_progressing forwards linear;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.playing_record #pseudo_progress_bar{
+  animation-play-state: running;
+}
 #nav{
   position: fixed;
   top:0;
@@ -682,15 +696,17 @@ button:focus{
 
 #order_toggle{
   display: inline;
-  width: 22px;
-  font-size: 20px;
+  width: 18px;
+  text-align: center;
   font-weight: bold;
   font-family: sans-serif;
-  letter-spacing: -10px;
-  top: -1px;
   position: absolute;
-  padding: 0 1px;
   cursor:pointer;
+  top: -1px;
+  transform-origin: 50% calc( 50% - 1px);
+}
+.viewing_reverse #order_toggle{
+  transform: rotate(180deg);
 }
 .hover #order_toggle:hover{
   color: #00f;
@@ -889,6 +905,34 @@ button:focus{
 #search_error{
   padding: 12px;
 }
+#tooltip_ctner{
+  position: absolute;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  top: 0;
+  left: 10px;
+  transform: translate(0, 62px);
+  z-index: 2000;
+  display: none;
+  pointer-events: none;
+}
+#tooltip{
+  padding: 7px 0 5px 0;
+  width: 95px;
+  text-align: center;
+  background-color: #00f;
+  color: #fff;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.75), 0 17px 50px 0 rgba(0,0,0,0.6);
+}
+#tooltip_arrow{
+  width: 0; 
+  height: 0; 
+  /*border-left: 7px solid transparent;*/
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #00f;
+  /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.75), 0 17px 50px 0 rgba(0,0,0,0.6);*/
+}
 @keyframes play-bouncing{
   0%
   {
@@ -939,7 +983,17 @@ button:focus{
   }
 }
 
+@keyframes pseudo_progressing{
+  0%
+  {
+    width: 0;
+  }
 
+  100%
+  {
+    width: 100%;
+  }
+}
 
 
 
