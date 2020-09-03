@@ -23,16 +23,17 @@ else if($uri[1] == "catalogue")
   require_once("views/catalogue.php");
 else if($uri[1] == "search")
   require_once("views/search.php");
-else if($uri[1] == "submit" || $uri[1] == "about")
-  require_once("views/column.php");
 else if($uri[1] == "upload"){
   if(!$uri[2])
     require_once("views/upload.php");
   else
     require_once("views/upload-response.php");
 }
-else
+else if($uri[1] == 'recordings')
   require_once("views/detail.php");
+else
+  require_once("views/column.php");
+
 
 require_once("views/foot.php");
 ?>
