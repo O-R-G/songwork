@@ -146,8 +146,9 @@ button:active {
   justify-content: center;
 
 }
-#submit_container,
-#about_container,
+/*#submit_container,
+#about_container,*/
+#text_container,
 #success_container,
 #error_container,
 #search_container
@@ -740,7 +741,7 @@ button:focus{
 /* ================================
                 submit
  ================================== */
-#submit_container{
+#text_container{
   color: #00F;
 }
 #submit_form{
@@ -764,19 +765,19 @@ button:focus{
 .item-order{
   margin-right: 40px;
 }
-#submit_container input[type = 'text'], 
-#submit_container textarea{
+#text_container input[type = 'text'], 
+#text_container textarea{
   width: 100%;
   padding: 5px;
   height: 40px;
 }
-#submit_container div + input{
+#text_container div + input{
   margin-top: 12px;
 }
-#submit_container ol{
+#text_container ol{
   padding-left: 17px;
 }
-#submit_container input[type = 'submit']{
+#text_container input[type = 'submit']{
   font-size: 16px;
   color: #fff;
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;

@@ -44,15 +44,15 @@ else if ($uri[1] =="catalogue")
 else if ($uri[1] =="submit")
 {
     $isSubmit = true;
-    $thisPage = 'submit';
-}
-else if($uri[1] =="about"){
-	$thisPage = 'about';
+    $thisPage = 'text';
 }
 else if ($uri[1] =='recordings')
 {
     $isDetail = true;
     $thisPage = 'detail';
+}
+else{
+	$thisPage = 'text';
 }
     
 ?>
