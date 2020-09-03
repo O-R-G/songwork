@@ -170,7 +170,7 @@ button:active {
 }
 
 .column_container {
-  max-width: 50%;
+  width: 50%;
 	position: relative;
 	display: inline-block;
 	vertical-align: top;
@@ -1065,7 +1065,7 @@ button:focus{
 	.column_container {
     padding-bottom: 0px;
     padding-top: 0px;
-    max-width: 100%;
+    /*max-width: 100%;*/
     display: block;
     width: 100%;
 	}

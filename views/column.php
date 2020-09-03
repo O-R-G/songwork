@@ -9,16 +9,14 @@ $column_right = $item['body'];
 	<form id = 'submit_form' enctype="multipart/form-data" method = 'POST' action = '/upload'>
 	<div class = 'column_container left'>
 		<? echo $column_left; ?>
-	</div>
-	<div class = 'column_container right'>
+	</div><div class = 'column_container right'>
 		<? echo $column_right; ?>
 	</div>
 	</form>
 <? } else { ?>
 	<div class = 'column_container left'>
 		<? echo $column_left; ?>
-	</div>
-	<div class = 'column_container right'>
+	</div><div class = 'column_container right'>
 		<? echo $column_right; ?>
 	</div>
 <? } ?>
