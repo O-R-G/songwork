@@ -58,7 +58,7 @@ function getRandWidth($idx) {
     </label>
   </div>
   <div id = 'filter'>
-    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>↑</div><br>
+    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?> <span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>↑</div><br>
     <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
           $cata_name = $catalogue_child['name1'].' ('.$catalogue_child['deck'].')';
