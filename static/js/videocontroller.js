@@ -26,26 +26,24 @@ var video_ready = 0;
 
 Array.prototype.forEach.call(videos, function(el, i){
     index.push(i);
-
-    if(isHome)
+    if(isHome || isCatalogue)
         el.currentTime = 6;
-    else if(isCatalogue){
-        el.muted = true;
-        console.log(el.readyState);
-        if(el.readyState == 4){
-            video_ready++;
-            if(video_ready == videos.length)
-                play_all_videos();
-        }
-        else{
-            el.addEventListener('loadeddata', function() {
-                video_ready++;
-                if(video_ready == videos.length)
-                    play_all_videos();
-            }, false);
-        }
+    // else if(isCatalogue){
+    //     el.muted = true;
+    //     if(el.readyState == 4){
+    //         video_ready++;
+    //         if(video_ready == videos.length)
+    //             play_all_videos();
+    //     }
+    //     else{
+    //         el.addEventListener('loadeddata', function() {
+    //             video_ready++;
+    //             if(video_ready == videos.length)
+    //                 play_all_videos();
+    //         }, false);
+    //     }
         
-    }
+    // }
 });
 
 // index[0] = 0; index[rest] = randomized
@@ -129,15 +127,8 @@ function play_all_videos() {
     }
     timer = null;
 
-    // vid_status_playall = true;
-    // vid_status_pauseall = false;
 }
-// function display_vid_status(){
-//     for (i = 0; i < videos.length; i++) {
-//         console.log(videos[i].paused);
-//         console.log(videos[i].played);
-//     }
-// }
+
 function pause_all_videos() { 
     // setTimeout(0) so that it executes after 
     // window click in autoplay.js;

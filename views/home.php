@@ -33,8 +33,15 @@ function getMeta($child, $media) {
   $out = [];
   $out []= $child["modified"];
   if ($media) {
-    // $out []= basename(m_root($media[0]));
-    $out []= $child['name1'];
+    $child_info = explode('-=-', $child['notes']);
+    $child_description = $child_info[0];
+    $child_location = $child_info[1];
+    $child_recordist = $child_info[2];
+    $child_date = $child_info[3];
+    $child_duration = $child_info[4];
+    $child_apparatus = $child_info[5];
+    $child_license = $child_info[6];
+    $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
     $out []= round(filesize(m_root($media[0]))/1000, 2) . ' KB';
   } else {
     $out []= strlen($child["body"]) . ' characters';
@@ -63,14 +70,23 @@ function render_media($media, $child_url, $idx) {
 for ($idx = 0 ; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
-    $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+    ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
+    $child_info = explode('-=-', $child['notes']);
+    $child_description = $child_info[0];
+    $child_location = $child_info[1];
+    $child_recordist = $child_info[2];
+    $child_date = $child_info[3];
+    $child_duration = $child_info[4];
+    $child_apparatus = $child_info[5];
+    $child_license = $child_info[6];
+    $child_meta_filename = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
   ?>
   <div class= "child column_container_container <?= $child['url']; ?>">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { render_media($media, $child_url, $idx); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
-    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
+    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $child_meta_filename;  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
 <?
 }

@@ -14,7 +14,15 @@ function getMeta_cat($child, $media) {
   $out []= $child["modified"];
   if ($media) {
     // $out []= basename(m_root($media[0]));
-    $out []= $child['name1'];
+    $$child_info = explode('-=-', $child['notes']);
+    $child_description = $child_info[0];
+    $child_location = $child_info[1];
+    $child_recordist = $child_info[2];
+    $child_date = $child_info[3];
+    $child_duration = $child_info[4];
+    $child_apparatus = $child_info[5];
+    $child_license = $child_info[6];
+    $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
     $out []= round(filesize(m_root($media[0]))/1000, 2) . ' KB';
   } else {
     $out []= strlen($child["body"]) . ' characters';
@@ -22,10 +30,8 @@ function getMeta_cat($child, $media) {
 
   return $out;
 }
-function print_catalogue_children($oo, $cata, $children = array()){
+function print_catalogue_children($oo, $children = array()){
   $length = count($children);
-  if(!$cata)
-    $cata = '';
   ?><div id = "item_list" class = "">
       <div class = 'media_container'></div>
       <div class = "catalogue_meta spreadsheet_meta">
@@ -33,9 +39,9 @@ function print_catalogue_children($oo, $cata, $children = array()){
         <div class="title">Title</div>
         <div class="location">Location</div>
         <div class="date">Date recorded</div>
-        <div class="recordist">Sound recordist</div>
+        <div class="recordist">Contributer</div>
         <div class="duration">Duration</div>
-        <div class="apparatus">Apparatus</div>
+        <div class="apparatus">Equipment</div>
         <div class="format">Format</div>
         <div class="size">Size</div>
         <div class="modified">Date uploaded</div>
@@ -46,25 +52,27 @@ function print_catalogue_children($oo, $cata, $children = array()){
      
       $child = $children[$idx];
       $cata_num = $child['deck'];
-      $note = explode('-=-',$child['notes']);
-      $title = $note[0];
-      if(count($note) > 1){
-        $location = $note[1];
-        $date = $note[2];
-        $recordist = $note[3];
-        $apparatus = $note[4];
-      }else{
-        $lcoation = " &mdash; ";
-        $date = " &mdash; ";
-        $recordist = " &mdash; ";
-        $apparatus = " &mdash; ";
+      $child_info = explode('-=-', $child['notes']);
+      foreach($child_info as &$ci){
+        if(!$ci)
+          $ci = '&mdash;';
       }
+      unset($ci);
+      $title = $child_info[0];
+      $location = $child_info[1];
+      $recordist = $child_info[2];
+      $date = $child_info[3];
+      $duration = $child_info[4];
+      $apparatus = $child_info[5];
+      $license = $child_info[6];
+      $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
       $media = $oo->media($child["id"]);
       if($media)
         $format = $media[0]['type'];
       else
         $format = " - ";
-      $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+      
+      ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
     <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
@@ -76,17 +84,17 @@ function print_catalogue_children($oo, $cata, $children = array()){
       <div class="location"><? echo $location;  ?></div>
       <div class="date"><? echo $date;  ?></div>
       <div class="recordist"><? echo $recordist;  ?></div>
-      <div class="duration"><? echo '11mins';  ?></div>
+      <div class="duration"><? echo $duration;  ?></div>
       <div class="apparatus"><? echo $apparatus;  ?></div>
       <div class="format"><? echo $format;  ?></div>
-      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]  ?></div>
-      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]  ?></div>
+      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
+      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
       <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
     </div>
     <div class="catalogue_meta list_meta">
-      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]  ?></div>
-      <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $meta[1]  ?></div>
-      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]  ?></div>
+      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
+      <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $child_meta_filename;  ?></div>
+      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
       <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
     </div>
   </div>
@@ -94,92 +102,86 @@ function print_catalogue_children($oo, $cata, $children = array()){
   }
 }
 
-function get_recordings($oo, $img_id){
-  $recordings_raw = $oo->children($img_id);
-  $recordings = array();
-  foreach($recordings_raw as $recording_raw){
-
+function get_recordings_by_cata($oo, $o, $cata){
+  $recordings = $oo->children($o);
+  $order = array();
+  if($cata == 'catalogue-number'){
+    foreach($recordings as $key => &$rr){
+      $this_key = $rr['deck'];
+      while(ctype_space(substr($this_key, 0, 1))){
+        $this_key = substr($this_key, 1);
+      }
+      $rr['deck'] = $this_key;
+      $order[$key] = $this_key;
+    }
+    unset($rr);
+    array_multisort($order, SORT_ASC, $recordings);
   }
-
-}
-
-function children_by_order($oo, $o, $order){
-	$fields = array("objects.*");
-	$tables = array("objects", "wires");
-	$where	= array("wires.fromid = '".$o."'",
-					"wires.active = 1",
-					"wires.toid = objects.id",
-					"objects.active = '1'");
-
-	return $oo->get_all($fields, $tables, $where, $order);
-}
-
-function children_by_title($oo, $o){
-	$order 	= array("objects.name1","objects.date");
-	return children_by_order($oo, $o, $order);
-}
-
-function children_by_date($oo, $o){
-	/* 
-		3/26
-		Date is ordered by modified now.
-	*/
-	$order 	= array("objects.modified", "objects.name1", "objects.rank");
-	return children_by_order($oo, $o, $order);
-}
-function children_by_catalogue_number($oo, $o){
-	/* 
-		3/26
-		I put catalogue number in deck now.
-	*/
-	$order 	= array("objects.deck", "objects.name1","objects.date", "objects.rank");
-	return children_by_order($oo, $o, $order);
-}
-
-function children_by_location($oo, $o){
-	$order 	= array("objects.modified", "objects.name1");
-	return children_by_order($oo, $o, $order);
-}
-
-function children_by_duration($oo, $o){
-	/* 
-		3/26
-		Duration is ordered by end now.
-	*/
-	$order 	= array("objects.end", "objects.name1","objects.date", "objects.rank");
-	return children_by_order($oo, $o, $order);
-}
-
-function children_by_recordist($oo, $o){
-  $recordings_raw = $oo->children($o);
-  $recordings = array();
-  foreach($recordings_raw as $recording_raw){
-    $this_detail = explode('-=-', $recording_raw['notes']);
-    $this_recordist = $this_detail[3];
-    $this_name = $this_detail[0];
-    $this_date = $this_detail[2];
-    $this_key = $this_recordist.$this_name.$this_date;
-    $recordings[$this_key] = $recording_raw;
+  elseif($cata == 'location')
+  {
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[1];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
   }
-  ksort($recordings);
-
-  return array_values($recordings);
-}
-function children_by_apparatus($oo, $o){
-  $recordings_raw = $oo->children($o);
-  $recordings = array();
-  foreach($recordings_raw as $recording_raw){
-    $this_detail = explode('-=-', $recording_raw['notes']);
-    $this_apparatus = $this_detail[4];
-    $this_name = $this_detail[0];
-    $this_date = $this_detail[2];
-    $this_key = $this_apparatus.$this_name.$this_date;
-    $recordings[$this_key] = $recording_raw;
+  elseif($cata == 'contributer')
+  {
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[2];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
   }
-  ksort($recordings);
-  
-  return array_values($recordings);
-} 
+  elseif($cata == 'date-recorded'){
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[3];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
+  }
+  elseif($cata == 'description'){
+    foreach($recordings as $key => &$rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[0];
+      while(ctype_space(substr($this_key, 0, 1))){
+        $this_key = substr($this_key, 1);
+      }
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
+  }
+  elseif($cata == 'duration'){
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[4];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
+  }
+  elseif($cata == 'equipment'){
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[5];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
+  }
+  elseif($cata == 'license'){
+    foreach($recordings as $key => $rr){
+      $this_key = explode('-=-', $rr['notes']);
+      $this_key = $this_key[6];
+      $order[$key] = $this_key;
+    }
+    array_multisort($order, SORT_ASC, $recordings);
+  }
+  $recordings = array_values($recordings);
+  return $recordings;
+}
+
 function process_media_upload($toid)
 {
   global $mm;
@@ -273,9 +275,9 @@ function print_search_children($oo, $children = array()){
         <div class="title">Title</div>
         <div class="location">Location</div>
         <div class="date">Date recorded</div>
-        <div class="recordist">Sound recordist</div>
+        <div class="recordist">Contributer</div>
         <div class="duration">Duration</div>
-        <div class="apparatus">Apparatus</div>
+        <div class="apparatus">Equipment</div>
         <div class="format">Format</div>
         <div class="size">Size</div>
         <div class="modified">Date uploaded</div>
@@ -286,25 +288,26 @@ function print_search_children($oo, $children = array()){
      
       $child = $children[$idx];
       $cata_num = $child['deck'];
-      $note = explode('-=-',$child['notes']);
-      $title = $note[0];
-      if(count($note) > 1){
-        $location = $note[1];
-        $date = $note[2];
-        $recordist = $note[3];
-        $apparatus = $note[4];
-      }else{
-        $lcoation = " &mdash; ";
-        $date = " &mdash; ";
-        $recordist = " &mdash; ";
-        $apparatus = " &mdash; ";
+      $child_info = explode('-=-', $child['notes']);
+      foreach($child_info as &$ci){
+        if(!$ci)
+          $ci = '&mdash;';
       }
+      unset($ci);
+      $title = $child_info[0];
+      $location = $child_info[1];
+      $recordist = $child_info[2];
+      $date = $child_info[3];
+      $duration = $child_info[4];
+      $apparatus = $child_info[5];
+      $license = $child_info[6];
+      $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
       $media = $oo->media($child["id"]);
       if($media)
         $format = $media[0]['type'];
       else
         $format = " - ";
-      $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+      ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
     <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
@@ -316,17 +319,17 @@ function print_search_children($oo, $children = array()){
       <div class="location"><? echo $location;  ?></div>
       <div class="date"><? echo $date;  ?></div>
       <div class="recordist"><? echo $recordist;  ?></div>
-      <div class="duration"><? echo '11mins';  ?></div>
+      <div class="duration"><? echo $duration;  ?></div>
       <div class="apparatus"><? echo $apparatus;  ?></div>
       <div class="format"><? echo $format;  ?></div>
-      <div class="size"><? echo $meta[2]  ?></div>
-      <div class="modified"><? echo $meta[0]  ?></div>
+      <div class="size"><? echo $meta[2]; ?></div>
+      <div class="modified"><? echo $meta[0]; ?></div>
       <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
     </div>
     <div class="catalogue_meta list_meta">
-      <div class="modified"><? echo $meta[0]  ?></div>
-      <div class="filename"><? echo $meta[1]  ?></div>
-      <div class="size"><? echo $meta[2]  ?></div>
+      <div class="modified"><? echo $meta[0]; ?></div>
+      <div class="filename"><? echo $child_meta_filename; ?></div>
+      <div class="size"><? echo $meta[2]; ?></div>
       <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
     </div>
   </div>

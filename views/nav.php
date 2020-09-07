@@ -41,8 +41,10 @@
           $isActive = false;
           if($uri[2] == $catalogue_child['url'])
             $isActive = true;
+          $cata_name = $catalogue_child['name1'].' ('.$catalogue_child['deck'].')';
+          // var_dump($cata_name);
         ?>
-          <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $catalogue_child['name1'] ?></a><br>
+          <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $cata_name; ?></a><br>
         <? } ?>
       </div>
     </div>

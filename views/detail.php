@@ -27,12 +27,20 @@ function getRandWidth($idx) {
   return roundUpToAny(rand(10, 35));
 }
 
-function getMeta($child, $media) {
+function getMeta_detail($child, $media) {
   $out = [];
 
   $out []= $child["modified"];
   if ($media) {
-    $out []= $child['name1'];
+    $child_info = explode('-=-', $child['notes']);
+    $child_description = $child_info[0];
+    $child_location = $child_info[1];
+    $child_recordist = $child_info[2];
+    $child_date = $child_info[3];
+    $child_duration = $child_info[4];
+    $child_apparatus = $child_info[5];
+    $child_license = $child_info[6];
+    $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
     $out []= round(filesize(m_root($media))/1000, 2) . ' KB';
   } else {
     $out []= strlen($child["body"]) . ' characters';
@@ -54,7 +62,7 @@ function getMeta($child, $media) {
     // $child = $children[$idx];
   $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
   $media = $hasMedia ? $mediaItems[0] : null;
-  $meta = getMeta($child, $media);
+  $meta = getMeta_detail($child, $media);
     ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   
 <?

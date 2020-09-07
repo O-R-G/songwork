@@ -1,20 +1,26 @@
 <?
-$imgs_id = 1;
-$children = $oo->children($imgs_id);
-shuffle($children);
+$recordings_id = 1;
+// $children = $oo->children($imgs_id);
+// shuffle($children);
 
 // defined in nav.php
-$length = count($children);
+// $length = count($children);
 $idx = 0;
 
 $this_catalogue = '';
 foreach ($catalogue_children as $catalogue_child) {
   if($catalogue_child['url'] == $uri[2]){
+    $this_range = $catalogue_child['deck'];
     $this_catalogue = $catalogue_child['name1'];
-    $this_order = explode('(',$this_catalogue)[1];
-    $this_from = explode('–',$this_order)[0];
-    $this_to = str_replace(')', '', explode('–',$this_order)[1]);
-    $this_catalogue = explode('(',$this_catalogue)[0];
+    if(strpos('/', $this_catalogue) !== false){
+
+    }
+    else{
+      $this_from = explode('&mdash;', htmlentities($this_range))[0];
+      $this_to = explode('&mdash;', htmlentities($this_range))[1];
+    }
+    
+    
   }
 }
 
@@ -55,9 +61,10 @@ function getRandWidth($idx) {
     <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?><span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>↑</div><br>
     <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
+          $cata_name = $catalogue_child['name1'].' ('.$catalogue_child['deck'].')';
           if($uri[2] !== $catalogue_child['url']){
         ?>
-          <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $catalogue_child['name1'] ?></a><br>
+          <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $cata_name; ?></a><br>
         <? }} ?>
       </div>
   </div>
@@ -66,34 +73,10 @@ function getRandWidth($idx) {
 
 <div id = 'catalogue_container' class="container " view = 'spreadsheet'> 
 <? 
-if($uri[2] == 'title-a-z'){
-  $children = children_by_title($oo, $imgs_id);
-  print_catalogue_children($oo, 'title-a-z', $children);
-}
-elseif($uri[2] == 'date-recorded-new-old'){
-  $children = children_by_date($oo, $imgs_id);
-  print_catalogue_children($oo, 'date-recorded-new-old', $children);
-}
-elseif($uri[2] == 'catalogue-number-old-new'){
-  $children = children_by_catalogue_number($oo, $imgs_id);
-  print_catalogue_children($oo, 'catalogue-number-old-new', $children);
-}
-elseif($uri[2] == 'location-a-z'){
-  $children = children_by_location($oo, $imgs_id);
-  print_catalogue_children($oo, 'location-a-z', $children);
-}
-elseif($uri[2] == 'apparatus-a-z'){
-  $children = children_by_apparatus($oo, $imgs_id);
-  print_catalogue_children($oo, 'apparatus-a-z', $children);
-}
-elseif($uri[2] == 'name-of-sound-recordist-a-z'){
-  $children = children_by_recordist($oo, $imgs_id);
-  print_catalogue_children($oo, 'name-of-sound-recordist-a-z', $children);
-}
-elseif($uri[2] == 'duration-short-long'){
-  $children = children_by_duration($oo, $imgs_id);
-  print_catalogue_children($oo, 'duration-short-long', $children);
-}
+$this_cata = $uri[2];
+$children = get_recordings_by_cata($oo, $recordings_id, $this_cata);
+print_catalogue_children($oo, $children);
+
 ?>
 </div>
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
@@ -131,13 +114,9 @@ elseif($uri[2] == 'duration-short-long'){
   });
 
   sOrder_toggle.addEventListener('click', function(){
-    // sCurrent_catalogue.classList.toggle('viewing_reverse');
     isClicked = true;
     sOrder_reverse.style.color = '#000';
     sOrder.style.color = '#000';
-    // sOrder.classList.toggle('order_reverse');
-    // sOrder_reverse.classList.toggle('order_reverse');
-
     reverse_child();
   });
 

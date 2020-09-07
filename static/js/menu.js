@@ -49,6 +49,8 @@ function togglesearch(){
 	}
 }
 function show_search(){
+	var sSearch_input = document.getElementById('search_input');
+	sSearch_input.focus();
 	body.classList.add('displaying_search');
 	sSearch_btn.src = x_url;
 	displaying_search = true;
