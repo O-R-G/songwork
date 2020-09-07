@@ -156,8 +156,8 @@ button:active {
   padding-top: 140px;
   width: 1000px;
   margin: 0 auto;
-  font-size: 16px;
-  line-height: 1.35em;
+  font-size: 14px;
+  line-height: 20px;
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 }
 #text_container{
@@ -192,7 +192,7 @@ button:active {
   flex-direction: row;
 
   font-size: 12px;
-  line-height: 14px;
+  line-height: 16px;
   /* font-style: italic; */
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 
@@ -751,7 +751,7 @@ input[type='checkbox'] + label {
                 submit
  ================================== */
 #text_container{
-  color: #00F;
+  /*color: #00F;*/
 }
 #submit_form{
   display: flex;
@@ -775,12 +775,19 @@ input[type='checkbox'] + label {
   margin-right: 40px;
 }
 #text_container input[type = 'text'], 
+#text_container option,
 #text_container textarea{
   width: 100%;
   padding: 5px;
   height: 40px;
 }
-#text_container input{
+
+#text_container input[type = 'file']{
+  margin-top: 0;
+  color: #00f;
+}
+#text_container input, 
+#text_container select{
   margin-top: 10px;
 }
 #text_container ol{
