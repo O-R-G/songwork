@@ -618,6 +618,12 @@ button:focus{
 .hover .radio_container:hover > input:checked ~ .checkmark {
   background-color: #00f;
 }
+
+input[type='checkbox'],
+input[type='checkbox'] + label {
+  cursor: pointer;
+}
+
 /* ================================
       catalogue > vertical ist
  ================================== */
@@ -765,6 +771,7 @@ button:focus{
   display: flex;
 }
 .item-order{
+
   margin-right: 40px;
 }
 #text_container input[type = 'text'], 
@@ -773,8 +780,8 @@ button:focus{
   padding: 5px;
   height: 40px;
 }
-#text_container div + input{
-  margin-top: 12px;
+#text_container input{
+  margin-top: 10px;
 }
 #text_container ol{
   padding-left: 17px;
