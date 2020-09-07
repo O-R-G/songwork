@@ -774,8 +774,8 @@ input[type='checkbox'] + label {
 
   margin-right: 40px;
 }
-#text_container input[type = 'text'], 
-#text_container option,
+#text_container input[type = 'text'],
+#text_container select,
 #text_container textarea{
   width: 100%;
   padding: 5px;
