@@ -88,7 +88,7 @@ if(isset($recordings_id)){
 		$old_path = getcwd();
 		chdir('/var/www/app/songwork-app/_make/');
 		// $output = shell_exec('./__make.sh');
-		$output = shell_exec('./__make.sh 2>&1');
+		$output = shell_exec('./__make.sh > /var/www/app/songwork-app/_make/debug.log 2>&1');
 		//$output = shell_exec('./__test.sh 2>&1');
 		//$output2 = shell_exec('echo $JAVA_HOME 2>&1');
 		chdir($old_path);
