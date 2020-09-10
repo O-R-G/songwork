@@ -72,7 +72,7 @@ function print_catalogue_children($oo, $children = array()){
       else
         $format = " - ";
       
-      ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
+      (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
   ?>
   <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
     <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>

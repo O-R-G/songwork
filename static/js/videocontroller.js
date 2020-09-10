@@ -61,10 +61,10 @@ function control_play(){
         else
             resume_timer();
     }
-    else if(isCatalogue)
-    {
-        play_all_videos();
-    }
+    // else if(isCatalogue)
+    // {
+    //     play_all_videos();
+    // }
     else if(isDetail)
     {
         play_one_video_detail();
@@ -77,10 +77,10 @@ function control_pause(){
     {
         pause_timer();
     }
-    else if(isCatalogue)
-    {
-        pause_all_videos();
-    }
+    // else if(isCatalogue)
+    // {
+    //     pause_all_videos();
+    // }
     else if(isDetail)
     {
         pause_one_video_detail();
