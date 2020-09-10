@@ -155,7 +155,7 @@ button:active {
 {
   padding-top: 140px;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 17px;
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 }
 #text_container{
@@ -190,7 +190,7 @@ button:active {
   flex-direction: row;
 
   font-size: 12px;
-  line-height: 16px;
+  line-height: 15px;
   /* font-style: italic; */
   font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 
