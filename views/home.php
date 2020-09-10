@@ -70,7 +70,7 @@ function render_media($media, $child_url, $idx) {
 for ($idx = 0 ; $idx < $length; $idx++) {
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
-    ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
+    (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
     $child_url = $child['url'];
     $child_info = explode('-=-', $child['notes']);
     $child_description = $child_info[0];
