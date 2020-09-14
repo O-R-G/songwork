@@ -197,6 +197,7 @@ function process_media_upload($toid)
   {
     if($error == UPLOAD_ERR_OK)
     {
+      var_dump($_FILES["uploads"]);
       $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
       $m_name = $_FILES["uploads"]["name"][$key];
       $m_type = strtolower(end(explode(".", $m_name)));
