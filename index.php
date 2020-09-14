@@ -3,7 +3,6 @@ $request = $_SERVER['REQUEST_URI'];
 $requestclean = strtok($request,"?");
 $uri = explode('/', $requestclean);
 $view = "views/";
-
 /* ------------------------------------------------------
         handle url:
         + /dev > gyroscope (plus hide the clock)
