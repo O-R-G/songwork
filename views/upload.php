@@ -84,11 +84,11 @@ if(isset($recordings_id)){
 		$ww->create_wire($recordings_id, $toid);
 		// media
 		process_media_upload($toid);
-		
+
 		// execute bash code
 		$old_path = getcwd();
 		chdir('/var/www/app/songwork-app/_make/');
-		$output = shell_exec('./__make.sh 2>&1');
+		$output = shell_exec('./__make.sh 1>>debug.log 2>&1');
 		chdir($old_path);
 		echo "<pre>".$output."</pre>";
 	}
