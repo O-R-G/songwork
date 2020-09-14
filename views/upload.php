@@ -86,7 +86,6 @@ if(isset($recordings_id)){
 		process_media_upload($toid);
 	}
 	
-
 }
 ?>
 <script>
