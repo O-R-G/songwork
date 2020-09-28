@@ -60,7 +60,7 @@ function getMeta_detail($child, $media) {
   <?
 // for (; $idx < $length; $idx++) {
     // $child = $children[$idx];
-  $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
+  (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
   $media = $hasMedia ? $mediaItems[0] : null;
   $meta = getMeta_detail($child, $media);
     ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
