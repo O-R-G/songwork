@@ -325,6 +325,7 @@ button:active {
 
 .video {    
     transition-duration: 0.2s;
+
 }
 
 /* collaborators */
@@ -374,6 +375,7 @@ body.detail{
 #detail_container{
   padding-top:0;
   background: #000;
+  display: block;
 }
 #detail_container video{
   width: 100%;
