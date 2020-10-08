@@ -90,8 +90,8 @@ if(isset($recordings_id)){
 ?>
 <script>
 	<? if($toid){ ?>
-//		location.href = '/upload/success';
+		location.href = '/upload/success';
 	<? }else{ ?>
-//		location.href = '/upload/error';
+		location.href = '/upload/error';
 	<? } ?>
 </script>

@@ -33,6 +33,5 @@ else if($uri[1] == 'recordings')
 else
   require_once("views/column.php");
 
-
 require_once("views/foot.php");
 ?>

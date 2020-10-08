@@ -193,7 +193,6 @@ function process_media_upload($toid)
 
   $m_rows = $mm->num_rows();
   $m_old = $m_rows;
-  var_dump($_FILES["uploads"]);
   foreach($_FILES["uploads"]["error"] as $key => $error)
   {
     if($error == UPLOAD_ERR_OK)
@@ -217,7 +216,6 @@ function process_media_upload($toid)
       $m_dest.= $m_file;
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
-        echo 'move_uploaded_file';
         if($resize)
           resize($m_dest, $media_root.$m_file, $resize_scale);
       }
