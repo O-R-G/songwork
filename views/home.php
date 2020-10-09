@@ -51,7 +51,7 @@ function getMeta($child, $media) {
 }
 
 function render_media($media, $child_url, $idx) {
-    $media_number = m_pad($media[0]);
+    $media_number = m_pad($media[0]['id']);
     $url = m_url($media[0]);
     $placeholder = '/media/placeholder/'.$media_number.'jpg';
     ?><a href='/recordings/<? echo $child_url; ?>'>
