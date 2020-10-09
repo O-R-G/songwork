@@ -53,9 +53,9 @@ function getMeta($child, $media) {
 function render_media($media, $child_url, $idx) {
     $media_number = m_pad($media[0]['id']);
     $url = m_url($media[0]);
-    $placeholder = '/media/placeholder/'.$media_number.'.jpg';
+    $placeholder = '/media/placeholder/'.$media_number.'.png';
     ?><a href='/recordings/<? echo $child_url; ?>'>
-        <video id='video<? echo $idx; ?>' class='video fullscreen' width='100%' poster = '<?= $placeholder; ?>' loop playsinline>
+        <video id='video<? echo $idx; ?>' class='video fullscreen' width='100%' poster = '<?= $placeholder; ?>' loop playsinline preload='metadata' >
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
         </video>

@@ -958,6 +958,14 @@ input[type='checkbox'] + label {
   border-bottom: 15px solid #00f;
   /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.75), 0 17px 50px 0 rgba(0,0,0,0.6);*/
 }
+
+.vid_placeholder{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  pointer-events: none;
+}
 @keyframes play-bouncing{
   0%
   {
