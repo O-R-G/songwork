@@ -49,56 +49,57 @@ function print_catalogue_children($oo, $children = array()){
       </div>
     </div><?
   for ($idx = 0; $idx < $length; $idx++) {
-     
       $child = $children[$idx];
-      $cata_num = $child['deck'];
-      $child_info = explode('-=-', $child['notes']);
-      foreach($child_info as &$ci){
-        if(!$ci)
-          $ci = '&mdash;';
-      }
-      unset($ci);
-      $title = $child_info[0];
-      $location = $child_info[1];
-      $recordist = $child_info[2];
-      $date = $child_info[3];
-      $duration = $child_info[4];
-      $apparatus = $child_info[5];
-      $license = $child_info[6];
-      $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
-      $media = $oo->media($child["id"]);
-      if($media)
-        $format = $media[0]['type'];
-      else
-        $format = " - ";
-      
-      (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
-  ?>
-  <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-    <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
-    <? $meta = getMeta_cat($child, $media); ?>
-    <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <div class="catalogue_meta spreadsheet_meta">
-      <div class="cata_num"><? echo $cata_num; ?></div>
-      <div class="title"><? echo $title;  ?></div>
-      <div class="location"><? echo $location;  ?></div>
-      <div class="date"><? echo $date;  ?></div>
-      <div class="recordist"><? echo $recordist;  ?></div>
-      <div class="duration"><? echo $duration;  ?></div>
-      <div class="apparatus"><? echo $apparatus;  ?></div>
-      <div class="format"><? echo $format;  ?></div>
-      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
-      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
-      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      if(substr($child['name1'], 0, 1) != '.'){
+        $cata_num = $child['deck'];
+        $child_info = explode('-=-', $child['notes']);
+        foreach($child_info as &$ci){
+          if(!$ci)
+            $ci = '&mdash;';
+        }
+        unset($ci);
+        $title = $child_info[0];
+        $location = $child_info[1];
+        $recordist = $child_info[2];
+        $date = $child_info[3];
+        $duration = $child_info[4];
+        $apparatus = $child_info[5];
+        $license = $child_info[6];
+        $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
+        $media = $oo->media($child["id"]);
+        if($media)
+          $format = $media[0]['type'];
+        else
+          $format = " - ";
+        
+        (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
+    ?>
+    <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
+      <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+      <? $meta = getMeta_cat($child, $media); ?>
+      <a class="anchor" name="<?= $child['url']; ?>"></a>
+      <div class="catalogue_meta spreadsheet_meta">
+        <div class="cata_num"><? echo $cata_num; ?></div>
+        <div class="title"><? echo $title;  ?></div>
+        <div class="location"><? echo $location;  ?></div>
+        <div class="date"><? echo $date;  ?></div>
+        <div class="recordist"><? echo $recordist;  ?></div>
+        <div class="duration"><? echo $duration;  ?></div>
+        <div class="apparatus"><? echo $apparatus;  ?></div>
+        <div class="format"><? echo $format;  ?></div>
+        <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
+        <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
+        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      </div>
+      <div class="catalogue_meta list_meta">
+        <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
+        <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $child_meta_filename;  ?></div>
+        <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
+        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      </div>
     </div>
-    <div class="catalogue_meta list_meta">
-      <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
-      <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $child_meta_filename;  ?></div>
-      <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
-      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
-    </div>
-  </div>
-  <?
+    <?
+    }
   }
 }
 
@@ -285,53 +286,55 @@ function print_search_children($oo, $children = array()){
   for ($idx = 0; $idx < $length; $idx++) {
      
       $child = $children[$idx];
-      $cata_num = $child['deck'];
-      $child_info = explode('-=-', $child['notes']);
-      foreach($child_info as &$ci){
-        if(!$ci)
-          $ci = '&mdash;';
-      }
-      unset($ci);
-      $title = $child_info[0];
-      $location = $child_info[1];
-      $recordist = $child_info[2];
-      $date = $child_info[3];
-      $duration = $child_info[4];
-      $apparatus = $child_info[5];
-      $license = $child_info[6];
-      $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
-      $media = $oo->media($child["id"]);
-      if($media)
-        $format = $media[0]['type'];
-      else
-        $format = " - ";
-      ctype_space($child['body']) ? $hasMedia = true : $hasMedia = false;
-  ?>
-  <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-    <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
-    <? $meta = getMeta_cat($child, $media); ?>
-    <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <div class="catalogue_meta spreadsheet_meta">
-      <div class="cata_num"><? echo $cata_num; ?></div>
-      <div class="title"><? echo $title;  ?></div>
-      <div class="location"><? echo $location;  ?></div>
-      <div class="date"><? echo $date;  ?></div>
-      <div class="recordist"><? echo $recordist;  ?></div>
-      <div class="duration"><? echo $duration;  ?></div>
-      <div class="apparatus"><? echo $apparatus;  ?></div>
-      <div class="format"><? echo $format;  ?></div>
-      <div class="size"><? echo $meta[2]; ?></div>
-      <div class="modified"><? echo $meta[0]; ?></div>
-      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      if(substr($child['name1'], 0, 1) != '.'){
+        $cata_num = $child['deck'];
+        $child_info = explode('-=-', $child['notes']);
+        foreach($child_info as &$ci){
+          if(!$ci)
+            $ci = '&mdash;';
+        }
+        unset($ci);
+        $title = $child_info[0];
+        $location = $child_info[1];
+        $recordist = $child_info[2];
+        $date = $child_info[3];
+        $duration = $child_info[4];
+        $apparatus = $child_info[5];
+        $license = $child_info[6];
+        $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
+        $media = $oo->media($child["id"]);
+        if($media)
+          $format = $media[0]['type'];
+        else
+          $format = " - ";
+        (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
+    ?>
+    <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
+      <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+      <? $meta = getMeta_cat($child, $media); ?>
+      <a class="anchor" name="<?= $child['url']; ?>"></a>
+      <div class="catalogue_meta spreadsheet_meta">
+        <div class="cata_num"><? echo $cata_num; ?></div>
+        <div class="title"><? echo $title;  ?></div>
+        <div class="location"><? echo $location;  ?></div>
+        <div class="date"><? echo $date;  ?></div>
+        <div class="recordist"><? echo $recordist;  ?></div>
+        <div class="duration"><? echo $duration;  ?></div>
+        <div class="apparatus"><? echo $apparatus;  ?></div>
+        <div class="format"><? echo $format;  ?></div>
+        <div class="size"><? echo $meta[2]; ?></div>
+        <div class="modified"><? echo $meta[0]; ?></div>
+        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      </div>
+      <div class="catalogue_meta list_meta">
+        <div class="modified"><? echo $meta[0]; ?></div>
+        <div class="filename"><? echo $child_meta_filename; ?></div>
+        <div class="size"><? echo $meta[2]; ?></div>
+        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+      </div>
     </div>
-    <div class="catalogue_meta list_meta">
-      <div class="modified"><? echo $meta[0]; ?></div>
-      <div class="filename"><? echo $child_meta_filename; ?></div>
-      <div class="size"><? echo $meta[2]; ?></div>
-      <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
-    </div>
-  </div>
-  <?
+    <?
+    }
   }
 }
 

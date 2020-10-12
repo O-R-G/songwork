@@ -41,10 +41,6 @@ function getRandWidth($idx) {
   return roundUpToAny(rand(10, 35));
 }
 
-
- 
-
-
 /* html */
        
 ?>
@@ -76,7 +72,6 @@ function getRandWidth($idx) {
 $this_cata = $uri[2];
 $children = get_recordings_by_cata($oo, $recordings_id, $this_cata);
 print_catalogue_children($oo, $children);
-
 ?>
 </div>
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>
