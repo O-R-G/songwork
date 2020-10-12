@@ -20,7 +20,7 @@
 
 		$media_id = str_replace('0', '', $filename);
 		$media_sql = 'SELECT media.object FROM media WHERE media.id = "'.$media_id.'" AND media.active = "1"';
-		$res = $db->query($sql);
+		$res = $db->query($media_sql);
 		if(!$res)
 			throw new Exception($db->error);
 		$object_id = $res->fetch_assoc();
