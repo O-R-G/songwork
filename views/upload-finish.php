@@ -25,10 +25,14 @@
 			throw new Exception($db->error);
 		$object_id = $res->fetch_assoc();
 		$res->close();
-
-		$updated_name1 = substr($filename, 1);
+		var_dump($object_id);
+		$old_name1 = $oo->name($object_id);
+		$updated_name1 = substr($filename, $old_name1);
+		echo 'new name = \n';
+		var_dump($updated_name1);
 		$update_name1_sql = 'UPDATE objects SET objects.name1 = "'.$updated_name1.'" WHERE objects.id = "'.$object_id.'"';
 		$updated = $db->query($update_name1_sql);
+		var_dump($updated);
 	}
 	else
 	{
