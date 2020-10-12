@@ -28,7 +28,7 @@
 		$res->close();
 		var_dump($object_id);
 		$old_name1 = $oo->name($object_id);
-		$updated_name1 = substr($filename, $old_name1);
+		$updated_name1 = substr($old_name1, 1);
 		echo 'new name = \n';
 		var_dump($updated_name1);
 		$update_name1_sql = 'UPDATE objects SET objects.name1 = "'.$updated_name1.'" WHERE objects.id = "'.$object_id.'"';
