@@ -3,11 +3,8 @@
 	$all_media_filenames = scandir('media/');
 	$oldname = false;
 	foreach($all_media_filenames as $name){
-		if(substr($name, 0, 2) == '--'){
-			$oldname = $name
-			$path_parts = pathinfo('media/'.$name);
-			$filename = $path_parts['filename'];
-		}
+		if(substr($name, 0, 2) == '--')
+			$oldname = $name;
 	}
 	if($oldname){
 		$newname = substr($oldname, 2);
