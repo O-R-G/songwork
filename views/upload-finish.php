@@ -1,8 +1,20 @@
 <?
 	chdir('/var/www/html/');
-	$filename = '';
-	$uploaded = file_exists('media/'.$filename.'.mp4');
-	if($uploaded){
+	$all_media_filenames = scandir('media/');
+	$oldname = false;
+	foreach($all_media_filenames as $name){
+		if(substr($name, 0, 2) == '--'){
+			$oldname = $name
+			$path_parts = pathinfo('media/'.$name);
+			$filename = $path_parts['filename'];
+		}
+	}
+	if($oldname){
+		$newname = substr($oldname, 2);
+		rename('media/'.$oldname, 'media/'.$newname);
+		$path_parts = pathinfo('media/'.$newname);
+		$filename = $path_parts['filename'];
+
 		// path to config file
 		$config = $_SERVER["DOCUMENT_ROOT"];
 		$config = $config."/open-records-generator/config/config.php";
@@ -22,6 +34,6 @@
 	}
 	else
 	{
-		echo 'file doesnt exist';
+		echo 'file doesnt exist\n';
 	}
 ?>
