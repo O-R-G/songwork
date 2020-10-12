@@ -26,10 +26,8 @@ else if($uri[1] == "search")
 else if($uri[1] == "upload"){
   if(!$uri[2])
     require_once("views/upload.php");
-  else{
+  else
     require_once("views/upload-response.php");
-    require_once("views/process-audio.php");
-  }
 }
 else if($uri[1] == 'recordings')
   require_once("views/detail.php");

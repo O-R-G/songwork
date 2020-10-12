@@ -70,7 +70,7 @@ if(isset($recordings_id)){
 	}
 
 	$f = array();
-	$f['name1'] = addslashes($_POST['title']);
+	$f['name1'] = '.' . addslashes($_POST['title']);
 	$f['deck'] = $serial_num;
 	$f['notes'] = addslashes($_POST['title'].'-=-'.$_POST['location'].'-=-'.$_POST['recordist'].'-=-'.$_POST['date'].'-=-'.$_POST['duration'].'-=-'.$_POST['apparatus'].'-=-'.$_POST['license']);
 	
