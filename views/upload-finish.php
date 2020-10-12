@@ -16,6 +16,7 @@
 		// $config = $_SERVER["DOCUMENT_ROOT"];
 		$config = "/var/www/html/lib/config-cli.php";
 		require_once($config);
+		$db = db_connect('main');
 
 		$media_id = str_replace('0', '', $filename);
 		$media_sql = 'SELECT media.object FROM media WHERE media.id = "'.$media_id.'" AND media.active = "1"';
