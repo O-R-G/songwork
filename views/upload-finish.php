@@ -16,6 +16,7 @@
 		// $config = $_SERVER["DOCUMENT_ROOT"];
 		$config = "/var/www/html/lib/config-cli.php";
 		require_once($config);
+		$oo = new Objects();
 		$db = db_connect('main');
 
 		$media_id = str_replace('0', '', $filename);
@@ -23,7 +24,7 @@
 		$res = $db->query($media_sql);
 		if(!$res)
 			throw new Exception($db->error);
-		$object_id = $res->fetch_assoc();
+		$object_id = $res->fetch_assoc()['object'];
 		$res->close();
 		var_dump($object_id);
 		$old_name1 = $oo->name($object_id);
