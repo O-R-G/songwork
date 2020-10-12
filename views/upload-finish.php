@@ -14,7 +14,7 @@
 
 		// path to config file
 		// $config = $_SERVER["DOCUMENT_ROOT"];
-		$config = "/var/www/html/open-records-generator/config/config.php";
+		$config = "/var/www/html/lib/config-cli.php";
 		require_once($config);
 
 		$media_id = str_replace('0', '', $filename);
