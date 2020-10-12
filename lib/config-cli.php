@@ -70,19 +70,19 @@ function db_connect($remote_user) {
 	} else {
 		// IF YOU ARE NOT USING ENVIRONMENTAL VARIABLES
 		$host = "localhost";
-		$dbse = "songwork_local";
+		$dbse = "songwork";
 		// full access
-		$creds['full']['db_user'] = "root";
-		$creds['full']['db_pass'] = "f3f4p4ax";
+		$creds['full']['db_user'] = "reinfurt";
+		$creds['full']['db_pass'] = "tupelo";
 
 		// read / write access
 		// (can't create / drop tables)
-		$creds['rw']['db_user'] = "root";
-		$creds['rw']['db_pass'] = "f3f4p4ax";
+		$creds['rw']['db_user'] = "reinfurt";
+		$creds['rw']['db_pass'] = "tupelo";
 
 		// read-only access
-		$creds['r']['db_user'] = "root";
-		$creds['r']['db_pass'] = "f3f4p4ax";
+		$creds['r']['db_user'] = "reinfurt";
+		$creds['r']['db_pass'] = "tupelo";
 	}
 
 	// users
