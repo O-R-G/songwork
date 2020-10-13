@@ -194,7 +194,6 @@ function process_media_upload($toid)
 
   $m_rows = $mm->num_rows();
   $m_old = $m_rows;
-  var_dump($_FILES["uploads"]);
   foreach($_FILES["uploads"]["error"] as $key => $error)
   {
     if($error == UPLOAD_ERR_OK)
