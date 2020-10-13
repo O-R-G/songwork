@@ -89,13 +89,13 @@ function print_catalogue_children($oo, $children = array()){
         <div class="format"><? echo $format;  ?></div>
         <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
         <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = 'media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
       <div class="catalogue_meta list_meta">
         <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
         <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $child_meta_filename;  ?></div>
         <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = 'media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
     </div>
     <?
@@ -324,13 +324,13 @@ function print_search_children($oo, $children = array()){
         <div class="format"><? echo $format;  ?></div>
         <div class="size"><? echo $meta[2]; ?></div>
         <div class="modified"><? echo $meta[0]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = 'media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
       <div class="catalogue_meta list_meta">
         <div class="modified"><? echo $meta[0]; ?></div>
         <div class="filename"><? echo $child_meta_filename; ?></div>
         <div class="size"><? echo $meta[2]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '<?= m_url($media[0]); ?>' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = 'media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
     </div>
     <?
