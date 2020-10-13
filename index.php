@@ -22,12 +22,10 @@ else if($uri[1] == "catalogue")
   require_once("views/catalogue.php");
 else if($uri[1] == "search")
   require_once("views/search.php");
-else if($uri[1] == "upload"){
-  if(!$uri[2])
+else if($uri[1] == "upload")
     require_once("views/upload.php");
-  else
-    require_once("views/upload-response.php");
-}
+else if($uri[1] == 'submit' && count($uri) > 2)
+    require_once("views/submit-response.php");
 else if($uri[1] == 'recordings')
   require_once("views/detail.php");
 else
