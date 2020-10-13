@@ -33,6 +33,7 @@
 		var_dump($updated_name1);
 		$update_name1_sql = 'UPDATE objects SET objects.name1 = "'.$updated_name1.'" WHERE objects.id = "'.$object_id.'"';
 		$updated = $db->query($update_name1_sql);
+		
 		var_dump($updated);
 	}
 	else

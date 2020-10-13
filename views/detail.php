@@ -83,7 +83,8 @@ function getMeta_detail($child, $media) {
 		} else {
 			?><img src="<?= m_url($media); ?>"><?
 		}
-    ?><div id = 'detail_download'><a class = 'download' href = '<?= m_url($media); ?>' download>Download</a></div><?
+    var_dump($media['id']);
+    ?><div id = 'detail_download'><a class = 'download' href = 'media/audio/<?= m_pad($media["id"]); ?>.wav' download>Download</a></div><?
 	}
 
 ?>
