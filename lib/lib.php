@@ -179,6 +179,54 @@ function get_recordings_by_cata($oo, $o, $cata){
   return $recordings;
 }
 
+function process_media_upload($toid)
+{
+  global $mm;
+  global $rr;
+  global $resize;
+  global $resize_root;
+  global $resize_scale;
+  global $media_root;
+
+  $m_rows = $mm->num_rows();
+  $m_old = $m_rows;
+  foreach($_FILES["uploads"]["error"] as $key => $error)
+  {
+    if($error == UPLOAD_ERR_OK)
+    {
+      $tmp_name = $_FILES["uploads"]["tmp_name"][$key];
+      $m_name = $_FILES["uploads"]["name"][$key];
+      $m_type = strtolower(end(explode(".", $m_name)));
+
+      // add to db's image list
+      $m_arr["type"] = "'".$m_type."'";
+      $m_arr["object"] = "'".$toid."'";
+      if(isset($rr->medias))
+        $m_arr["caption"] = "'".$rr->captions[$key+count($rr->medias)]."'";
+      else
+        $m_arr["caption"] = "null";
+      $insert_id = $mm->insert($m_arr);
+      $m_rows++;
+
+      $m_file = m_pad($insert_id).".".$m_type;
+      $m_dest = '/var/www/app/songwork-app/_make/';
+      $m_dest.= $m_file;
+
+      if(move_uploaded_file($tmp_name, $m_dest)) {
+        echo 'move_uploaded_file';
+        if($resize)
+          resize($m_dest, $media_root.$m_file, $resize_scale);
+      }
+      else {
+        $m_rows--;
+        $mm->deactivate($insert_id);
+      }
+      $mm->update($insert_id, array('type'=>"'mp4'"));
+    }
+  }
+  return $m_old < $m_rows;
+}
+
 function build_children_search($oo, $ww, $query) {
   $children_combined = array();
   $recordings_id = end($oo->urls_to_ids(array('recordings')));
