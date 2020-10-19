@@ -31,6 +31,7 @@ $isHome = false;
 $isCatalogue = false;
 $isDetail = false;
 $isSubmit = false;
+
 if (!$uri[1])
 {
     $isHome = true;
@@ -54,7 +55,10 @@ else if ($uri[1] =='recordings')
 else{
 	$thisPage = 'text';
 }
-    
+
+$isHover = false;
+if($isHome || $isDetail )
+    $isHover = true;
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,9 +86,10 @@ else{
 	</head>
 <body class = '<? echo $thisPage; ?>'>
 <script type = "text/javascript">
+	var isHover = <?= json_encode($isHover); ?>;
 	var isMobile = true;
 	var body = document.body;
-	if(window.innerWidth > 500){
+	if(window.innerWidth > 500 && isHover){
 		var isMobile = false;
 		body.classList.add('hover');
 	}
