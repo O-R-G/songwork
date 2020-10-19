@@ -428,6 +428,10 @@ clicking on play/pasue will trigger it as well. */
   width: 55px;
   font-size:16px;
   height: 100%;
+  cursor: default;
+}
+.hover #logo_ctner button{
+  cursor: pointer;
 }
 #logo_play.hovered{
   animation: play-hover .475s infinite alternate;
@@ -443,16 +447,22 @@ clicking on play/pasue will trigger it as well. */
 .pause_svg {
   fill: #fff;
 }
-.hover #logo_ctner button:hover{
+/*.hover #logo_ctner button:hover{
   box-shadow: none;
   cursor: default;
-}
+}*/
 .hover #logo_ctner button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
     z-index: 1001;
     cursor: pointer;
 }
+
 #logo_ctner button:active {
+    /*background-color: #666;*/
+    box-shadow: none;
+    transform: none;
+}
+.hover #logo_ctner button:active {
     background-color: #00b;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.4);
     transform: translateY(2px);

@@ -46,6 +46,8 @@ Array.prototype.forEach.call(videos, function(el, i){
     // }
 });
 
+
+
 // index[0] = 0; index[rest] = randomized
 index.shift();
 index = index.sort(function(a, b){return 0.5 - Math.random()});
@@ -204,7 +206,6 @@ if(isDetail)
         progress.setAttribute('data-state', 'fake');
 
     video.addEventListener('timeupdate', function() {
-        console.log(progress.getAttribute('max'));
         if (progress.getAttribute('max') == null){
             progress.setAttribute('max', video.duration);
         }
@@ -230,3 +231,22 @@ else if(isHome)
 
 }
 
+function keyDownHandler( evt , isPlaying, thisPage ) {
+    console.log(thisPage);
+    if ( evt.keyCode === 32 ) {
+        evt.preventDefault();
+        if(isPlaying)
+            control_pause();
+        else
+            control_play();
+
+    } else if ( evt.keyCode === 27 ) {
+        control_pause();
+    }
+}
+if(isHome || isDetail){
+    document.addEventListener( 'keydown', function(e){
+        var isPlaying = document.body.classList.contains('playing_record');
+        keyDownHandler(e, isPlaying, thisPage);
+    });
+}
