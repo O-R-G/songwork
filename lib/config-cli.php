@@ -6,8 +6,8 @@ $db_name = getenv("DATABASE_NAME");
 $db_name = $db_name ? $db_name : "open-records-generator";
 
 // $host = "http://o-r-g.com/";
-$host = "/var/www/html/";
-$root = "/var/www/html/";
+$host = "/Library/WebServer/Documents/songwork.local/";
+$root = "/Library/WebServer/Documents/songwork.local/";
 
 $admin_path = $host . "open-records-generator/";
 $admin_root = $root . "open-records-generator/";
@@ -71,17 +71,17 @@ function db_connect($remote_user) {
 		$host = "localhost";
 		$dbse = "songwork";
 		// full access
-		$creds['full']['db_user'] = "reinfurt";
-		$creds['full']['db_pass'] = "tupelo";
+		$creds['full']['db_user'] = "root";
+		$creds['full']['db_pass'] = "f3f4p4ax";
 
 		// read / write access
 		// (can't create / drop tables)
-		$creds['rw']['db_user'] = "reinfurt";
-		$creds['rw']['db_pass'] = "tupelo";
+		$creds['rw']['db_user'] = "root";
+		$creds['rw']['db_pass'] = "f3f4p4ax";
 
 		// read-only access
-		$creds['r']['db_user'] = "reinfurt";
-		$creds['r']['db_pass'] = "tupelo";
+		$creds['r']['db_user'] = "root";
+		$creds['r']['db_pass'] = "f3f4p4ax";
 	}
 
 	// users
