@@ -42,7 +42,7 @@ function print_catalogue_children($oo, $children = array()){
         <div class="recordist">Contributer</div>
         <div class="duration">Duration</div>
         <div class="apparatus">Equipment</div>
-        <div class="format">Format</div>
+        <div class="license">License</div>
         <div class="size">Size</div>
         <div class="modified">Date uploaded</div>
         <div></div>
@@ -67,10 +67,6 @@ function print_catalogue_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
-        if($media)
-          $format = $media[0]['type'];
-        else
-          $format = " - ";
         
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
@@ -86,7 +82,7 @@ function print_catalogue_children($oo, $children = array()){
         <div class="recordist"><? echo $recordist;  ?></div>
         <div class="duration"><? echo $duration;  ?></div>
         <div class="apparatus"><? echo $apparatus;  ?></div>
-        <div class="format"><? echo $format;  ?></div>
+        <div class="license"><? echo $license;  ?></div>
         <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
         <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
         <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
@@ -183,7 +179,7 @@ function get_recordings_by_cata($oo, $o, $cata){
   return $recordings;
 }
 
-function process_media_upload($toid)
+function process_media_upload_local($toid)
 {
   global $mm;
   global $rr;
@@ -213,7 +209,7 @@ function process_media_upload($toid)
       $m_rows++;
 
       $m_file = m_pad($insert_id).".".$m_type;
-      $m_dest = '/var/www/app/songwork-app/_make/';
+      $m_dest = '/Users/ouerohiroshi/sketchbook/songworks-local/_make/';
       $m_dest.= $m_file;
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
@@ -278,7 +274,7 @@ function print_search_children($oo, $children = array()){
         <div class="recordist">Contributer</div>
         <div class="duration">Duration</div>
         <div class="apparatus">Equipment</div>
-        <div class="format">Format</div>
+        <div class="license">License</div>
         <div class="size">Size</div>
         <div class="modified">Date uploaded</div>
         <div></div>
@@ -304,10 +300,7 @@ function print_search_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
-        if($media)
-          $format = $media[0]['type'];
-        else
-          $format = " - ";
+        
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
     <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
@@ -322,7 +315,7 @@ function print_search_children($oo, $children = array()){
         <div class="recordist"><? echo $recordist;  ?></div>
         <div class="duration"><? echo $duration;  ?></div>
         <div class="apparatus"><? echo $apparatus;  ?></div>
-        <div class="format"><? echo $format;  ?></div>
+        <div class="license">License</div>
         <div class="size"><? echo $meta[2]; ?></div>
         <div class="modified"><? echo $meta[0]; ?></div>
         <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>

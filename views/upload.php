@@ -83,7 +83,7 @@ if(isset($recordings_id)){
 		// wires
 		$ww->create_wire($recordings_id, $toid);
 		// media
-		process_media_upload($toid);
+		process_media_upload_local($toid);
 	}
 	
 }

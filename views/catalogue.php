@@ -12,12 +12,17 @@ foreach ($catalogue_children as $catalogue_child) {
   if($catalogue_child['url'] == $uri[2]){
     $this_range = $catalogue_child['deck'];
     $this_catalogue = $catalogue_child['name1'];
-    if(strpos('/', $this_catalogue) !== false){
-
+    if(strpos($this_range, '/') !== false){
+      $this_from = explode('/', $this_range)[0];
+      $this_to = explode('/', $this_range)[1];
+      $order = $this_range;
+      $order_reverse = $this_to . '/' . $this_from;
     }
     else{
       $this_from = explode('&mdash;', htmlentities($this_range))[0];
       $this_to = explode('&mdash;', htmlentities($this_range))[1];
+      $order = $this_range;
+      $order_reverse = $this_to . '&mdash;' . $this_from;
     }
     
     
@@ -54,7 +59,7 @@ function getRandWidth($idx) {
     </label>
   </div>
   <div id = 'filter'>
-    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?> <span id = 'order'>(<? echo $this_from.'—'.$this_to ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<? echo $this_to.'—'.$this_from ?>)</span><div id = 'order_toggle'>↑</div><br>
+    <div>ORGANIZE BY</div><div id = 'current_catalogue'><? echo $this_catalogue; ?> <span id = 'order'>(<?= $order; ?>)</span><span id = 'order_reverse' class = 'order_reverse'>(<?= $order_reverse; ?>)</span><div id = 'order_toggle'>↑</div><br>
     <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
           $cata_name = $catalogue_child['name1'].' ('.$catalogue_child['deck'].')';
