@@ -4,7 +4,7 @@ $column_right = $item['body'];
 ?>
 
 <div id = '<? echo $thisPage; ?>_container' class = 'container '>
-<? if($uri[1] == 'submit'){ ?>
+<? if($uri[1] == 'submit' && count($uri) == 2){ ?>
 	<form id = 'submit_form' enctype="multipart/form-data" method = 'POST' action = '/upload'>
 	<div class = 'column_container left'>
 		<? echo $column_left; ?>
