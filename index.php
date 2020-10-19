@@ -26,7 +26,7 @@ else if($uri[1] == "search")
 else if($uri[1] == "upload")
     require_once("views/upload.php");
 else if($uri[1] == 'submit' && count($uri) > 2)
-    require_once("views/submit-response-local.php");
+    require_once("views/submit-response.php");
 else if($uri[1] == 'recordings')
   require_once("views/detail.php");
 else
