@@ -61,7 +61,7 @@ if($isHome || $isDetail )
     $isHover = true;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang='en-GB'>
 	<head>
 		<title><? echo $title; ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
