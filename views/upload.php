@@ -1,22 +1,23 @@
 <?
 $toid = false;
-$recordings_id = end($oo->urls_to_ids(array('recordings')));
-$serial_num = count($oo->children_ids($recordings_id)) + 1;
-if($serial_num>999)
-	$serial_num = 'SW'.$serial_num;
-elseif($serial_num>99)
-	$serial_num = 'SW0'.$serial_num;
-elseif($serial_num>9)
-	$serial_num = 'SW00'.$serial_num;
+$send_to = $_POST['send_to'];
+$send_to_id = end($oo->urls_to_ids(array($send_to)));
+
+if($send_to == 'recordings'){
+	
+}
 else
-	$serial_num = 'SW000'.$serial_num;
-if(isset($recordings_id)){
+{
+	$serial_num = '';
+}
+
+if(isset($send_to_id)){
 	$vars = array("name1", "deck", "body", "notes",  "url", "begin");
 
 	function insert_object(&$new, $siblings)
 	{
 		global $oo;
-
+		global $send_to;
 		// set default name if no name given
 		if(!$new['name1'])
 			$new['name1'] = 'untitled';
@@ -70,28 +71,52 @@ if(isset($recordings_id)){
 	}
 
 	$f = array();
-	$f['name1'] = '.' . addslashes($_POST['title']);
-	$f['deck'] = $serial_num;
-	$f['notes'] = addslashes($_POST['title'].'-=-'.$_POST['location'].'-=-'.$_POST['recordist'].'-=-'.$_POST['date'].'-=-'.$_POST['duration'].'-=-'.$_POST['apparatus'].'-=-'.$_POST['license']);
+	if($send_to == 'recordings'){
+		$serial_num = count($oo->children_ids($send_to_id)) + 1;
+		if($serial_num>999)
+			$serial_num = 'SW'.$serial_num;
+		elseif($serial_num>99)
+			$serial_num = 'SW0'.$serial_num;
+		elseif($serial_num>9)
+			$serial_num = 'SW00'.$serial_num;
+		else
+			$serial_num = 'SW000'.$serial_num;
+
+		$f['name1'] = '.' . addslashes($_POST['description']);
+		$f['deck'] = $serial_num;
+		$recording_contributer = $_POST['forename'].' '.$_POST['surname'];
+		$recording_date = $_POST['day'].'-'.$_POST['month'].'-'.$_POST['year'];
+		$recording_duration = $_POST['min'].':'.$_POST['sec'];
+		$f['notes'] = addslashes($_POST['description'].'-=-'.$_POST['location'].'-=-'.$recording_contributer.'-=-'.$recording_date.'-=-'.$recording_duration.'-=-'.$_POST['equipment'].'-=-'.$_POST['license']);
+	}
+	elseif($send_to == 'consent')
+	{
+		$f['name1'] = addslashes($_POST['name']);
+		$consent_took_place = $_POST['tp_day'].'-'.$_POST['tp_month'].'-'.$_POST['tp_year'];
+		$consent_date2 = $_POST['d2_day'].'-'.$_POST['d2_month'].'-'.$_POST['d2_year'];
+		$f['notes'] = addslashes($_POST['limitation'].'-=-'.$_POST['name'].'-=-'.$consent_took_place.'-=-'.$_POST['signature'].'-=-'.$_POST['address'].'-=-'.$consent_date2);
+	}
+	
 	
 	$f['begin'] = addslashes(date('Y-m-d H:i:s', time()));
 
-	$siblings = $oo->children_ids($recordings_id);
+	$siblings = $oo->children_ids($send_to_id);
 	$toid = insert_object($f, $siblings);
 	if($toid)
 	{
 		// wires
-		$ww->create_wire($recordings_id, $toid);
+		$ww->create_wire($send_to_id, $toid);
 		// media
-		process_media_upload($toid);
+		if($send_to == 'recordings')
+			process_media_upload($toid);
 	}
 	
 }
 ?>
 <script>
 	<? if($toid){ ?>
-		location.href = '/submit/success';
+		location.href = '/<?= $send_to; ?>/success';
 	<? }else{ ?>
-		location.href = '/submit/error';
+		location.href = '/<?= $send_to; ?>/error';
 	<? } ?>
 </script>

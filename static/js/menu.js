@@ -3,7 +3,7 @@ var displaying_menu = false;
 var displaying_search = false;
 var sMenu_btn_svg = document.getElementById('menu_btn').children[0];
 var sSearch_btn = document.getElementById('search_btn');
-console.log(sSearch_btn);
+
 if(isDetail)
 {
 	var hamburger_url = '/media/svg/hamburger-6-w.svg';

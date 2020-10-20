@@ -790,18 +790,92 @@ input[type='checkbox'] + label {
 #text_container select,
 #text_container textarea{
   width: 100%;
-  padding: 5px;
+  padding: 8px 5px;
   height: 40px;
+  border: 1px solid rgb(118, 118, 118);
+  outline: none;
+  font-family: Arial, sans-serif;
+  margin-top: 10px;
+  font-size: 14px;
+}
+#text_container input[type = 'text']:focus,
+#text_container select:focus,
+#text_container textarea:focus,
+#text_container .date-input_container input[type="text"]:focus,
+#text_container #duration-input_container input[type="text"]:focus
+
+{
+  border: 2px solid #00f;
+}
+#text_container .date-input_container:focus{
+  border: 2px solid #00f;
+}
+
+#text_container .date-input_container,
+#text_container #duration-input_container
+{
+  display: flex;
+  background-color: #fff;
+  border: 1px solid rgb(118, 118, 118);
+  margin-top: 10px;
+}
+
+#text_container .date-input_container input[type="text"],
+#text_container #duration-input_container input[type="text"]{
+  margin-top: 0;
+  border: none;
+}
+#text_container input[name = 'day'],
+#text_container input[name = 'month'],
+#text_container input[name = 'min'],
+#text_container input[name = 'tp_day'],
+#text_container input[name = 'tp_month'],
+#text_container input[name = 'd2_day'],
+#text_container input[name = 'd2_month']
+{
+  width: 35px;
+}
+#text_container .date-input_container .date-input_span:first-child::after,
+#text_container .date-input_container .date-input_span:nth-child(2)::after
+{
+  content: "-";
+  display: inline;
+  margin-right: 10px;
+  font-size: 16px;
+}
+#text_container #duration-input_container .duration-input_span:first-child:after{
+  content: ":";
+  display: inline;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+#text_container .date-input_container .date-input_span:last-child,
+#duration-input_container .duration-input_span:last-child{
+  flex: 1;
+}
+
+input[name='forename'],
+input[name='surname']
+{
+  display: inline-block;
+  width: calc(100% - 10px);
+}
+input[name='forename']{
+  margin-right: 8px;
+}
+
+#text_container textarea {
+  height: initial;
+  padding-bottom: 24px;
+  resize: none;
 }
 
 #text_container input[type = 'file']{
   margin-top: 0;
   color: #00f;
 }
-#text_container input, 
-#text_container select{
-  margin-top: 10px;
-}
+
 #text_container ol{
   padding-left: 17px;
 }
@@ -817,6 +891,14 @@ input[type='checkbox'] + label {
   outline: none;
   cursor: pointer;
   background-color: #00f;
+}
+input.error, textarea.error
+{
+  border: 2px solid #f00 !important;
+}
+input[type='checkbox'].error
+{
+  outline: 2px solid #f00;
 }
 #upload_container{
   border: 1px solid #00F;
@@ -849,13 +931,10 @@ input[type='checkbox'] + label {
   display: none;
 }
 
-.detail #logo_play{
-  /*animation: play-hover .35s 6 alternate;*/
-  /* 6 = 3*2 */
-}
-.detail #logo_play svg{
-  /*animation: play-svg-scaling .35s 10 alternate*/
-}
+
+
+
+
 #detail_download{
   position: fixed;
   bottom: 40px;

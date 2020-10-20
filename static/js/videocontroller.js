@@ -232,7 +232,6 @@ else if(isHome)
 }
 
 function keyDownHandler( evt , isPlaying, thisPage ) {
-    console.log(thisPage);
     if ( evt.keyCode === 32 ) {
         evt.preventDefault();
         if(isPlaying)
