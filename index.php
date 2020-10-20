@@ -24,9 +24,9 @@ else if($uri[1] == "catalogue")
 else if($uri[1] == "search")
   require_once("views/search.php");
 else if($uri[1] == "upload")
-    require_once("views/upload.php");
+  require_once("views/upload.php");
 else if($uri[1] == 'submit' && count($uri) > 2)
-    require_once("views/submit-response.php");
+  require_once("views/submit-response.php");
 else if($uri[1] == 'recordings')
   require_once("views/detail.php");
 else

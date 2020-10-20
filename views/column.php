@@ -53,6 +53,7 @@ $column_right = $item['body'];
 			e.preventDefault();
 			var err_arr = [];
 			var date = [];
+			var time = [];
 			[].forEach.call(fields, function(el, i){
 				if(el.type == 'checkbox'){
 					if(!el.checked)
@@ -67,6 +68,7 @@ $column_right = $item['body'];
 				}
 				else{
 					if( !el.value && el.getAttribute('name') != 'min' && el.getAttribute('name') !== 'sec'){
+						// min and sec could be zero
 						err_arr.push(el.getAttribute('name').toUpperCase());
 						el.classList.add('error');
 					}
@@ -76,8 +78,13 @@ $column_right = $item['body'];
 						if(word_count > 150){
 							isValid = false;
 							err_arr.push('DESCRIPTION (word count)');
+							el.classList.add('error');
 						}
-						el.classList.add('error');
+						else
+						{
+							el.classList.remove('error');
+						}
+						
 					}
 					else if(el.getAttribute('name') == 'day')
 					{
@@ -88,9 +95,11 @@ $column_right = $item['body'];
 							err_arr.push('DATE');
 							el.classList.add('error');
 						}
-						else if(enteredDay < 10)
+						else 
 						{
-							el.value = '0' + enteredDay;
+							el.classList.remove('error');
+							if(enteredDay < 10)
+								el.value = '0' + enteredDay;
 						}
 					}
 					else if(el.getAttribute('name') == 'month')
@@ -106,9 +115,11 @@ $column_right = $item['body'];
 							err_arr.push('DATE');
 							el.classList.add('error');
 						}
-						else if(enteredMonth < 10)
+						else
 						{
-							el.value = '0' + enteredMonth;
+							el.classList.remove('error');
+							if(enteredMonth < 10)
+								el.value = '0' + enteredMonth;
 						}
 					}
 					else if(el.getAttribute('name') == 'year')
@@ -120,28 +131,39 @@ $column_right = $item['body'];
 							err_arr.push('DATE');
 							el.classList.add('error');
 						}
+						else
+						{
+							el.classList.remove('error');
+						}
 					}
 					else if(el.getAttribute('name') == 'min')
 					{
 						var enteredMin = Number(el.value);
+						time.push(enteredMin);
 						if(enteredMin > 59){
+							// if min > 59
 							err_arr.push('DURATION');
 							el.classList.add('error');
 						}
-						else if(enteredMin < 10)
+						else 
 						{
-							el.value = '0' + enteredMin;
+							el.classList.remove('error');
+							if(enteredMin < 10)
+								el.value = '0' + enteredMin;
 						}
 					}
 					else if(el.getAttribute('name') == 'sec'){
 						var enteredSec = Number(el.value);
-						if(enteredSec > 59){
+						if(enteredSec > 59 || (time[0] == 0 && enteredSec == 0)){
+							// if sec > 59 or 00:00
 							err_arr.push('DURATION');
 							el.classList.add('error');
 						}
-						else if(enteredSec < 10)
+						else
 						{
-							el.value = '0' + enteredSec;
+							el.classList.remove('error');
+							if(enteredSec < 10)
+								el.value = '0' + enteredSec;
 						}
 					}
 					else{
@@ -159,7 +181,7 @@ $column_right = $item['body'];
 					var err_msg = 'Please limit your DESCRIPTION to 150 words then submit again.';
 				}
 				else{
-					var err_msg = 'Please check the follow fields marked red then submit again.';
+					var err_msg = 'Please check the fields marked red then submit again.';
 				
 				}
 				alert(err_msg);
