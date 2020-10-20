@@ -5,14 +5,19 @@ $column_right = $item['body'];
 ?>
 
 <div id = '<? echo $thisPage; ?>_container' class = 'container '>
-<? if( ($uri[1] == 'submit' || $uri[1] == 'consent') && count($uri) == 2){ ?>
+<? if( ($uri[1] == 'submit' || $uri[1] == 'consent') && count($uri) == 2){ 
+	if( $uri[1] == 'submit' )
+		$send_to = 'recordings';
+	elseif( $uri[1] == 'consent' )
+		$send_to = 'consent';
+	?>
 	<form id = 'submit_form' enctype="multipart/form-data" method = 'POST' action = '/upload'>
 	<div class = 'column_container left'>
 		<? echo $column_left; ?>
 	</div><div class = 'column_container right'>
 		<? echo $column_right; ?>
 	</div>
-	<input type = 'hidden' name = 'send_to' value = '<?= $uri[1]; ?>'>
+	<input type = 'hidden' name = 'send_to' value = '<?= $send_to; ?>'>
 	</form>
 	<script>
 		var submit_to = '<?= $uri[1]; ?>';
