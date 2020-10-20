@@ -89,9 +89,10 @@ if($isHome || $isDetail )
 	var isHover = <?= json_encode($isHover); ?>;
 	var isMobile = true;
 	var body = document.body;
-	if(window.innerWidth > 500 && isHover){
+	if(window.innerWidth > 500){
 		var isMobile = false;
-		body.classList.add('hover');
+		if(isHover)
+			body.classList.add('hover');
 	}
 </script>
 
