@@ -2,6 +2,7 @@
 $toid = false;
 $send_to = $_POST['send_to'];
 $send_to_id = end($oo->urls_to_ids(array($send_to)));
+var_dump($send_to_id);
 
 if($send_to == 'recordings'){
 	
