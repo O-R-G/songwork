@@ -4,11 +4,13 @@ $send_to = $_POST['send_to'];
 $send_to_id = end($oo->urls_to_ids(array($send_to)));
 
 if($send_to == 'recordings'){
-	
+	$redirect_url = 'submit';
 }
 else
 {
 	$serial_num = '';
+	if($send_to == 'consent')
+		$redirect_url = 'consent';
 }
 
 if(isset($send_to_id)){
@@ -115,8 +117,8 @@ if(isset($send_to_id)){
 ?>
 <script>
 	<? if($toid){ ?>
-		location.href = '/<?= $send_to; ?>/success';
+		location.href = '/<?= $redirect_url; ?>/success';
 	<? }else{ ?>
-		location.href = '/<?= $send_to; ?>/error';
+		location.href = '/<?= $redirect_url; ?>/error';
 	<? } ?>
 </script>
