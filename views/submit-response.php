@@ -4,7 +4,6 @@
 	if($uri[2] == 'success'){
 		$audio_filename = $_POST['audio_filename'];
 		$audio_filename = str_replace(" ", "_", $_POST['audio_filename']);
-		var_dump($audio_filename);
 		$old_path = getcwd();
 		chdir('/var/www/app/songwork-app/_make/');
 		$output = shell_exec("./__make.sh ".$audio_filename." 1>>debug.log 2>&1 &");
