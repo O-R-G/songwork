@@ -67,7 +67,7 @@ function print_catalogue_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
-        $audio_filename = str_replace(' ', '_', $title);
+        $audio_filename = preg_replace('/[^A-Za-z0-9 _ .-]/', '_', $title);
 
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
@@ -301,7 +301,7 @@ function print_search_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
-        $audio_filename = str_replace(' ', '_', $title);
+        $audio_filename = preg_replace('/[^A-Za-z0-9 _ .-]/', '_', $title);
 
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
