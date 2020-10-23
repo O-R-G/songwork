@@ -65,8 +65,6 @@ require_once('views/nav.php');
   
 <?
 	if ($hasMedia) {
-    $audioname = 
-
     if($media['type'] == 'mp4'){
       ?><video playsinline>
           <source src="<?= m_url($media); ?>" type="video/mp4" >
