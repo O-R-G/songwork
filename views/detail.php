@@ -81,7 +81,7 @@ require_once('views/nav.php');
 		} else {
 			?><img src="<?= m_url($media); ?>"><?
 		}
-    ?><div id = 'detail_download'><a class = 'download' href = '/media/audio/<?= $out[3]; ?>.wav' download>Download</a></div><?
+    ?><div id = 'detail_download'><a class = 'download' href = '/media/audio/<?= $meta[3]; ?>.wav' download>Download</a></div><?
 	}
 
 ?>
