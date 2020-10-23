@@ -3,7 +3,7 @@
 	$column_left = $item['deck'];
 	if($uri[2] == 'success'){
 		// $audio_filename = $_POST['audio_filename'];
-		$audio_filename = preg_replace('/[^A-Za-z0-9 _ .-]/', '_', $_POST['audio_filename']);
+		$audio_filename = slug($_POST['audio_filename']);
 		// $audio_filename = str_replace(" ", "_", $_POST['audio_filename']);
 		$old_path = getcwd();
 		chdir('/var/www/app/songwork-app/_make/');

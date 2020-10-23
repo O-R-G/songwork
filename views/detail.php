@@ -44,7 +44,7 @@ function getMeta_detail($child, $media) {
     $out []= round(filesize(m_root($media))/1000, 2) . ' KB';
     // audio filename
     // $out [] = str_replace(' ', '_', $child_description);
-    $out [] = preg_replace('/[^A-Za-z0-9 _ .-]/', '_', $child_description);
+    $out [] = slug($child_description);
   } else {
     $out []= strlen($child["body"]) . ' characters';
   }
