@@ -6,13 +6,15 @@ var sSearch_btn = document.getElementById('search_btn');
 
 if(isDetail)
 {
-	var hamburger_url = '/media/svg/hamburger-6-w.svg';
+	// var hamburger_url = '/media/svg/hamburger-6-w.svg';
+	var hamburger_url = '/media/svg/play-w.svg';
 	var search_url = '/media/svg/magnifying-glass-6-k.svg';
 	var x_url = '/media/svg/x-6-w.svg';
 }
 else
 {
-	var hamburger_url = '/media/svg/hamburger-6-k.svg';
+	// var hamburger_url = '/media/svg/hamburger-6-k.svg';
+	var hamburger_url = '/media/svg/play-k.svg';
 	var search_url = '/media/svg/magnifying-glass-6-k.svg';
 	var x_url = '/media/svg/x-6-k.svg';
 }
