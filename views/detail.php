@@ -42,6 +42,8 @@ function getMeta_detail($child, $media) {
     $child_license = $child_info[6];
     $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
     $out []= round(filesize(m_root($media))/1000, 2) . ' KB';
+    // audio filename
+    $out [] = str_replace(' ', '-', $child_description);
   } else {
     $out []= strlen($child["body"]) . ' characters';
   }
@@ -49,17 +51,13 @@ function getMeta_detail($child, $media) {
   return $out;
 }
 
-?>
 
-<!-- <a href="javascript:goBackOrHome()" class="no-blank"><div id="lozenge"><?= $title ?></div></a> -->
-<!-- <a href="/" class="no-blank"><div id="lozenge"><?= $title ?></div></a> -->
-<? require_once('views/nav.php') ?>
-<!-- <div class="lang-toggle"><a href="/" class="<?= $uri[1] == "es" ? "" : "active" ?>">en</a> / <a href="/es" class="<?= $uri[1] == "es" ? "active" : "" ?>">es</a></div> -->
+require_once('views/nav.php');
+
+?>
 
 <div id = 'detail_container' class="container">
   <?
-// for (; $idx < $length; $idx++) {
-    // $child = $children[$idx];
   (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
   $media = $hasMedia ? $mediaItems[0] : null;
   $meta = getMeta_detail($child, $media);
@@ -67,6 +65,8 @@ function getMeta_detail($child, $media) {
   
 <?
 	if ($hasMedia) {
+    $audioname = 
+
     if($media['type'] == 'mp4'){
       ?><video playsinline>
           <source src="<?= m_url($media); ?>" type="video/mp4" >
@@ -83,7 +83,7 @@ function getMeta_detail($child, $media) {
 		} else {
 			?><img src="<?= m_url($media); ?>"><?
 		}
-    ?><div id = 'detail_download'><a class = 'download' href = '/media/audio/<?= m_pad($media["id"]); ?>.wav' download>Download</a></div><?
+    ?><div id = 'detail_download'><a class = 'download' href = '/media/audio/<?= $out[3]; ?>.wav' download>Download</a></div><?
 	}
 
 ?>

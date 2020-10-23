@@ -67,7 +67,8 @@ function print_catalogue_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
-        
+        $audio_filename = str_replace(' ', '-', $title);
+
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
     <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
@@ -85,13 +86,13 @@ function print_catalogue_children($oo, $children = array()){
         <div class="license"><? echo $license;  ?></div>
         <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
         <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
       <div class="catalogue_meta list_meta">
         <div class="modified <? echo ( $cata == 'date') ? 'active' : ''  ?>"><? echo $meta[0]; ?></div>
         <div class="filename <? echo ( $cata == 'title') ? 'active' : ''  ?>"><? echo $child_meta_filename;  ?></div>
         <div class="size <? echo ( $cata == 'size') ? 'active' : ''  ?>"><? echo $meta[2]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
     </div>
     <?
@@ -300,6 +301,7 @@ function print_search_children($oo, $children = array()){
         $license = $child_info[6];
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
+        $audio_filename = str_replace(' ', '-', $title);
         
         (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
@@ -318,13 +320,13 @@ function print_search_children($oo, $children = array()){
         <div class="license">License</div>
         <div class="size"><? echo $meta[2]; ?></div>
         <div class="modified"><? echo $meta[0]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
       <div class="catalogue_meta list_meta">
         <div class="modified"><? echo $meta[0]; ?></div>
         <div class="filename"><? echo $child_meta_filename; ?></div>
         <div class="size"><? echo $meta[2]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= m_pad($media[0]["id"]); ?>.wav' download class='download'>Download</a><? } ?></div>
+        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
       </div>
     </div>
     <?
