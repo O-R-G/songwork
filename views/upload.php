@@ -86,10 +86,10 @@ if(isset($send_to_id)){
 
 		$f['name1'] = '.' . addslashes($_POST['description']);
 		$f['deck'] = $serial_num;
-		$recording_contributer = $_POST['forename'].' '.$_POST['surname'];
+		$recording_contributor = $_POST['forename'].' '.$_POST['surname'];
 		$recording_date = $_POST['day'].'-'.$_POST['month'].'-'.$_POST['year'];
 		$recording_duration = $_POST['min'].':'.$_POST['sec'];
-		$f['notes'] = addslashes($_POST['description'].'-=-'.$_POST['location'].'-=-'.$recording_contributer.'-=-'.$recording_date.'-=-'.$recording_duration.'-=-'.$_POST['equipment'].'-=-'.$_POST['license']);
+		$f['notes'] = addslashes($_POST['description'].'-=-'.$_POST['location'].'-=-'.$recording_contributor.'-=-'.$recording_date.'-=-'.$recording_duration.'-=-'.$_POST['equipment'].'-=-'.$_POST['license']);
 	}
 	elseif($send_to == 'consent')
 	{
@@ -114,11 +114,23 @@ if(isset($send_to_id)){
 	}
 	
 }
-?>
+
+if($toid){ ?>
+	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/success' method = 'POST' enctype="multipart/form-data">
+		<input type = 'hidden' value = '<?= $_POST["description"]; ?>' name = 'audio_filename'>
+	</form>
+<? }else{ ?>
+	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/errors' method = 'POST' enctype="multipart/form-data">
+	</form>
+<? } ?>
+
 <script>
+	var audio_filename_form = document.getElementById('audio_filename_form');
+	if(audio_filename_form != null)
+		audio_filename_form.submit();
 	<? if($toid){ ?>
-		location.href = '/<?= $redirect_url; ?>/success';
+		// location.href = '/<?= $redirect_url; ?>/success';
 	<? }else{ ?>
-		location.href = '/<?= $redirect_url; ?>/error';
+		// location.href = '/<?= $redirect_url; ?>/error';
 	<? } ?>
 </script>

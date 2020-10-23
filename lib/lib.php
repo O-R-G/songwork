@@ -39,7 +39,7 @@ function print_catalogue_children($oo, $children = array()){
         <div class="title">Title</div>
         <div class="location">Location</div>
         <div class="date">Date recorded</div>
-        <div class="recordist">Contributer</div>
+        <div class="recordist">Contributor</div>
         <div class="duration">Duration</div>
         <div class="apparatus">Equipment</div>
         <div class="license">License</div>
@@ -123,7 +123,7 @@ function get_recordings_by_cata($oo, $o, $cata){
     }
     array_multisort($order, SORT_ASC, $recordings);
   }
-  elseif($cata == 'contributer')
+  elseif($cata == 'contributor')
   {
     foreach($recordings as $key => $rr){
       $this_key = explode('-=-', $rr['notes']);
@@ -271,7 +271,7 @@ function print_search_children($oo, $children = array()){
         <div class="title">Title</div>
         <div class="location">Location</div>
         <div class="date">Date recorded</div>
-        <div class="recordist">Contributer</div>
+        <div class="recordist">Contributor</div>
         <div class="duration">Duration</div>
         <div class="apparatus">Equipment</div>
         <div class="license">License</div>
