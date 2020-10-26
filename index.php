@@ -3,7 +3,6 @@ $request = $_SERVER['REQUEST_URI'];
 $requestclean = strtok($request,"?");
 $uri = explode('/', $requestclean);
 $view = "views/";
-
 /* ------------------------------------------------------
         handle url:
         + /dev > gyroscope (plus hide the clock)
@@ -31,7 +30,6 @@ else if($uri[1] == 'recordings')
   require_once("views/detail.php");
 else
   require_once("views/column.php");
-
 
 require_once("views/foot.php");
 ?>

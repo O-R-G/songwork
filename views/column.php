@@ -1,5 +1,4 @@
 <?  
-
 $column_left = $item['deck'];
 $column_right = $item['body'];
 ?>
