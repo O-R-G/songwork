@@ -105,7 +105,9 @@ button:active {
     transform: translateX(-2px);
 }
 
-
+.regular{
+  font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;
+}
 #menu_btn {
     position: absolute;
     top: 0px;
@@ -193,8 +195,7 @@ button:active {
 
   font-size: 12px;
   line-height: 15px;
-  /*font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;*/
-  font-family: 'Univers LT 55', Helvetica, Arial, sans-serif;
+  font-family: 'Univers CE 45', Helvetica, Arial, sans-serif;
 
   margin-top: 6px;
   margin-bottom: 4px;
