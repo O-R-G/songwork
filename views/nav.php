@@ -36,12 +36,15 @@
       <div><a class = "nav_btn <? echo $isActive  ? 'active' : '' ?>" href = '<? echo $menu_child["url"] ?>'><? echo $menu_child["name1"] ?></a></div>
     <? } ?>
     <div id = "filter_container">
-      <div>ORGANIZE BY</div><div id = 'catalogues'>
+      <div>ORGANISE BY</div><div id = 'catalogues'>
         <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
           if($uri[2] == $catalogue_child['url'])
             $isActive = true;
-          $cata_name = $catalogue_child['name1'].' ('.$catalogue_child['deck'].')';
+          $this_range = $catalogue_child['deck'];
+          while(ctype_space(substr($this_range, 0, 1)))
+            $this_range = substr($this_range, 1);
+          $cata_name = $catalogue_child['name1'].' ('.$this_range.')';
           // var_dump($cata_name);
         ?>
           <a class = "nav_btn <? echo $isActive ? 'active' : '' ?>" <? echo $isActive ? 'href = ""' : 'href = "/catalogue/'.$catalogue_child['url'].'"' ?> ><? echo $cata_name; ?></a><br>
