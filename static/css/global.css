@@ -1190,7 +1190,8 @@ input[type='checkbox'].error
     padding-top: 0px;
     /*max-width: 100%;*/
     display: block;
-    width: 100%;
+    width: initial;
+    box-sizing: content-box;
 	}
   .column_container.right{
     margin-top: 18px;
@@ -1269,6 +1270,7 @@ input[type='checkbox'].error
   }
   #detail_container{
     overflow-x: hidden;
+    height: 100vh;
   }
   #detail_container video{
     width: initial;

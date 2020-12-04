@@ -1,6 +1,6 @@
 <?
-	$site_path = '/var/www/html/';
-	// $site_path = '/Library/WebServer/Documents/songwork.local/';
+	// $site_path = '/var/www/html/';
+	$site_path = '/Library/WebServer/Documents/songwork.local/';
 	chdir($site_path);
 	$all_media_filenames = scandir('media/');
 	$oldname = false;
@@ -16,20 +16,20 @@
 
 		// path to config file
 		// $config = $_SERVER["DOCUMENT_ROOT"];
-		// $config = "/var/www/html/lib/config-cli.php";
 		$config = $site_path . "lib/config-cli.php";
 		require_once($config);
 		$oo = new Objects();
 		$db = db_connect('main');
 
 		$media_id = str_replace('0', '', $filename);
-		$media_sql = 'SELECT media.object FROM media WHERE media.id = "'.$media_id.'" AND media.active = "1"';
+		$media_sql = 'SELECT objects.id FROM media, objects WHERE media.id = "'.$media_id.'" AND media.id = objects.id AND media.active = "1" AND objects.active = "1"';
 		$res = $db->query($media_sql);
 		if(!$res)
 			throw new Exception($db->error);
-		$object_id = $res->fetch_assoc()['object'];
+		$object_id = $res->fetch_assoc()['id'];
 		$res->close();
 		var_dump($object_id);
+		die();
 		$old_name1 = $oo->name($object_id);
 		if(substr($old_name1, 0, 1) == '.')
 			$updated_name1 = substr($old_name1, 1);
@@ -44,6 +44,6 @@
 	}
 	else
 	{
-		echo 'file doesnt exist\n';
+		echo 'cant find any filename beginning with "--"';
 	}
 ?>

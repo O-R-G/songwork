@@ -225,3 +225,29 @@ $column_right = $item['body'];
 	</div>
 <? } ?>
 </div>
+<script>
+	window.addEventListener('load', function(){
+		var wW = window.innerWidth;
+		if(wW <= 500)
+		{
+			var sIframe = document.querySelectorAll('iframe');
+			if(sIframe.length > 0)
+			{
+				var iframeParent_w = sIframe[0].parentNode.offsetWidth;
+				[].forEach.call(sIframe, function(el, i){
+					var this_w = el.getAttribute('width');
+					var this_h = el.getAttribute('height');
+					if(this_w > iframeParent_w)
+					{
+						el.setAttribute('width', '100%');
+						el.setAttribute('height', this_h * (iframeParent_w - 40) / this_w);
+					}
+					else
+						return false;
+
+				});
+			}
+		}
+		
+	});
+</script>
