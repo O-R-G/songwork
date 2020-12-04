@@ -1,5 +1,7 @@
 <?
-	chdir('/var/www/html/');
+	$site_path = '/var/www/html/';
+	// $site_path = '/Library/WebServer/Documents/songwork.local/';
+	chdir($site_path);
 	$all_media_filenames = scandir('media/');
 	$oldname = false;
 	foreach($all_media_filenames as $name){
@@ -14,7 +16,8 @@
 
 		// path to config file
 		// $config = $_SERVER["DOCUMENT_ROOT"];
-		$config = "/var/www/html/lib/config-cli.php";
+		// $config = "/var/www/html/lib/config-cli.php";
+		$config = $site_path . "lib/config-cli.php";
 		require_once($config);
 		$oo = new Objects();
 		$db = db_connect('main');
@@ -28,9 +31,12 @@
 		$res->close();
 		var_dump($object_id);
 		$old_name1 = $oo->name($object_id);
-		$updated_name1 = substr($old_name1, 1);
-		echo 'new name = \n';
-		var_dump($updated_name1);
+		if(substr($old_name1, 0, 1) == '.')
+			$updated_name1 = substr($old_name1, 1);
+		else
+			$updated_name1 = $old_name1;
+		echo 'name = \n';
+		echo $updated_name1;
 		$update_name1_sql = 'UPDATE objects SET objects.name1 = "'.$updated_name1.'" WHERE objects.id = "'.$object_id.'"';
 		$updated = $db->query($update_name1_sql);
 		
