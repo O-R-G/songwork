@@ -1,6 +1,6 @@
 <?
-	// $site_path = '/var/www/html/';
-	$site_path = '/Library/WebServer/Documents/songwork.local/';
+	$site_path = '/var/www/html/';
+	// $site_path = '/Library/WebServer/Documents/songwork.local/';
 	chdir($site_path);
 	$all_media_filenames = scandir('media/');
 	$oldname = false;
