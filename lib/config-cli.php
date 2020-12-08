@@ -8,6 +8,8 @@ $db_name = $db_name ? $db_name : "open-records-generator";
 // $host = "http://o-r-g.com/";
 $host = "/var/www/html/";
 $root = "/var/www/html/";
+// $host = "/Library/WebServer/Documents/songwork.local/";
+// $root = "/Library/WebServer/Documents/songwork.local/";
 
 $admin_path = $host . "open-records-generator/";
 $admin_root = $root . "open-records-generator/";

@@ -22,6 +22,8 @@
 		$db = db_connect('main');
 
 		$media_id = str_replace('0', '', $filename);
+		echo "media_id = ";
+		var_dump($media_id);
 		$media_sql = 'SELECT objects.id FROM media, objects WHERE media.id = "'.$media_id.'" AND media.id = objects.id AND media.active = "1" AND objects.active = "1"';
 		$res = $db->query($media_sql);
 		if(!$res)
@@ -29,7 +31,6 @@
 		$object_id = $res->fetch_assoc()['id'];
 		$res->close();
 		var_dump($object_id);
-		die();
 		$old_name1 = $oo->name($object_id);
 		if(substr($old_name1, 0, 1) == '.')
 			$updated_name1 = substr($old_name1, 1);
