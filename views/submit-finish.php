@@ -21,7 +21,7 @@
 		$oo = new Objects();
 		$db = db_connect('main');
 
-		$media_id = str_replace('0', '', $filename);
+		$media_id = intval($filename);
 		echo "media_id = ";
 		var_dump($media_id);
 		$media_sql = 'SELECT objects.id FROM media, objects WHERE media.id = "'.$media_id.'" AND media.id = objects.id AND media.active = "1" AND objects.active = "1"';
