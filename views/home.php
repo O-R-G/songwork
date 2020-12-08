@@ -1,7 +1,7 @@
 <?
 $imgs_id = 1;
 $children = $oo->children($imgs_id);
-shuffle($children);
+// shuffle($children);
 $length = count($children);
 $idx = 0;
 
@@ -42,7 +42,7 @@ function getMeta($child, $media) {
     $child_apparatus = $child_info[5];
     $child_license = $child_info[6];
     $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
-    $out []= round(filesize(m_root($media[0]))/1000, 2) . ' KB';
+    $out []= $child_duration.'<br>'.round(filesize(m_root($media[0]))/1000, 2) . ' KB';
   } else {
     $out []= strlen($child["body"]) . ' characters';
   }
@@ -50,12 +50,12 @@ function getMeta($child, $media) {
   return $out;
 }
 
-function render_media($media, $child_url, $idx) {
+function render_media($media, $child_url, $idx, $isAutoplay = true) {
     $media_number = m_pad($media[0]['id']);
     $url = m_url($media[0]);
     $placeholder = '/media/placeholder/'.$media_number.'.png';
     ?><a href='/recordings/<? echo $child_url; ?>'>
-        <video id='video<? echo $idx; ?>' class='video fullscreen' width='100%' poster = '<?= $placeholder; ?>' loop playsinline preload='metadata' >
+        <video id='video<? echo $idx; ?>' class='video fullscreen' width='100%' poster = '<?= $placeholder; ?>' loop playsinline preload='metadata' in_loop='<?= $isAutoplay ? "true" : "false" ?>'>
             <source src='<?= $url; ?>' type='video/mp4'>
             Sorry, your browser does not support video. 
         </video>
@@ -73,7 +73,12 @@ for ($idx = 0 ; $idx < $length; $idx++) {
     $child = $children[$idx];
     if(substr($child['name1'], 0, 1) != '.'){
       $media = $oo->media($child["id"]);
-      (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
+      // (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
+      $media ? $hasMedia = true : $hasMedia = false;
+      $isAutoplay = true;
+      if (strpos($child["body"], 'no autoplay') !== false) {
+          $isAutoplay = false;
+      }
       $child_url = $child['url'];
       $child_info = explode('-=-', $child['notes']);
       $child_description = $child_info[0];
@@ -84,10 +89,11 @@ for ($idx = 0 ; $idx < $length; $idx++) {
       $child_apparatus = $child_info[5];
       $child_license = $child_info[6];
       $child_meta_filename = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
+
     ?>
     <div class= "child column_container_container <?= $child['url']; ?>">
       <a class="anchor" name="<?= $child['url']; ?>"></a>
-      <? if ($hasMedia) { render_media($media, $child_url, $idx); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+      <? if ($hasMedia) { render_media($media, $child_url, $idx, $isAutoplay); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
       <? $meta = getMeta($child, $media); ?>
       <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $child_meta_filename;  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
     </div>

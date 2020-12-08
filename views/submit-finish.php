@@ -24,7 +24,7 @@
 		$media_id = intval($filename);
 		echo "media_id = ";
 		var_dump($media_id);
-		$media_sql = 'SELECT objects.id FROM media, objects WHERE media.id = "'.$media_id.'" AND media.id = objects.id AND media.active = "1" AND objects.active = "1"';
+		$media_sql = 'SELECT objects.id FROM media, objects WHERE media.id = "'.$media_id.'" AND media.object = objects.id AND media.active = "1" AND objects.active = "1"';
 		$res = $db->query($media_sql);
 		if(!$res)
 			throw new Exception($db->error);

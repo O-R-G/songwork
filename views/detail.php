@@ -41,7 +41,7 @@ function getMeta_detail($child, $media) {
     $child_apparatus = $child_info[5];
     $child_license = $child_info[6];
     $out [] = $child_description . ', ' . $child_location . ', ' . $child_date . '. Recorded by ' . $child_recordist . ' on ' . $child_apparatus;
-    $out []= round(filesize(m_root($media))/1000, 2) . ' KB';
+    $out []= $child_duration.'<br>'.round(filesize(m_root($media))/1000, 2) . ' KB';
     // audio filename
     // $out [] = str_replace(' ', '_', $child_description);
     $out [] = slug($child_description);
@@ -59,7 +59,8 @@ require_once('views/nav.php');
 
 <div id = 'detail_container' class="container">
   <?
-  (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
+  // (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
+  $mediaItems ? $hasMedia = true : $hasMedia = false;
   $media = $hasMedia ? $mediaItems[0] : null;
   $meta = getMeta_detail($child, $media);
     ?><div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>

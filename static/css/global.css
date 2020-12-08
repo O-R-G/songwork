@@ -202,9 +202,16 @@ button:active {
 }
 
 .meta div {
-  padding-right: 50px;
+  padding-right: 30px;
 }
-
+.meta .size
+{
+  white-space: nowrap;
+}
+.home .meta .size
+{
+  padding-right: 0;
+}
 .name {
   text-decoration: underline;
   padding-bottom: 1em;

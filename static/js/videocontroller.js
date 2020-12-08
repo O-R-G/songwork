@@ -105,11 +105,37 @@ function play_one_video(i) {
     videos[i].style.boxShadow = '0 0px 5px 0 rgba(0,0,255,0.75), 0 0px 15px 0 rgba(0,0,255,0.19)';
     videos[i].play();
     remaining = time_to_next;
-    if (i+1 < videos.length){
-        timer = window.setTimeout(function(){ 
-            play_one_video(i+1);    
-        }, time_to_next);
+    
+
+    // if (i+1 < videos.length){
+    //     timer = window.setTimeout(function(){ 
+    //         play_one_video(i+1);    
+    //     }, time_to_next);
         
+    // }
+    var found_next_vid = false;
+    while(!found_next_vid)
+    {
+        if(i+1 < videos.length)
+        {
+            var next_vid_temp = videos[i+1];
+            var next_in_loop = next_vid_temp.getAttribute('in_loop');
+            if(next_in_loop == 'true'){
+                found_next_vid = true;
+                timer = window.setTimeout(function(){ 
+                    play_one_video(i+1);    
+                }, time_to_next);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        else
+        {
+            found_next_vid = true;
+            return false;
+        }
     }
     // vid_status_playall = false;
     // vid_status_pauseall = false;
