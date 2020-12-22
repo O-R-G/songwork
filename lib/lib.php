@@ -218,8 +218,6 @@ function process_media_upload($toid)
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
         $time = shell_exec("ffmpeg -i " . escapeshellarg($m_dest) . " 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");
-        echo "time = <br>";
-        var_dump($time);
         list($hms, $milli) = explode('.', $time);
         list($hours, $minutes, $seconds) = explode(':', $hms);
         $total_seconds = ($hours * 3600) + ($minutes * 60) + $seconds;

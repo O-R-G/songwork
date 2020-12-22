@@ -123,7 +123,7 @@ if($toid && $isProcessed){ ?>
 		<input type = 'hidden' value = '<?= $_POST["description"]; ?>' name = 'audio_filename'>
 	</form>
 <? }else{ ?>
-	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/errors' method = 'POST' enctype="multipart/form-data">
+	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/error' method = 'POST' enctype="multipart/form-data">
 	</form>
 <? } ?>
 
