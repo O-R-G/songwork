@@ -189,6 +189,8 @@ function process_media_upload($toid)
   global $resize_scale;
   global $media_root;
 
+  $audio_max_duration = 25; //mins
+  $audio_max_duration = $audio_max_duration * 60;
   $m_rows = $mm->num_rows();
   $m_old = $m_rows;
   foreach($_FILES["uploads"]["error"] as $key => $error)
@@ -221,8 +223,8 @@ function process_media_upload($toid)
         list($hms, $milli) = explode('.', $time);
         list($hours, $minutes, $seconds) = explode(':', $hms);
         $total_seconds = ($hours * 3600) + ($minutes * 60) + $seconds;
-        var_dump($total_seconds);
-        die();
+        if($total_seconds > $audio_max_duration)
+          return false;
         if($resize)
           resize($m_dest, $media_root.$m_file, $resize_scale);
       }

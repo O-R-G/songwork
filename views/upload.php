@@ -109,13 +109,16 @@ if(isset($send_to_id)){
 		// wires
 		$ww->create_wire($send_to_id, $toid);
 		// media
-		if($send_to == 'recordings')
-			process_media_upload($toid);
+		if($send_to == 'recordings'){
+			$isProcessed = process_media_upload($toid);
+			if(!$isProcessed)
+				var_dump("audio duration");
+			
+		}
 	}
-	die();
 }
 
-if($toid){ ?>
+if($toid && $isProcessed){ ?>
 	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/success' method = 'POST' enctype="multipart/form-data">
 		<input type = 'hidden' value = '<?= $_POST["description"]; ?>' name = 'audio_filename'>
 	</form>
