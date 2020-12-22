@@ -211,10 +211,18 @@ function process_media_upload($toid)
 
       $m_file = m_pad($insert_id).".".$m_type;
       $m_dest = '/var/www/app/songwork-app/_make/';
+      // $m_dest = '/Users/ouerohiroshi/sketchbook/songworks-local/_make/';
       $m_dest.= $m_file;
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
-        echo 'move_uploaded_file';
+        $time = shell_exec("ffmpeg -i " . escapeshellarg($m_dest) . " 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");
+        echo "time = <br>";
+        var_dump($time);
+        list($hms, $milli) = explode('.', $time);
+        list($hours, $minutes, $seconds) = explode(':', $hms);
+        $total_seconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+        var_dump($total_seconds);
+        die();
         if($resize)
           resize($m_dest, $media_root.$m_file, $resize_scale);
       }

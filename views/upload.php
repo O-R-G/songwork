@@ -112,7 +112,7 @@ if(isset($send_to_id)){
 		if($send_to == 'recordings')
 			process_media_upload($toid);
 	}
-	
+	die();
 }
 
 if($toid){ ?>
