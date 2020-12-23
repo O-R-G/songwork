@@ -34,3 +34,31 @@ x mv *.mp4 to git large file storage
 / __make.sh still accepting audio files other than .wav
 
 + /search
+
+
+*EMAIL ALERTS*
+Could we automatically send info@songwork.org every time a sound is
+uploaded? This would alert us to check ORG and approve / update the sound
+so that there's little delay in making it appear on the site. Otherwise
+we'll have to repeatedly check to see if there's something new to approve.
+
+*MISSING LETTERS ON ORG LIST VIEW*
+After uploading a sound, in the list view of ORG the first letter of the
+first word of the title sometimes appears deleted. E.g. there are two
+tracks for 'Kippax Paraprint...' (01 and 02). One appears as 'Kippax' the
+other as 'ippax'. Even after correcting it, the changes still don't appear
+to update in the list view. At first glance, this doesn't seem to carry
+over to the front end where both titles appear as normal (Kippax 01, Kippax
+02). HOWEVER when searching for 'Kippax', only one track appears. But then
+if searching for 'ippax', both appear, both starting with the title
+'Kippax'. Weird...
+
+*CONTROLLING PLAYBACK*
+At the moment, playback controls are limited to play and pause. When on a
+page for an individual sound, could it be fixed so that users can use the
+playbar to, say, scroll/go back or forward? And is there a way that would
+allow them to stop the track mid-way and play from the beginning without
+having to wait until the end or refreshing the page -- maybe the play
+button could function as this too?
+
+
