@@ -229,11 +229,14 @@ function process_media_upload($toid)
       else {
         $m_rows--;
         $mm->deactivate($insert_id);
+        return $m_old < $m_rows;
       }
       $mm->update($insert_id, array('type'=>"'mp4'"));
     }
+    else
+      return false;
   }
-  return $m_old < $m_rows;
+  return $total_seconds;
 }
 
 function build_children_search($oo, $ww, $query) {
