@@ -61,6 +61,7 @@
     <progress id="progress" value="0" min="0">
        <span id="progress_bar"></span>
     </progress>
+    <span id = 'progress_indicator'></span>
   </div>
 <? }elseif($isHome){ ?>
   <div id="progress_ctner">

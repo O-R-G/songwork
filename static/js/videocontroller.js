@@ -271,7 +271,10 @@ function keyDownHandler( evt , isPlaying, thisPage ) {
 }
 if(isHome || isDetail){
     document.addEventListener( 'keydown', function(e){
-        var isPlaying = document.body.classList.contains('playing_record');
-        keyDownHandler(e, isPlaying, thisPage);
+        if(document.activeElement.id != 'search_input')
+        {
+            var isPlaying = document.body.classList.contains('playing_record');
+            keyDownHandler(e, isPlaying, thisPage);
+        }
     });
 }

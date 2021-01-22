@@ -76,7 +76,7 @@ for ($idx = 0 ; $idx < $length; $idx++) {
       // (ctype_space($child['body']) || !$child['body']) ? $hasMedia = true : $hasMedia = false;
       $media ? $hasMedia = true : $hasMedia = false;
       $isAutoplay = true;
-      if (strpos($child["body"], 'no autoplay') !== false) {
+      if (strpos($child["body"], '[autoplay:off]') !== false) {
           $isAutoplay = false;
       }
       $child_url = $child['url'];

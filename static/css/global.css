@@ -386,6 +386,8 @@ body.detail{
   padding-top:0;
   background: #000;
   display: block;
+  min-height: 99vh;
+  position: relative;
 }
 #detail_container video{
   width: 100%;
@@ -400,6 +402,23 @@ body.detail{
   max-width: 100%;
   line-height: 1.5em;
   margin: 0;
+  z-index: 100;
+}
+#detail_container.portrait
+{
+  overflow: hidden;
+}
+#detail_container.portrait video
+{
+  width: auto;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+}
+#detail_container.portrait .meta
+{
+  width: auto;
+  margin-top: 110px;
 }
 /* 3/26 */
 
@@ -488,7 +507,12 @@ button:focus{
   left: 50%;
   transform: translate(-50%, 0);
   display:block;
+  z-index: 1001;
   /*background-color: #000;*/
+}
+.detail #progress_ctner
+{
+  cursor: pointer;
 }
 #progress{
   -webkit-appearance: none;
@@ -505,12 +529,24 @@ button:focus{
   
   /*vertical-align: top;*/
 }
+#progress_indicator
+{
+  display: block;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, .5);
+  /*z-index: */
+}
 #progress_bar {
   width:0%;
   height:100%;
   display:inline-block;
   background-color:#f00;
   background-color:#00f;  
+  cursor: pointer;
 }
 /* firefox progress BAR COLOR */
 #progress::-moz-progress-bar {
@@ -530,7 +566,7 @@ button:focus{
   /*display: inline-block;*/
   display: none;
   width: 0;
-  height: 6px;
+  height: 8px;
   background-color: #00F;
 
   animation: pseudo_progressing forwards linear;
@@ -1277,7 +1313,7 @@ input[type='checkbox'].error
   }
   #detail_container{
     overflow-x: hidden;
-    height: 100vh;
+    /*height: 100vh;*/
   }
   #detail_container video{
     width: initial;

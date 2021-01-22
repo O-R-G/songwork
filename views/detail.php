@@ -86,10 +86,9 @@ require_once('views/nav.php');
     ?><div id = 'detail_download'><a class = 'download' href = '/media/audio/<?= $meta[3]; ?>.wav' download>Download</a></div><?
 	}
 
-?>
-</div>
+?></div><script>
 
-<script>
+
 function goBackOrHome() {
   if (document.referrer == "")
     window.location.href = '/';
@@ -97,5 +96,26 @@ function goBackOrHome() {
     window.history.back();
 }
 
+var sProgress_ctner = document.getElementById('progress_ctner');
+var sProgress_ctner_left = sProgress_ctner.offsetLeft - sProgress_ctner.offsetWidth/2;
+var sProgress_indicator = document.getElementById('progress_indicator');
+var video = document.querySelector('#detail_container video');
+sProgress_ctner.addEventListener('click', function(e){
+  var pos_r = (e.pageX  - sProgress_ctner_left) / sProgress_ctner.offsetWidth;
+  video.currentTime = pos_r * video.duration;
+  sProgress_indicator.style.width = 0+'px';
+});
+sProgress_ctner.addEventListener('mousemove', function(e){
+  var pos = (e.pageX  - sProgress_ctner_left);
+  sProgress_indicator.style.width = pos+'px';
+});
+sProgress_ctner.addEventListener('mouseleave', function(e){
+  sProgress_indicator.style.width = 0+'px';
+});
+var wW = window.innerWidth;
+var wH = window.innerHeight;
+var sDetail_container = document.getElementById('detail_container');
+if(wH > wW)
+  sDetail_container.classList.add('portrait');
 </script>
 <script type = "text/javascript" src='/static/js/videocontroller.js'></script>

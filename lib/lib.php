@@ -217,7 +217,6 @@ function process_media_upload($toid)
       $m_dest.= $m_file;
 
       if(move_uploaded_file($tmp_name, $m_dest)) {
-        echo "yaya";
         $time = shell_exec("ffmpeg -i " . escapeshellarg($m_dest) . " 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");
         list($hms, $milli) = explode('.', $time);
         list($hours, $minutes, $seconds) = explode(':', $hms);
