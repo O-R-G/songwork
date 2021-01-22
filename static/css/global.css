@@ -418,7 +418,7 @@ body.detail{
 #detail_container.portrait .meta
 {
   width: auto;
-  margin-top: 110px;
+  top: 110px;
 }
 /* 3/26 */
 
@@ -1320,7 +1320,7 @@ input[type='checkbox'].error
     height: 100%;
     float: right;
   }
-  #detail_container .meta{
+  #detail_container.portrait .meta{
     top: 75px;
     width: 100vw;
     max-width: 100%;
