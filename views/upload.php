@@ -120,6 +120,8 @@ if(isset($send_to_id)){
 
 if($toid && $isProcessed){ ?>
 	<form id = 'audio_filename_form' action = '/<?= $redirect_url; ?>/success' method = 'POST' enctype="multipart/form-data">
+		<input type = 'hidden' value = '<?= $_POST["forename"]; ?>' name = 'forename'>
+		<input type = 'hidden' value = '<?= $_POST["surname"]; ?>' name = 'surname'>
 		<input type = 'hidden' value = '<?= $_POST["description"]; ?>' name = 'audio_filename'>
 		<input type = 'hidden' value = '<?= $isProcessed; ?>' name = 'audio_duration'>
 	</form>
