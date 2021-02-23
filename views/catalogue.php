@@ -47,15 +47,7 @@ function getRandOffset($idx) {
 function getRandWidth($idx) {
   return roundUpToAny(rand(10, 35));
 }
-$msg = 'hihi2';
-$headers = 'From: info@songwork.org' . "\r\n" ;
-$headers .='Reply-To: info@songwork.org' . "\r\n" ;
-$headers .='X-Mailer: PHP/7.3.22';
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/plain; charset=UTF-8\r\n";  
-var_dump($headers);
-var_dump(phpversion());
-mail('weiwanghasbeenused@gmail.com', 'New submission on songwork.org', $msg, $headers);
+
 /* html */
        
 ?>
