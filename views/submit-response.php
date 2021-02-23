@@ -16,13 +16,13 @@
 		$msg = $contributer . " just submitted to songwork.org\r\n\r\nHere's the description of the audio:\r\n";
 		$msg .= $_POST['audio_filename'];
 		$msg = wordwrap($msg, 70, "\r\n");
-
+		var_dump($msg);
 		$headers = 'From: info@songwork.org' . "\r\n" ;
         $headers .='Reply-To: info@songwork.org' . "\r\n" ;
         $headers .='X-Mailer: PHP/' . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/plain; charset=UTF-8\r\n";  
-
+        var_dump($headers);
 		mail('weiwanghasbeenused@gmail.com', 'New submission on songwork.org', $msg, $headers);
 	}
 
