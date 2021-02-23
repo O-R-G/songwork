@@ -23,7 +23,7 @@
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/plain; charset=UTF-8\r\n";  
 
-		mail('weiwanghasbeenused@gmail.com', 'New submission on songwork.org', $msg, $headers);
+		mail('sionparkinson@gmail.com', 'New submission on songwork.org', $msg, $headers);
 	}
 
 ?>
