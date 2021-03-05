@@ -68,8 +68,8 @@ function print_catalogue_children($oo, $children = array()){
         $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
         $media = $oo->media($child["id"]);
         $audio_filename = slug($title);
-
-        (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
+        $media ? $hasMedia = true : $hasMedia = false;
+        // (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
     ?>
     <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
       <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
