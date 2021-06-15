@@ -72,10 +72,10 @@ if($isHome || $isDetail )
 		<meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
 		<link rel="icon" href="/media/png/favicon.png" type="image/png" sizes="16x16">
 		<meta property="og:title" content="Song Work">
-		<meta property="og:image" content="https://songwork.org/media/00113.png">
+		<meta property="og:image" content="/media/png/favicon.png">
 		<meta property="og:type" content="website">
-		<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
-		<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
 		<script type = 'text/javascript'>
 			var isHome = <? echo ($isHome ? 'true' : 'false') ; ?>;
 			var isCatalogue = <? echo ($isCatalogue ? 'true' : 'false') ; ?>;

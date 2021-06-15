@@ -253,7 +253,7 @@ function build_children_search($oo, $ww, $query) {
   $tables = array("objects", "wires");
   $where  = array("objects.active = '1'",
                   "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
-                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%')",
                   "wires.toid = objects.id",
                   "wires.fromid = '".$recordings_id."'",
                   "wires.active = '1'");
