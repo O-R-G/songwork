@@ -1026,6 +1026,12 @@ input[type='checkbox'].error
   padding-top: 80px;
   height: 204px;
 }
+#search_form input
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 #search_form input[type='submit']{
   margin-top: 20px;
   background-color: #00f;
