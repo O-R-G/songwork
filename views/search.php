@@ -24,7 +24,6 @@ $no_results_error = 'The search query did not return any results.<br />Please <a
 	<?
 	if ($query) {
     	$children = build_children_search($oo, false, $query);
-    	
 	}
 	if (!$children || $searchQuery == "")
 	     echo "<div id='search_error'>" . $no_results_error . "</div>";
