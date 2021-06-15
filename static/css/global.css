@@ -1101,6 +1101,11 @@ input[type='checkbox'].error
   width: 100%;
   pointer-events: none;
 }
+
+#text_container input[type = 'text'].half-width-field
+{
+  width: 49%;
+}
 @keyframes play-bouncing{
   0%
   {
@@ -1345,6 +1350,10 @@ input[type='checkbox'].error
   #catalogue_container,
   #search_container{
     min-width: initial;
+  }
+  #text_container input[type = 'text'].half-width-field
+  {
+    width: 100%;
   }
 }
 @media screen and (min-width: 1000px){

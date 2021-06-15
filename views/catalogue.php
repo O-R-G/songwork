@@ -79,6 +79,7 @@ function getRandWidth($idx) {
 
 <div id = 'catalogue_container' class="container " view = 'spreadsheet'> 
 <? 
+
 $this_cata = $uri[2];
 $children = get_recordings_by_cata($oo, $recordings_id, $this_cata);
 print_catalogue_children($oo, $children);
