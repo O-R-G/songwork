@@ -314,7 +314,7 @@ function print_search_children($oo, $children = array()){
         $media = $oo->media($child["id"]);
         $audio_filename = slug($title);
 
-        (ctype_space($child['body']) || !$child['body'] ) ? $hasMedia = true : $hasMedia = false;
+        $hasMedia = !empty($media);
     ?>
     <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
       <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
