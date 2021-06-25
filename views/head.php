@@ -74,8 +74,8 @@ if($isHome || $isDetail )
 		<meta property="og:title" content="Song Work">
 		<meta property="og:image" content="/media/png/favicon.png">
 		<meta property="og:type" content="website">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
+		<meta name="description" content="Song Work is an audio library of workplace noise. The project functions both as a sound archive and a free resource for musicians and sound artists. Through music commissions and collaborations, Song Work aims to create new work songs for the 21st century. All sounds are Creative Commons Licensed. Share, browse and download. ">
+		<meta name="keywords" content="Song Work">
 		<script type = 'text/javascript'>
 			var isHome = <? echo ($isHome ? 'true' : 'false') ; ?>;
 			var isCatalogue = <? echo ($isCatalogue ? 'true' : 'false') ; ?>;
