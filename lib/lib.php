@@ -265,7 +265,7 @@ function build_children_search($oo, $ww, $query) {
   $blog_id = end($oo->urls_to_ids(array('blog')));
   $where  = array("objects.active = '1'",
                   "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
-                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.body USING utf8mb4)) LIKE '%" . $query . "%')",
                   "wires.toid = objects.id",
                   "wires.fromid = '".$blog_id."'",
                   "wires.active = '1'");
@@ -274,7 +274,7 @@ function build_children_search($oo, $ww, $query) {
     $children['blog'] = $children_blog;
   $where  = array("objects.active = '1'",
                   "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
-                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.body USING utf8mb4)) LIKE '%" . $query . "%')",
                   "wires.toid = objects.id",
                   "objects.id = '".$blog_id."'",
                   "wires.active = '1'");
@@ -369,12 +369,16 @@ function print_search_children($oo, $children = array()){
     $blog_length = count($children_blog_total);
   if( $blog_length != 0 )
   {
-    ?><div id = "item_list" class = "">
-      <div class = 'media_container'></div>
-      <div class = "catalogue_meta spreadsheet_meta">
-        <div class="cata_num">BLOG</div>
-      </div>
-    </div><?
+    if($children_blog != NULL)
+    {
+      ?><div id = "item_list" class = "">
+          <div class = 'media_container'></div>
+          <div class = "catalogue_meta spreadsheet_meta">
+            <div class="cata_num">BLOG</div>
+          </div>
+        </div><?
+    }
+    
     for ($idx = 0; $idx < $blog_length; $idx++) {
       $child = $children_blog_total[$idx];
       if(substr($child['name1'], 0, 1) != '.'){
@@ -386,7 +390,7 @@ function print_search_children($oo, $children = array()){
         }
         unset($ci);
         $title = $child['name1'];
-        $url = ( $child['url'] == 'blog' && $idx == 0 ) ?  '/blog' : '/blog/'+$child['url'];
+        $url = ( $child['url'] == 'blog' && $idx == 0 ) ?  '/blog' : '/blog/' . $child['url'];
         ?>
         <div class= "child blog <?= $child['url']; ?>">
           <div class="media_container"></div>

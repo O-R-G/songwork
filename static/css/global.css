@@ -701,6 +701,10 @@ input[type='checkbox'] + label {
   width: 120px;
   height: 120px;
 }
+#search_container .child.blog .media_container
+{
+  height: 0;
+}
 
 #item_list{
   padding-bottom: 0;
