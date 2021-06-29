@@ -257,26 +257,39 @@ function build_children_search($oo, $ww, $query) {
                   "wires.fromid = '".$recordings_id."'",
                   "wires.active = '1'");
   $order  = array("objects.name1", "objects.begin", "objects.end");
-  // $order  = array("objects.end");
-  $children = $oo->get_all($fields, $tables, $where, $order);
+  $children = array();
+  $children_recording = $oo->get_all($fields, $tables, $where, $order);
+  if(count($children_recording) != 0)
+    $children['recording'] = $children_recording;
 
-  // preprocess to remove any thing we dont want to show
-
-  // sort by ranking and then end date
-  // usort($children_combined, function($a, $b) {
-  //   if ($a['root']['ranking'] != $b['root']['ranking']) {
-  //     return $a['root']['ranking'] <=> $a['root']['ranking'];
-  //   } else {
-  //     return $b['end'] <=> $a['end'];
-  //   }
-  // });
+  $blog_id = end($oo->urls_to_ids(array('blog')));
+  $where  = array("objects.active = '1'",
+                  "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "wires.toid = objects.id",
+                  "wires.fromid = '".$blog_id."'",
+                  "wires.active = '1'");
+  $children_blog = $oo->get_all($fields, $tables, $where, $order);
+  if(count($children_blog) != 0)
+    $children['blog'] = $children_blog;
+  $where  = array("objects.active = '1'",
+                  "(LOWER(CONVERT(BINARY objects.name1 USING utf8mb4)) LIKE '%" . $query .
+                  "%' OR LOWER(CONVERT(BINARY objects.deck USING utf8mb4)) LIKE '%" . $query . "%' OR LOWER(CONVERT(BINARY objects.notes USING utf8mb4)) LIKE '%" . $query . "%')",
+                  "wires.toid = objects.id",
+                  "objects.id = '".$blog_id."'",
+                  "wires.active = '1'");
+  $children_blog_itself = $oo->get_all($fields, $tables, $where, $order);
+  if(count($children_blog_itself) != 0)
+    $children['blog_itself'] = $children_blog_itself;
 
   return $children;
 }
 
 function print_search_children($oo, $children = array()){
-  $length = count($children);
-  ?><div id = "item_list" class = "">
+  $children_recording = $children['recording'];
+  if($children_recording)
+  {
+    ?><div id = "item_list" class = "">
       <div class = 'media_container'></div>
       <div class = "catalogue_meta spreadsheet_meta">
         <div class="cata_num">Cat. no.</div>
@@ -292,9 +305,78 @@ function print_search_children($oo, $children = array()){
         <div></div>
       </div>
     </div><?
-  for ($idx = 0; $idx < $length; $idx++) {
-     
-      $child = $children[$idx];
+    $recording_length = count($children_recording);
+    for ($idx = 0; $idx < $recording_length; $idx++) {
+       
+        $child = $children_recording[$idx];
+        if(substr($child['name1'], 0, 1) != '.'){
+          $cata_num = $child['deck'];
+          $child_info = explode('-=-', $child['notes']);
+          foreach($child_info as &$ci){
+            if(!$ci)
+              $ci = '&mdash;';
+          }
+          unset($ci);
+          $title = $child_info[0];
+          $location = $child_info[1];
+          $recordist = $child_info[2];
+          $date = $child_info[3];
+          $duration = $child_info[4];
+          $apparatus = $child_info[5];
+          $license = $child_info[6];
+          $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
+          $media = $oo->media($child["id"]);
+          $audio_filename = slug($title);
+
+          $hasMedia = !empty($media);
+      ?>
+      <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
+        <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+        <? $meta = getMeta_cat($child, $media); ?>
+        <a class="anchor" name="<?= $child['url']; ?>"></a>
+        <div class="catalogue_meta spreadsheet_meta">
+          <div class="cata_num"><? echo $cata_num; ?></div>
+          <div class="title"><? echo $title;  ?></div>
+          <div class="location"><? echo $location;  ?></div>
+          <div class="date"><? echo $date;  ?></div>
+          <div class="recordist"><? echo $recordist;  ?></div>
+          <div class="duration"><? echo $duration;  ?></div>
+          <div class="apparatus"><? echo $apparatus;  ?></div>
+          <div class="license">License</div>
+          <div class="size"><? echo $meta[2]; ?></div>
+          <div class="modified"><? echo $meta[0]; ?></div>
+          <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
+        </div>
+        <div class="catalogue_meta list_meta">
+          <div class="modified"><? echo $meta[0]; ?></div>
+          <div class="filename"><? echo $child_meta_filename; ?></div>
+          <div class="size"><? echo $meta[2]; ?></div>
+          <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
+        </div>
+      </div>
+      <?
+      }
+    }
+  }
+  $children_blog = $children['blog'];
+  $children_blog_itself = $children['blog_itself'];
+  $blog_length = 0;
+  $children_blog_total = array();
+  if( $children_blog )
+    $children_blog_total = array_merge($children_blog, $children_blog_total);
+  if( $children_blog_itself )
+    $children_blog_total = array_merge($children_blog_itself, $children_blog_total);
+    $blog_length = count($children_blog_total);
+  if( $blog_length != 0 )
+  {
+    ?><div id = "item_list" class = "">
+      <div class = 'media_container'></div>
+      <div class = "catalogue_meta spreadsheet_meta">
+        <div class="cata_num">BLOG</div>
+      </div>
+    </div><?
+    for ($idx = 0; $idx < $blog_length; $idx++) {
+      $child = $children_blog_total[$idx];
       if(substr($child['name1'], 0, 1) != '.'){
         $cata_num = $child['deck'];
         $child_info = explode('-=-', $child['notes']);
@@ -303,44 +385,17 @@ function print_search_children($oo, $children = array()){
             $ci = '&mdash;';
         }
         unset($ci);
-        $title = $child_info[0];
-        $location = $child_info[1];
-        $recordist = $child_info[2];
-        $date = $child_info[3];
-        $duration = $child_info[4];
-        $apparatus = $child_info[5];
-        $license = $child_info[6];
-        $child_meta_filename = $title . ', ' . $location . ', ' . $date . '. Recorded by ' . $recordist . ' on ' . $apparatus;
-        $media = $oo->media($child["id"]);
-        $audio_filename = slug($title);
-
-        $hasMedia = !empty($media);
-    ?>
-    <div class= "child cata_<? echo $cata; ?> <?= $child['url']; ?>">
-      <? if ($hasMedia) { render_media_cat($media, $child['url']); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
-      <? $meta = getMeta_cat($child, $media); ?>
-      <a class="anchor" name="<?= $child['url']; ?>"></a>
-      <div class="catalogue_meta spreadsheet_meta">
-        <div class="cata_num"><? echo $cata_num; ?></div>
-        <div class="title"><? echo $title;  ?></div>
-        <div class="location"><? echo $location;  ?></div>
-        <div class="date"><? echo $date;  ?></div>
-        <div class="recordist"><? echo $recordist;  ?></div>
-        <div class="duration"><? echo $duration;  ?></div>
-        <div class="apparatus"><? echo $apparatus;  ?></div>
-        <div class="license">License</div>
-        <div class="size"><? echo $meta[2]; ?></div>
-        <div class="modified"><? echo $meta[0]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
-      </div>
-      <div class="catalogue_meta list_meta">
-        <div class="modified"><? echo $meta[0]; ?></div>
-        <div class="filename"><? echo $child_meta_filename; ?></div>
-        <div class="size"><? echo $meta[2]; ?></div>
-        <div><? if($hasMedia){ ?><a href = '/media/audio/<?= $audio_filename; ?>.wav' download class='download'>Download</a><? } ?></div>
-      </div>
-    </div>
-    <?
+        $title = $child['name1'];
+        $url = ( $child['url'] == 'blog' && $idx == 0 ) ?  '/blog' : '/blog/'+$child['url'];
+        ?>
+        <div class= "child blog <?= $child['url']; ?>">
+          <div class="media_container"></div>
+          <div class="catalogue_meta spreadsheet_meta">
+            <div class="cata_num"><a href="<?= $url; ?>"><? echo $child['name1']; ?></a></div>
+          </div>
+        </div>
+        <?
+      }
     }
   }
 }

@@ -1108,7 +1108,15 @@ input[type='checkbox'].error
   width: 100%;
   pointer-events: none;
 }
-
+.child.blog a:visited,
+.child.blog a:link
+{
+  color: #000;
+}
+.child.blog a:hover
+{
+  color: #f00;
+}
 #text_container input[type = 'text'].half-width-field
 {
   width: 49%;
