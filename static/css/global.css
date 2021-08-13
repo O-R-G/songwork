@@ -1125,6 +1125,10 @@ input[type='checkbox'].error
 {
   width: 49%;
 }
+.blog-item + .blog-item
+{
+  margin-top: 17px;
+}
 @keyframes play-bouncing{
   0%
   {

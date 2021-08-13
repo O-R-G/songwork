@@ -217,6 +217,34 @@ $column_right = $item['body'];
 		});
 		
 	</script>
+<? } else if($uri[1] == 'blog' && count($uri) < 3) { 
+	$column_left = '';
+	$column_right = '';
+	$fields = array("objects.*");
+	$tables = array("objects", "wires");
+	$where	= array("wires.fromid = '".$item['id']."'",
+					"wires.active = 1",
+					"wires.toid = objects.id",
+					"objects.active = '1'");
+	$order 	= array("objects.begin ASC", "objects.end", "objects.name1");
+	$children = $oo->get_all($fields, $tables, $where, $order);
+	foreach($children as $child){
+		if(substr($child['name1'], 0, 1) != '.')
+		{
+			$date = $child['begin'];
+			$date_formatted = date( 'j F Y', strtotime($date));
+			$excerpt = $child['notes'];
+			$title = $child['name1'];
+			$url = '/blog/' . $child['url'];
+			$column_left .= '<div class="blog-item"><div class="blog-item-date">'.$date_formatted.'</div><div><a href="'.$url.'">'.$title.'</a></div><div class="blog-item-excerpt">'.$excerpt.'</div></div>';
+		}
+	}
+	?>
+	<div class = 'column_container left'>
+		<? echo $column_left; ?>
+	</div><div class = 'column_container right'>
+		<? echo $column_right; ?>
+	</div>
 <? } else { ?>
 	<div class = 'column_container left'>
 		<? echo $column_left; ?>
