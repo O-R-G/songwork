@@ -226,7 +226,7 @@ $column_right = $item['body'];
 					"wires.active = 1",
 					"wires.toid = objects.id",
 					"objects.active = '1'");
-	$order 	= array("objects.begin ASC", "objects.end", "objects.name1");
+	$order 	= array("objects.begin DESC", "objects.end", "objects.name1");
 	$children = $oo->get_all($fields, $tables, $where, $order);
 	foreach($children as $child){
 		if(substr($child['name1'], 0, 1) != '.')
