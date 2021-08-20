@@ -371,35 +371,32 @@ function print_search_children($oo, $children = array()){
   {
     if($children_blog != NULL)
     {
-      ?><div id = "item_list" class = "">
-          <div class = 'media_container'></div>
+      ?><div id = "item_list" class = "blog">
+          <div class = 'media_container'>BLOG</div>
           <div class = "catalogue_meta spreadsheet_meta">
-            <div class="cata_num">BLOG</div>
+            <div class="cata_num">
+              <?for ($idx = 0; $idx < $blog_length; $idx++) {
+                $child = $children_blog_total[$idx];
+                if(substr($child['name1'], 0, 1) != '.'){
+                  $cata_num = $child['deck'];
+                  $child_info = explode('-=-', $child['notes']);
+                  foreach($child_info as &$ci){
+                    if(!$ci)
+                      $ci = '&mdash;';
+                  }
+                  unset($ci);
+                  $title = $child['name1'];
+                  $url = ( $child['url'] == 'blog' && $idx == 0 ) ?  '/blog' : '/blog/' . $child['url'];
+                  ?>
+                  <div class= "child blog <?= $child['url']; ?>">
+                    <a href="<?= $url; ?>"><? echo $child['name1']; ?></a>
+                  </div>
+                  <?
+                }
+              }?>
+            </div>
           </div>
         </div><?
-    }
-    
-    for ($idx = 0; $idx < $blog_length; $idx++) {
-      $child = $children_blog_total[$idx];
-      if(substr($child['name1'], 0, 1) != '.'){
-        $cata_num = $child['deck'];
-        $child_info = explode('-=-', $child['notes']);
-        foreach($child_info as &$ci){
-          if(!$ci)
-            $ci = '&mdash;';
-        }
-        unset($ci);
-        $title = $child['name1'];
-        $url = ( $child['url'] == 'blog' && $idx == 0 ) ?  '/blog' : '/blog/' . $child['url'];
-        ?>
-        <div class= "child blog <?= $child['url']; ?>">
-          <div class="media_container"></div>
-          <div class="catalogue_meta spreadsheet_meta">
-            <div class="cata_num"><a href="<?= $url; ?>"><? echo $child['name1']; ?></a></div>
-          </div>
-        </div>
-        <?
-      }
     }
   }
 }
