@@ -14,8 +14,8 @@
       $menu_chidren[] = $this_child;
     }
   }
-
-  $catalogue_id = end($oo->urls_to_ids(array('catalogue')));
+  $temp = $oo->urls_to_ids(array('catalogue'));
+  $catalogue_id = end($temp);
   $catalogue_children = $oo->children($catalogue_id);
 
   $searchQuery = '';
@@ -39,7 +39,7 @@
       <div>ORGANISE BY</div><div id = 'catalogues'>
         <? foreach($catalogue_children as $catalogue_child) { 
           $isActive = false;
-          if($uri[2] == $catalogue_child['url'])
+          if(isset($uri[2]) && $uri[2] == $catalogue_child['url'])
             $isActive = true;
           $this_range = $catalogue_child['deck'];
           while(ctype_space(substr($this_range, 0, 1)))

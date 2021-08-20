@@ -22,7 +22,9 @@ if($uu->id)
 	$item = $oo->get($uu->id);
 else
 	$item = $oo->get(0);
-$name = ltrim(strip_tags($item["name1"]), ".");
+if(isset($item["name1"]))
+	$name = ltrim(strip_tags($item["name1"]), ".");
+
 $lib_path = $_SERVER["DOCUMENT_ROOT"].'/lib/lib.php';
 require_once($lib_path);
 $title = "Song Work";
@@ -82,6 +84,15 @@ if($isHome || $isDetail )
 			var isSubmit = <? echo ($isSubmit ? 'true' : 'false') ; ?>;
 			var isDetail = <? echo ($isDetail ? 'true' : 'false') ; ?>;
 			var thisPage = '<? echo $thisPage; ?>';
+		</script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTPFXQ8JHL"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-DTPFXQ8JHL');
 		</script>
 	</head>
 <body class = '<? echo $thisPage; ?>'>

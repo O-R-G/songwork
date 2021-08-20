@@ -14,7 +14,7 @@ function getMeta_cat($child, $media) {
   $out []= $child["modified"];
   if ($media) {
     // $out []= basename(m_root($media[0]));
-    $$child_info = explode('-=-', $child['notes']);
+    $child_info = explode('-=-', $child['notes']);
     $child_description = $child_info[0];
     $child_location = $child_info[1];
     $child_recordist = $child_info[2];
